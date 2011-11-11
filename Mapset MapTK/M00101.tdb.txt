@@ -1,0 +1,50 @@
+
+Header           C:/Users/drake2k/Documents/My Garmin/Nemrod/Nemrod/Mapset MapTK/M00101.tdb
+ProductID        1
+FamilyID         101
+TDB version      407
+Product version  0
+Map series       Nemrod Maps
+Map family       Nemrod Maps
+Extra @ 0x23     00 
+Low map level    18
+Extra @ 0x25     01 01 01 00 00 00 00 00 
+High map level   24
+Extra @ 0x2e     00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+Extra @ 0x3e     00 00 00 
+Codepage         1252
+Extra @ 0x43     00 00 
+???              0x03e8
+Extra @ 0x47     00 00 
+Is routable      0
+Has profile info 0
+Has DEM subfile  0
+
+Copyrights       2 @ 00004c
+                 6  1     0 Nemrod 2011
+                 6  1     0 MapTk 3.0.5
+
+Overview         00000001 @ 00006f
+Latitude         46.00115 / 46.01109
+Longitude        -74.97139 / -74.95761
+Description      nemrod
+
+Detailed map     10000000 @ 000091
+Description      NemrodCamp
+Parent map       00000001
+Latitude         46.00167 / 46.01059
+Longitude        -74.97068 / -74.95832
+TRE size         427 (0x1ab)
+LBL size         512 (0x200)
+RGN size         654 (0x28e)
+ID               10000000
+Extra 1          0x0006
+Extra 2          0x01 0xc3 0x00 @ 0xc7
+Extra 3          255 (0xff) @ 0xca
+
+CRC32            0x54 @ 0000f7 (20 bytes)
+data:            00 00 48 00 00 00 00 00 
+                 00 c7 00 00 fb 00 00 00 
+                 00 7c 00 00 
+
+Detailed maps:   1

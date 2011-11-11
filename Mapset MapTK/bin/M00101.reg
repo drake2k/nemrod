@@ -1,0 +1,12 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Garmin\MapSource\Families\Nemrod Maps]
+"ID"=hex:65,00
+"TYP"="C:\\Users\\drake2k\\Documents\\My Garmin\\Nemrod\\Nemrod\\Mapset MapTK\\M00101.typ"
+"IDX"="C:\\Users\\drake2k\\Documents\\My Garmin\\Nemrod\\Nemrod\\Mapset MapTK\\M00101.mdx"
+"MDR"="C:\\Users\\drake2k\\Documents\\My Garmin\\Nemrod\\Nemrod\\Mapset MapTK\\M00101_mdr.img"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Garmin\MapSource\Families\Nemrod Maps\1]
+"TDB"="C:\\Users\\drake2k\\Documents\\My Garmin\\Nemrod\\Nemrod\\Mapset MapTK\\M00101.tdb"
+"BMAP"="C:\\Users\\drake2k\\Documents\\My Garmin\\Nemrod\\Nemrod\\Mapset MapTK\\nemrod.img"
+"LOC"="C:\\Users\\drake2k\\Documents\\My Garmin\\Nemrod\\Nemrod\\Mapset MapTK"

@@ -1,0 +1,26 @@
+Add maps to MapTK.prj
+
+ - In map TK, Create Overview map (./nemrod.mp is created)
+ - Open ./nemrod.mp in GPSMapEdit and in File>Map Properties, give it a significant name (ie: Nemrod Maps)
+ - DO NOT CHANGE ANYTHING ELSE
+ - In map TK Compile it to img, from map tk(./nemrod.mp compiles to ./nemrod.img)
+ - In map TK, Make
+
+Then copy into the bin folder all the generated files (or run ./copytobin.bat):
+ - the img maps (./10000000.img, etc)
+ - the overview img file (./nemrod.img)
+ - ./.tdb file
+ - ./.typ file
+ - ./.mdx file
+ - ./_mdr.img file
+
+
+ 
+Update installer if needed (new maps, new registry keys in .reg file generated on the make)
+
+
+
+MapSet name : Nemrod Maps
+Family ID: 101
+
+Nemrod Camp map ID: 10000000
