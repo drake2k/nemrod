@@ -14,6 +14,8 @@ Then copy into the bin folder all the generated files (or run ./copytobin.bat):
  - ./.mdx file
  - ./_mdr.img file
 
+After that, you can open the generated overview map file and remove the paths from the individual maps. For each maps
+represented in the overview, Maptk puts the full path as its name. Search and replace in the .img file and it works.
 
  
 Update installer if needed (new maps, new registry keys in .reg file generated on the make)
