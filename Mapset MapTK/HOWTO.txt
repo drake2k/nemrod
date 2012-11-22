@@ -2,9 +2,16 @@ Add maps to MapTK.prj
 
  - In map TK, Create Overview map (./nemrod.mp is created)
  - Open ./nemrod.mp in GPSMapEdit and in File>Map Properties, give it a significant name (ie: Nemrod Maps)
+ - Change the level 0 in the overview map to match level 0 in maps it was created from.
  - DO NOT CHANGE ANYTHING ELSE
  - In map TK Compile it to img, from map tk(./nemrod.mp compiles to ./nemrod.img)
  - In map TK, Make
+OR
+ - In map TK, Create Overview map (./nemrod.mp is created)
+ - In map TK, run the script (click script button) on the ./nemrod.mp file
+ - In map TK, run MAKE
+
+
 
 Then copy into the bin folder all the generated files (or run ./copytobin.bat):
  - the img maps (./10000000.img, etc)
@@ -14,7 +21,7 @@ Then copy into the bin folder all the generated files (or run ./copytobin.bat):
  - ./.mdx file
  - ./_mdr.img file
 
-After that, you can open the generated overview map file and remove the paths from the individual maps. For each maps
+After that, you can open the generated overview map file and remove the file paths from the individual maps. For each maps
 represented in the overview, Maptk puts the full path as its name. Search and replace in the .img file and it works.
 
  

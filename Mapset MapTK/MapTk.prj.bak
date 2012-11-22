@@ -7,6 +7,7 @@ Version=1
 Compile=1
 Index=1
 Style=0
+GarminColor=1
 Overview=nemrod.img
 IMGpath=C:/Users/drake2k//Nemrod/Mapset MapTK
 IMGfiles=1000000*.img
@@ -16,7 +17,7 @@ Copyright=Nemrod 2011
 # IMGs
 
 [IMG]
-C:\Users\drake2k\Nemrod\Mapset MapTK\NemrodCamp - 10000000
+NemrodCamp - 10000000
 [END]
 
 # POIs
@@ -2086,11 +2087,12 @@ Line=.0.00..0..0...........0........0
 #               zoom[]       zoom level
 zoom = []                               # use default
 if overview:                            # modify in overview map
-    levels = 4
-    level[0] = 19
-    level[1] = 17
-    level[2] = 15
-    level[3] = 14
+    levels = 5
+    level[0] = 24
+    level[1] = 23
+    level[2] = 22
+    level[3] = 20
+    level[4] = 19
 else:                                   # modify in detailed map
     levels = 5
     level[0] = 24
@@ -2100,6 +2102,8 @@ else:                                   # modify in detailed map
     level[4] = 19
     transparent = 0
 codepage = 1252                        # latin characters
+if name == "nemrod":
+    name = "Nemrod Maps"
 [END]
 
 [CUSTOM_POI]
@@ -2209,4 +2213,5 @@ else:                                   # modify in detailed map
     elif level != -1:                   # do not overwrite -1
         level = 1                       # all others
 [END]
+
 
