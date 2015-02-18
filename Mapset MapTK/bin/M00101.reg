@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Garmin\MapSource\Families\Nemrod Maps]
+"ID"=hex:65,00
+"IDX"="bin\\M00101.mdx"
+"MDR"="bin\\M00101_mdr.img"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Garmin\MapSource\Families\Nemrod Maps\1]
+"TDB"="bin\\M00101.tdb"
+"BMAP"="bin\\nemrod.img"
+"LOC"="bin"

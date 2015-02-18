@@ -12,15 +12,6 @@ OR
  - In map TK, run MAKE
 
 
-
-Then copy into the bin folder all the generated files (or run ./copytobin.bat):
- - the img maps (./10000000.img, etc)
- - the overview img file (./nemrod.img)
- - ./.tdb file
- - ./.typ file
- - ./.mdx file
- - ./_mdr.img file
-
 After that, you can open the generated overview map file and remove the file paths from the individual maps. For each maps
 represented in the overview, Maptk puts the full path as its name. Search and replace in the .img file and it works.
 
