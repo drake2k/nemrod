@@ -9,7 +9,7 @@ Index=1
 Style=0
 GarminColor=1
 Overview=nemrod.img
-IMGpath=bin
+IMGpath=Output-MapTK
 IMGfiles=10000000*.img
 Copyright=Nemrod 2011
 [END]
