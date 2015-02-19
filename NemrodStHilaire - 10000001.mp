@@ -15,19 +15,17 @@ POIIndex=Y
 POINumberFirst=Y
 POIZipFirst=N
 DrawPriority=1
-Levels=6
+Levels=5
 Level0=24
 Level1=22
 Level2=20
 Level3=19
 Level4=18
-Level5=17
 Zoom0=0
 Zoom1=1
 Zoom2=2
 Zoom3=3
 Zoom4=4
-Zoom5=5
 [END-IMG ID]
 
 [POLYLINE]
@@ -47,7 +45,7 @@ Data0=(45.51947,-73.20195),(45.51943,-73.20190),(45.51936,-73.20184),(45.51928,-
 [POLYGON]
 Type=0x4b
 Background=Y
-Data0=(45.52458,-73.20787),(45.51320,-73.20787),(45.51320,-73.19274),(45.52458,-73.19274)
+Data4=(45.52458,-73.20787),(45.51320,-73.20787),(45.51320,-73.19274),(45.52458,-73.19274)
 Transparent=Y
 [END]
 

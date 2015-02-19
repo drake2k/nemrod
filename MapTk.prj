@@ -2191,7 +2191,7 @@ if overview:                            # modify in overview map
         level = levels - 1
     elif type in (0x28, 0x3c, 0x40, 0x41, 0x42, 0x43, 0x46, 0x47, 0x48,
         0x4a):
-        level = 0
+        level = 1
     elif type in (1, 0x3d, 0x3e, 0x3f, 0x44):
         level = 1
     else:
