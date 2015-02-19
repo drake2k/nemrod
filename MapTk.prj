@@ -2089,12 +2089,9 @@ Line=.0.00..0..0...........0........0
 #               zoom[]       zoom level
 zoom = []                               # use default
 if overview:                            # modify in overview map
-    levels = 5
+    levels = 2
     level[0] = 24
-    level[1] = 23
-    level[2] = 22
-    level[3] = 20
-    level[4] = 19
+    level[1] = 22
 else:                                   # modify in detailed map
     levels = 5
     level[0] = 24
@@ -2103,7 +2100,7 @@ else:                                   # modify in detailed map
     level[3] = 20
     level[4] = 19
     transparent = 0
-codepage = 1252                        # latin characters
+
 if name == "nemrod":
     name = "Nemrod Maps"
 [END]
@@ -2194,7 +2191,7 @@ if overview:                            # modify in overview map
         level = levels - 1
     elif type in (0x28, 0x3c, 0x40, 0x41, 0x42, 0x43, 0x46, 0x47, 0x48,
         0x4a):
-        level = 2
+        level = 0
     elif type in (1, 0x3d, 0x3e, 0x3f, 0x44):
         level = 1
     else:

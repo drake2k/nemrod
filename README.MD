@@ -10,7 +10,7 @@ Nemrod St-Hilaire map ID: 	10000001
 ### Directory Structure
 
 ./Installer: Generated installers  
-./Output-MapTK: Outpout generated via MapTK  
+./Output-MapTK: Output generated via MapTK  
 ./Tools: Free to use tools used by the project  
 
 
