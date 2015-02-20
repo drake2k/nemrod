@@ -1,11 +1,11 @@
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Garmin\MapSource\Families\Nemrod Maps(DEV)]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Garmin\MapSource\Families\Nemrod Maps]
 "ID"=hex:65,00
-"IDX"="C:\\NemrodMaps\\Output-MapTK\\M00101.mdx"
-"MDR"="C:\\NemrodMaps\\Output-MapTK\\M00101_mdr.img"
+"IDX"="Output-MapTK\\M00101.mdx"
+"MDR"="Output-MapTK\\M00101_mdr.img"
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Garmin\MapSource\Families\Nemrod Maps(DEV)\1]
-"TDB"="C:\\NemrodMaps\\Output-MapTK\\M00101.tdb"
-"BMAP"="C:\\NemrodMaps\\Output-MapTK\\nemrod.img"
-"LOC"="C:\\NemrodMaps\\Output-MapTK"
+[HKEY_LOCAL_MACHINE\SOFTWARE\Garmin\MapSource\Families\Nemrod Maps\1]
+"TDB"="Output-MapTK\\M00101.tdb"
+"BMAP"="Output-MapTK\\nemrod.img"
+"LOC"="Output-MapTK"
