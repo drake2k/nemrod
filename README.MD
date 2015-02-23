@@ -10,6 +10,7 @@ Nemrod St-Hilaire map ID: 	10000001
 ### Directory Structure
 
 ./Installer: Generated installers  
+./MappingData: Source data used to generated tracks and POIs  
 ./Output-MapTK: Output generated via MapTK  
 ./Tools: Free to use tools used by the project  
 
@@ -17,6 +18,16 @@ Nemrod St-Hilaire map ID: 	10000001
 ### MapTK Project
 
 To generate maps using MapTK, use the MapTK.prj file.
+
+###### Map files
+
+Maps use the MP format. Refer to MapTK documentation for the file structure, headers, features etc. MP files are edited with GPSMapEdit, in the tools folder.  
+  
+One exception, is that contrary to what is specified, the 0x4b polygon (Area of Map coverage) for indidual maps does not have to be in last level, which is not displayed in GPSMapedit.  
+It is only used for routing, and is ignored by MapTK regardless of its level. Note that Nemrod maps do not do routing, and probly never will.
+  
+When our own overview map generator is complete, we will also use these to realize 0x4a (Area of Map selection) using these, and use their extent to add the 0x4b polygon to the overview map.
+
 
 ###### Manual generation
  
