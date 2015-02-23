@@ -1,0 +1,1 @@
+In the folder are stored datas from which tracks and POIs are added to the maps.
