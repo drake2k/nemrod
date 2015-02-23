@@ -2,3 +2,4 @@ Installer/Nemrod Installer/Debug/*
 Installer/Nemrod Installer/Release/*
 *.suo
 MapTk.prj.bak
+NemrodToolkit/nbproject/private
