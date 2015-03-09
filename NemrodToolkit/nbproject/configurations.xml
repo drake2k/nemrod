@@ -39,7 +39,7 @@
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>${MAKE} -f makefile</buildCommand>
+          <buildCommand>${MAKE} -f makefile debug</buildCommand>
           <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
           <executablePath></executablePath>
           <cTool>
@@ -50,6 +50,9 @@
             <incDir>
               <pElem></pElem>
             </incDir>
+            <preprocessorList>
+              <Elem>DEBUG</Elem>
+            </preprocessorList>
           </ccTool>
         </makeTool>
       </makefileType>
@@ -69,7 +72,7 @@
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>${MAKE} -f makefile</buildCommand>
+          <buildCommand>${MAKE} -f makefile release</buildCommand>
           <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
           <executablePath></executablePath>
           <ccTool>

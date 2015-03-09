@@ -3,3 +3,5 @@ Installer/Nemrod Installer/Release/*
 *.suo
 MapTk.prj.bak
 NemrodToolkit/nbproject/private
+NemrodToolkit/hello.exe
+NemrodToolkit/generate-overview.exe
