@@ -1,5 +1,5 @@
 CFLAGS=-Wall
-CXXFLAGS=-Wall
+CXXFLAGS=-Wall -std=c++11
 
 release: CFLAGS += -O3 -funroll-loops
 release: CXXFLAGS += -O3 -funroll-loops
