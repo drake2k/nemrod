@@ -12,6 +12,7 @@ ProjectFile ProjectFile::LoadProjectFile(std::string fileName) {
     
     //todo trim lines, ignore case compare
     std::string line, currentSection = "END", lineSectionName;
+    bool projectSectionRead = false, imgSectionRead = false;
     while ( std::getline(ifs, line) ) {
         if (line.empty() || line[0] == '#')
             continue;
@@ -27,24 +28,24 @@ ProjectFile ProjectFile::LoadProjectFile(std::string fileName) {
             else
                 if(lineSectionName != "END")
                     EXIT_WITH_MSG("ProjectFile parsing error, overlapping sections: " + lineSectionName + " within " + currentSection);
-                else
+                else {
+                    if(currentSection == "Project")
+                        projectSectionRead = true;
+                    else if (currentSection == "IMG")
+                        imgSectionRead = true;
                     currentSection = "END";
+                }
             continue;
         }
-        
-        bool projectSectionRead, imgSectionRead;
+                
         if(currentSection == "Project") {
-            projectSectionRead = true;
-            if(line.compare(0, 8,"Product=") == 0) {
-                projectFile._product = line.substr(8,line.length() - 10);
-            } else if(line.compare(0, 10, "Copyright=") == 0)
-            {
+            if(line.compare(0, 8,"Product=") == 0)
+                projectFile._product = line.substr(8,line.length() - 8);
+             else if(line.compare(0, 10, "Copyright=") == 0)            
                 projectFile._copyright = line.substr(10,line.length() - 10);
-            }
-        } else if (currentSection == "IMG") {
-            imgSectionRead = true;
+        } else if (currentSection == "IMG")
             projectFile._imgs.push_back(line);
-        }
+        
         // we dont support other sections
         if(projectSectionRead && imgSectionRead)
             break;
