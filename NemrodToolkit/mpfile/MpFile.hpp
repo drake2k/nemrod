@@ -205,6 +205,14 @@ namespace Nemrod {
         unsigned char _boolInitStatus = 0x0;
     };
     
+    class Polyline {
+        
+    };
+    
+    class Polygon {
+        
+    };
+    
     /**
      * Class representing a polish file 
      * 
@@ -214,11 +222,13 @@ namespace Nemrod {
         /**
          * Loads a polish file and returns the MpFile instance
          * @param fileName The full filepath to the file to be loaded
+         * @param onlyHeader Defaults to false, if true will only load the header, attempts at reading other 
+         * fields than the MpfileHeader referenced returned by GetHeader() will fail.
          * @return MpFile instance
          */
-        static MpFile LoadMPFile(std::string fileName);
+        static MpFile LoadMPFile(std::string fileName, bool onlyHeader = false);
 
-        const MpFileHeader& GetHeader() const { return _header; }
+        const MpFileHeader& GetHeader() const;
     private:
         MpFileHeader _header;
     };

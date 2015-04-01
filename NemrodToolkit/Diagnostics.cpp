@@ -1,4 +1,4 @@
-#include "Diagnostics.h"
+#include "Diagnostics.hpp"
 #include <cstdlib>
 
 void EXIT_WITH_MSG(std::string errorMsg) {

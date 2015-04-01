@@ -1,5 +1,5 @@
 #include "ProjectFile.hpp"
-#include "../Diagnostics.h"
+#include "../Diagnostics.hpp"
 
 using namespace Nemrod::MapTk;
 

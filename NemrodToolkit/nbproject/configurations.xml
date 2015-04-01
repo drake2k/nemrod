@@ -4,7 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>Diagnostics.h</itemPath>
+      <itemPath>Diagnostics.hpp</itemPath>
       <itemPath>mpfile/MpFile.hpp</itemPath>
       <itemPath>mapTk/ProjectFile.hpp</itemPath>
     </logicalFolder>
@@ -61,7 +61,7 @@
       </makefileType>
       <item path="Diagnostics.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Diagnostics.h" ex="false" tool="3" flavor2="0">
+      <item path="Diagnostics.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="generate-overview.cpp" ex="false" tool="1" flavor2="9">
       </item>
@@ -99,7 +99,7 @@
       </makefileType>
       <item path="Diagnostics.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Diagnostics.h" ex="false" tool="3" flavor2="0">
+      <item path="Diagnostics.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="generate-overview.cpp" ex="false" tool="1" flavor2="4">
       </item>

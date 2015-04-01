@@ -5,7 +5,7 @@
 
 #include "mpfile/MpFile.hpp"
 #include "mapTk/ProjectFile.hpp"
-#include "Diagnostics.h"
+#include "Diagnostics.hpp"
 
 using namespace Nemrod;
 using namespace Nemrod::MapTk;
