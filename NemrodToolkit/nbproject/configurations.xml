@@ -4,7 +4,9 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Diagnostics.h</itemPath>
       <itemPath>mpfile/MpFile.hpp</itemPath>
+      <itemPath>mapTk/ProjectFile.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -13,7 +15,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Diagnostics.cpp</itemPath>
       <itemPath>mpfile/MpFile.cpp</itemPath>
+      <itemPath>mapTk/ProjectFile.cpp</itemPath>
       <itemPath>generate-overview.cpp</itemPath>
       <itemPath>hello.cpp</itemPath>
     </logicalFolder>
@@ -55,9 +59,17 @@
           </ccTool>
         </makeTool>
       </makefileType>
+      <item path="Diagnostics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Diagnostics.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="generate-overview.cpp" ex="false" tool="1" flavor2="9">
       </item>
       <item path="hello.cpp" ex="false" tool="1" flavor2="9">
+      </item>
+      <item path="mapTk/ProjectFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="mapTk/ProjectFile.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="mpfile/MpFile.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -85,9 +97,17 @@
           </ccTool>
         </makeTool>
       </makefileType>
+      <item path="Diagnostics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Diagnostics.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="generate-overview.cpp" ex="false" tool="1" flavor2="4">
       </item>
       <item path="hello.cpp" ex="false" tool="1" flavor2="4">
+      </item>
+      <item path="mapTk/ProjectFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="mapTk/ProjectFile.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="mpfile/MpFile.cpp" ex="false" tool="1" flavor2="0">
       </item>

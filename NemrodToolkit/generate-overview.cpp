@@ -4,37 +4,37 @@
 #include <cstdlib>
 
 #include "mpfile/MpFile.hpp"
+#include "mapTk/ProjectFile.hpp"
+#include "Diagnostics.h"
 
 using namespace Nemrod;
-using namespace std;
+using namespace Nemrod::MapTk;
 
 void usage() {
-    cout << "Usage: " << endl;
+    std::cout << "Usage: " << std::endl;
     // todo
     exit(1);
 }
 
 int main(int argc, char** argv) {
     
-    string outputFileName;
+    std::string outputFileName;
 
-    if ((argc <= 1) || (argv[argc-1] == NULL) || (argv[argc-1][0] == '-')) {
-        cout << "No target file name was given, command must end with target file name for the overview map. Use -h for help." << endl;
-        exit(1);
-    }
+    if ((argc <= 1) || (argv[argc-1] == NULL) || (argv[argc-1][0] == '-')) 
+        EXIT_WITH_MSG("No target file name was given, command must end with target file name for the overview map. Use -h for help.");
     else 
         outputFileName = argv[argc-1];
     
     opterr = 0; // suppress getopt errors
     
-    string projectFile;
+    std::string projectFileArg;
     char opt;
     while((opt = getopt(argc -1, argv, "p:")) != -1) {
         if(optind >= argc)
             break;
         switch(opt){
             case 'p':
-                projectFile = optarg;
+                projectFileArg = optarg;
                 break;
             case '?':
                 usage();
@@ -42,8 +42,15 @@ int main(int argc, char** argv) {
         }
     }
     
-    cout << "Generating overview map" << outputFileName << endl;
+    if(projectFileArg.empty())
+        usage();
+    else
+        std::cout << "Using ProjectFile: " << projectFileArg << std::endl;
     
-    cout << "Generated overview map: " << outputFileName << endl;
+    std::cout << "Generating overview map" << outputFileName << std::endl;
+    
+    ProjectFile projectFile = ProjectFile::LoadProjectFile(projectFileArg);
+    
+    std::cout << "Generated overview map: " << outputFileName << std::endl;
 }
 

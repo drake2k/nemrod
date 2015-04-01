@@ -5,8 +5,6 @@
 #include <string>
 #include <fstream>
 
-using namespace std;
-
 namespace Nemrod {
 
     /**
@@ -14,7 +12,7 @@ namespace Nemrod {
      */
     class MpFileHeader {        
     public:
-        static MpFileHeader ReadHeader(fstream fileStream);
+        static MpFileHeader ReadHeader(std::fstream fileStream);
         
         /**
          * BITMASK Flag indicating the transparent property is initialized
@@ -157,19 +155,19 @@ namespace Nemrod {
             return _lblCoding;
         }
 
-        void SetName(string _name) {
+        void SetName(std::string _name) {
             this->_name = _name;
         }
 
-        string GetName() const {
+        std::string GetName() const {
             return _name;
         }
 
-        void SetCodePage(string _codePage) {
+        void SetCodePage(std::string _codePage) {
             this->_codePage = _codePage;
         }
 
-        string GetCodePage() const {
+        std::string GetCodePage() const {
             return _codePage;
         }
         
@@ -182,8 +180,8 @@ namespace Nemrod {
             return _boolInitStatus;
         }
     private:
-        string _codePage;
-        string _name;
+        std::string _codePage;
+        std::string _name;
 
         int _lblCoding=-1;
         int _id=-1;
@@ -218,7 +216,7 @@ namespace Nemrod {
          * @param fileName The full filepath to the file to be loaded
          * @return MpFile instance
          */
-        static MpFile LoadMPFile(string fileName);
+        static MpFile LoadMPFile(std::string fileName);
 
         const MpFileHeader& GetHeader() const { return _header; }
     private:
