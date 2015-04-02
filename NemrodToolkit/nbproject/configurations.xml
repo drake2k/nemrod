@@ -7,6 +7,7 @@
       <itemPath>Diagnostics.hpp</itemPath>
       <itemPath>mpfile/MpFile.hpp</itemPath>
       <itemPath>mapTk/ProjectFile.hpp</itemPath>
+      <itemPath>Utils.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -15,9 +16,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>Diagnostics.cpp</itemPath>
       <itemPath>mpfile/MpFile.cpp</itemPath>
       <itemPath>mapTk/ProjectFile.cpp</itemPath>
+      <itemPath>Utils.cpp</itemPath>
       <itemPath>generate-overview.cpp</itemPath>
       <itemPath>hello.cpp</itemPath>
     </logicalFolder>
@@ -59,9 +60,11 @@
           </ccTool>
         </makeTool>
       </makefileType>
-      <item path="Diagnostics.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="Diagnostics.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Utils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Utils.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="generate-overview.cpp" ex="false" tool="1" flavor2="9">
       </item>
@@ -97,9 +100,11 @@
           </ccTool>
         </makeTool>
       </makefileType>
-      <item path="Diagnostics.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="Diagnostics.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Utils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Utils.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="generate-overview.cpp" ex="false" tool="1" flavor2="4">
       </item>

@@ -4,15 +4,23 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
+#include <set>
 
 namespace Nemrod {
 
+    struct IntPairCompareBySecond {
+        bool operator ()(const std::pair<int, int> &a, const std::pair<int, int> &b) {
+            return a.second < b.second;
+        }
+    };
+    
     /**
      * Class reprenting the section [IMG ID] of a polish file
      */
     class MpFileHeader {        
     public:
-        static MpFileHeader ReadHeader(std::fstream fileStream);
+        static MpFileHeader ReadHeader(std::ifstream fileStream);
         
         /**
          * BITMASK Flag indicating the transparent property is initialized
@@ -91,19 +99,15 @@ namespace Nemrod {
             return _treMargin;
         }
 
-        void SetMapSourceZooms(int _mapSourceZooms) {
-            this->_mapSourceZooms = _mapSourceZooms;
-        }
+        void AddMapSourceZoom(int level, int bits);
 
-        int GetMapSourceZooms() const {
+        const std::set<std::pair<int,int>, IntPairCompareBySecond>& GetMapSourceZooms() const {
             return _mapSourceZooms;
         }
 
-        void SetLevelBits(int _levelBits) {
-            this->_levelBits = _levelBits;
-        }
+        void AddLevelBits(int level, int bits);
 
-        int GetLevelBits() const {
+        const std::set<std::pair<int,int>, IntPairCompareBySecond>& GetLevelBits() const {
             return _levelBits;
         }
 
@@ -123,12 +127,12 @@ namespace Nemrod {
             return _drawPriority;
         }
 
-        void SetRngLimit(int _rngLimit) {
-            this->_rngLimit = _rngLimit;
+        void SetRgnLimit(int _rgnLimit) {
+            this->_rgnLimit = _rgnLimit;
         }
 
-        int GetRngLimit() const {
-            return _rngLimit;
+        int GetRgnLimit() const {
+            return _rgnLimit;
         }
 
         void SetTreSize(int _treSize) {
@@ -186,11 +190,12 @@ namespace Nemrod {
         int _lblCoding=-1;
         int _id=-1;
         int _treSize=-1;
-        int _rngLimit=-1;
+        int _rgnLimit=-1;
         int _drawPriority=-1;;
         int _levels=-1;
-        int _levelBits=-1;
-        int _mapSourceZooms=-1;
+        
+        std::set<std::pair<int,int>, IntPairCompareBySecond> _levelBits;
+        std::set<std::pair<int,int>, IntPairCompareBySecond> _mapSourceZooms;
 
         float _treMargin=-1;
 

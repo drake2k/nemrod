@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 void EXIT_WITH_MSG(std::string errorMsg);
 
