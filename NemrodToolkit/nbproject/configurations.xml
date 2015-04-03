@@ -16,6 +16,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Diagnostics.cpp</itemPath>
       <itemPath>mpfile/MpFile.cpp</itemPath>
       <itemPath>mapTk/ProjectFile.cpp</itemPath>
       <itemPath>Utils.cpp</itemPath>
@@ -60,6 +61,8 @@
           </ccTool>
         </makeTool>
       </makefileType>
+      <item path="Diagnostics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Diagnostics.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Utils.cpp" ex="false" tool="1" flavor2="0">
@@ -100,6 +103,8 @@
           </ccTool>
         </makeTool>
       </makefileType>
+      <item path="Diagnostics.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Diagnostics.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Utils.cpp" ex="false" tool="1" flavor2="0">

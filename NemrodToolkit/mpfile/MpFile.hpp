@@ -20,7 +20,7 @@ namespace Nemrod {
      */
     class MpFileHeader {        
     public:
-        static MpFileHeader ReadHeader(std::ifstream fileStream);
+        static MpFileHeader ReadHeader(std::ifstream& fileStream);
         
         /**
          * BITMASK Flag indicating the transparent property is initialized

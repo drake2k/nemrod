@@ -1,5 +1,6 @@
 #include "ProjectFile.hpp"
 #include "../Diagnostics.hpp"
+#include "../Utils.hpp"
 
 using namespace Nemrod::MapTk;
 
@@ -9,46 +10,30 @@ ProjectFile ProjectFile::LoadProjectFile(std::string fileName) {
         EXIT_WITH_MSG("Project file does not exists or failed to open");
     
     ProjectFile projectFile;
+    bool projectSectionRead = false, imgSectionRead = false; 
+    Nemrod::polish_file_reader(ifs, NULL,
+            // reaching the end of a section
+            [&projectSectionRead,&imgSectionRead] (std::string sectionName) {
+                if(sectionName == "project")
+                    projectSectionRead = true;
+                else if(sectionName == "img")
+                    imgSectionRead = true;
+            },
+            // reading a line
+            [&projectFile] (std::string sectionName, std::string lineRead) {
+                if(sectionName == "project") {
+                    if(lineRead.compare(0, 8,"product=") == 0)
+                        projectFile._product = lineRead.substr(8,lineRead.length() - 8);
+                     else if(lineRead.compare(0, 10, "copyright=") == 0)            
+                        projectFile._copyright = lineRead.substr(10,lineRead.length() - 10);
+                } else if (sectionName == "img")
+                    projectFile._imgs.push_back(lineRead);
+            },
+            // shouldContinue
+            [&projectSectionRead,&imgSectionRead]() {
+                return !(projectSectionRead && imgSectionRead);
+            }
+    );
     
-    //todo trim lines, ignore case compare
-    std::string line, currentSection = "END", lineSectionName;
-    bool projectSectionRead = false, imgSectionRead = false;
-    while ( std::getline(ifs, line) ) {
-        if (line.empty() || line[0] == '#')
-            continue;
-
-        if(line[0] == '[' && (line.length() > 2 && line[line.length()-1] == ']')) {
-            lineSectionName  = line.substr(1, line.length()-2);
-
-            if(currentSection == "END")
-                if(lineSectionName != "END")
-                    currentSection = lineSectionName;
-                else
-                    EXIT_WITH_MSG("ProjectFile parsing error, overlapping END tags or END tag encountered first");
-            else
-                if(lineSectionName != "END")
-                    EXIT_WITH_MSG("ProjectFile parsing error, overlapping sections: " + lineSectionName + " within " + currentSection);
-                else {
-                    if(currentSection == "Project")
-                        projectSectionRead = true;
-                    else if (currentSection == "IMG")
-                        imgSectionRead = true;
-                    currentSection = "END";
-                }
-            continue;
-        }
-                
-        if(currentSection == "Project") {
-            if(line.compare(0, 8,"Product=") == 0)
-                projectFile._product = line.substr(8,line.length() - 8);
-             else if(line.compare(0, 10, "Copyright=") == 0)            
-                projectFile._copyright = line.substr(10,line.length() - 10);
-        } else if (currentSection == "IMG")
-            projectFile._imgs.push_back(line);
-        
-        // we dont support other sections
-        if(projectSectionRead && imgSectionRead)
-            break;
-    }
     return projectFile;
 }

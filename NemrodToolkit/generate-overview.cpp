@@ -2,6 +2,7 @@
 #include <string>
 #include <unistd.h>
 #include <cstdlib>
+#include <limits>
 
 #include "mpfile/MpFile.hpp"
 #include "mapTk/ProjectFile.hpp"
@@ -18,7 +19,7 @@ void usage() {
 
 int main(int argc, char** argv) {
     
-    std::string outputFileName;
+    std::string outputFileName, workingDir;
 
     if ((argc <= 1) || (argv[argc-1] == NULL) || (argv[argc-1][0] == '-')) 
         EXIT_WITH_MSG("No target file name was given, command must end with target file name for the overview map. Use -h for help.");
@@ -47,10 +48,24 @@ int main(int argc, char** argv) {
     else
         std::cout << "Using ProjectFile: " << projectFileArg << std::endl;
     
+    workingDir = projectFileArg.substr(0, projectFileArg.find_last_of("/\\"));
+    
     std::cout << "Generating overview map" << outputFileName << std::endl;
     
     ProjectFile projectFile = ProjectFile::LoadProjectFile(projectFileArg);
     
+    for(auto &it : projectFile.GetImgs()) {
+        TRACE("Loading: " << it)
+        
+        MpFile mpFile = MpFile::LoadMPFile(workingDir + "\\" + it + ".mp", false);
+        
+    }
     std::cout << "Generated overview map: " << outputFileName << std::endl;
+    
+#ifdef DEBUG
+    std::cout << "DEBUG Build, press ENTER to continue" << std::endl;
+    std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+#endif
+    return 0;
 }
 
