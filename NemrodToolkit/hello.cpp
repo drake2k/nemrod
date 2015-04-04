@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Utils.hpp"
+#include "Diagnostics.hpp"
 #include <string>
 
 int main() {

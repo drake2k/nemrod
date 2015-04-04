@@ -3,8 +3,6 @@
 
 namespace Nemrod {
 
-    
-
     void polish_file_reader(std::ifstream& fileStream, const char* currentSectionParam,
             std::function<void(std::string) > reachedSectionEnd,
             std::function<void(std::string, std::string) > readLineInSection,
