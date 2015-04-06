@@ -19,6 +19,7 @@ namespace Nemrod {
             if (line[0] == '[' && (line.length() > 2 && line[line.length() - 1] == ']')) {
                 lineSectionName = line.substr(1, line.length() - 2);
 
+                // todo replace starts_with logic with sectionName=="end" or section=="end-sectionName" (Spec. 4.2))
                 if (starts_with(currentSection, "end"))
                     if (!starts_with(lineSectionName, "end"))
                         currentSection = lineSectionName;

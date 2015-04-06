@@ -9,19 +9,79 @@
 
 namespace Nemrod {
 
-    struct IntPairCompareBySecond {
-        bool operator ()(const std::pair<int, int> &a, const std::pair<int, int> &b) {
-            return a.second < b.second;
+    struct IntPairCompareByFirst {
+
+        bool operator()(const std::pair<int, int> &a, const std::pair<int, int> &b) {
+            return a.first < b.first;
         }
     };
     
+     class Point {
+
+        Point(double lat, double longi) {
+            this->SetLatitude(lat);
+            this->SetLongitude(longi);
+        }
+
+        operator bool() const {
+            return _latitude != 91 && _longitude != -91;
+        }
+
+        void SetLongitude(double _longitude) {
+            if(_longitude >= -90 && _longitude <= 90)
+                this->_longitude = _longitude;
+        }
+
+        double GetLongitude() const {
+            return _longitude;
+        }
+
+        void SetLatitude(double _latitude) {
+            if(_latitude >= -90 && _latitude <= 90)
+                this->_latitude = _latitude;
+        }
+
+        double GetLatitude() const {
+            return _latitude;
+        }
+
+    private:
+        /*N=90 S=-90*/
+        double _latitude = -91;
+        /*W=90 E=-90*/
+        double _longitude = -91;
+
+    };
+    
+    /**
+     * When implementing writing this class' method will be abstract
+     * 
+     */
+    class Shape {
+        short _typeCode;
+        std::string _label;
+        int _endLevel;
+        
+        std::set<std::pair<int, std::vector<Point>>, IntPairCompareByFirst> _points;
+    };
+
+    class Polyline : public Shape {
+    private:
+    public:
+    };
+
+    class Polygon : public Shape {
+    private:
+        bool _background;
+    };
+
     /**
      * Class reprenting the section [IMG ID] of a polish file
      */
-    class MpFileHeader {        
+    class MpFileHeader {
     public:
         static MpFileHeader ReadHeader(std::ifstream& fileStream);
-        
+
         /**
          * BITMASK Flag indicating the transparent property is initialized
          */
@@ -101,13 +161,13 @@ namespace Nemrod {
 
         void AddMapSourceZoom(int level, int bits);
 
-        const std::set<std::pair<int,int>, IntPairCompareBySecond>& GetMapSourceZooms() const {
+        const std::set<std::pair<int, int>, IntPairCompareByFirst>& GetMapSourceZooms() const {
             return _mapSourceZooms;
         }
 
         void AddLevelBits(int level, int bits);
 
-        const std::set<std::pair<int,int>, IntPairCompareBySecond>& GetLevelBits() const {
+        const std::set<std::pair<int, int>, IntPairCompareByFirst>& GetLevelBits() const {
             return _levelBits;
         }
 
@@ -174,7 +234,7 @@ namespace Nemrod {
         std::string GetCodePage() const {
             return _codePage;
         }
-        
+
         /**
          * Usefull when writing, if a property has not been initialized it will not be writen to the file.
          * 
@@ -187,43 +247,40 @@ namespace Nemrod {
         std::string _codePage;
         std::string _name;
 
-        int _lblCoding=-1;
-        int _id=-1;
-        int _treSize=-1;
-        int _rgnLimit=-1;
-        int _drawPriority=-1;;
-        int _levels=-1;
+        int _lblCoding = -1;
+        int _id = -1;
+        int _treSize = -1;
+        int _rgnLimit = -1;
+        int _drawPriority = -1;
+        int _levels = -1;
+
+        std::set<std::pair<int, int>, IntPairCompareByFirst> _levelBits;
+        std::set<std::pair<int, int>, IntPairCompareByFirst> _mapSourceZooms;
         
-        std::set<std::pair<int,int>, IntPairCompareBySecond> _levelBits;
-        std::set<std::pair<int,int>, IntPairCompareBySecond> _mapSourceZooms;
+        std::vector<Polyline> _polylines;
+        std::vector<Polygon> _polygons;
 
-        float _treMargin=-1;
+        float _treMargin = -1;
 
-        char _elevation=-1;
-        char _preProcess=-1;
+        char _elevation = -1;
+        char _preProcess = -1;
 
         bool _transparent;
         bool _poiIndex;
         bool _poiNumberFirst;
         bool _poiZipFirst;
-        
+
         unsigned char _boolInitStatus = 0x0;
     };
-    
-    class Polyline {
-        
-    };
-    
-    class Polygon {
-        
-    };
-    
+
+   
+
     /**
      * Class representing a polish file 
      * 
      */
     class MpFile {
-    public:        
+    public:
         /**
          * Loads a polish file and returns the MpFile instance
          * @param fileName The full filepath to the file to be loaded
