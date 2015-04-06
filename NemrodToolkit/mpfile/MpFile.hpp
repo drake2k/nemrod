@@ -8,16 +8,9 @@
 #include <set>
 
 namespace Nemrod {
-
-    struct IntPairCompareByFirst {
-
-        bool operator()(const std::pair<int, int> &a, const std::pair<int, int> &b) {
-            return a.first < b.first;
-        }
-    };
     
-     class Point {
-
+    class Point {
+    public:
         Point(double lat, double longi) {
             this->SetLatitude(lat);
             this->SetLongitude(longi);
@@ -26,9 +19,17 @@ namespace Nemrod {
         operator bool() const {
             return _latitude != 91 && _longitude != -91;
         }
+        
+        bool operator==(const Point& p) const{
+            return p._latitude == this->_latitude && p._longitude == this->_longitude;
+        }
+        
+        bool operator!=(const Point& p) const{
+            return !(p==*this);
+        }
 
         void SetLongitude(double _longitude) {
-            if(_longitude >= -90 && _longitude <= 90)
+            if (_longitude >= -90 && _longitude <= 90)
                 this->_longitude = _longitude;
         }
 
@@ -37,7 +38,7 @@ namespace Nemrod {
         }
 
         void SetLatitude(double _latitude) {
-            if(_latitude >= -90 && _latitude <= 90)
+            if (_latitude >= -90 && _latitude <= 90)
                 this->_latitude = _latitude;
         }
 
@@ -53,16 +54,59 @@ namespace Nemrod {
 
     };
     
+    struct IntPairCompareByFirst {
+        bool operator()(const std::pair<int, int> &a, const std::pair<int, int> &b) {
+            return a.first < b.first;
+        }
+    };
+    
+    struct IntPointVectorPairCompareByInt {
+        bool operator()(const std::pair<int, std::vector<Point>> &a, const std::pair<int, std::vector<Point>> &b) {
+            return a.first < b.first;
+        }
+    };
+    
     /**
      * When implementing writing this class' method will be abstract
      * 
      */
     class Shape {
+    public:
+        void AddPoints(int level, std::vector<Point>);
+        
+        const std::set<std::pair<int, std::vector<Point>>, IntPointVectorPairCompareByInt>& GetPoints() const {
+            return _points;
+        }
+
+        void SetEndLevel(int _endLevel) {
+            this->_endLevel = _endLevel;
+        }
+
+        int GetEndLevel() const {
+            return _endLevel;
+        }
+
+        void SetLabel(std::string _label) {
+            this->_label = _label;
+        }
+
+        std::string GetLabel() const {
+            return _label;
+        }
+
+        void SetTypeCode(short _typeCode) {
+            this->_typeCode = _typeCode;
+        }
+
+        short GetTypeCode() const {
+            return _typeCode;
+        }
+    private:
         short _typeCode;
         std::string _label;
         int _endLevel;
-        
-        std::set<std::pair<int, std::vector<Point>>, IntPairCompareByFirst> _points;
+
+        std::set<std::pair<int, std::vector<Point>>, IntPointVectorPairCompareByInt> _points;
     };
 
     class Polyline : public Shape {
@@ -72,7 +116,7 @@ namespace Nemrod {
 
     class Polygon : public Shape {
     private:
-        bool _background;
+        bool _background = false;
     };
 
     /**
@@ -256,7 +300,7 @@ namespace Nemrod {
 
         std::set<std::pair<int, int>, IntPairCompareByFirst> _levelBits;
         std::set<std::pair<int, int>, IntPairCompareByFirst> _mapSourceZooms;
-        
+
         std::vector<Polyline> _polylines;
         std::vector<Polygon> _polygons;
 
@@ -272,8 +316,6 @@ namespace Nemrod {
 
         unsigned char _boolInitStatus = 0x0;
     };
-
-   
 
     /**
      * Class representing a polish file 

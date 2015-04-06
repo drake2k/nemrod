@@ -8,6 +8,10 @@
 
 using namespace Nemrod;
 
+void Shape::AddPoints(int level, std::vector<Point> points){
+    this->_points.insert(std::pair<int,std::vector<Point>>(level, points));
+}
+
 void MpFileHeader::AddLevelBits(int level, int bits) {
     this->_levelBits.insert(std::pair<int,int>(level, bits));
 }
@@ -87,10 +91,8 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
     if(onlyHeader)
         return mpFile;
     
-    std::cout << "EOF " << fileStream.eof() << std::endl;
-    std::cout << "F1 " << fileStream.fail() << std::endl;
     fileStream.seekg(0);
-    std::cout << "F2 " << fileStream.fail() << std::endl;
+
     polish_file_reader(fileStream, NULL,
             // reaching the end of a section
             [] (std::string sectionName) {
