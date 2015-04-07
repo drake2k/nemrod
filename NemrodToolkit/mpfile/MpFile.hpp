@@ -72,6 +72,7 @@ namespace Nemrod {
      */
     class Shape {
     public:
+        virtual ~Shape() {}
         void AddPoints(int level, std::vector<Point>);
         
         const std::set<std::pair<int, std::vector<Point>>, IntPointVectorPairCompareByInt>& GetPoints() const {
@@ -106,15 +107,26 @@ namespace Nemrod {
         std::string _label;
         int _endLevel;
 
+        // todo this could as well be a map since it doesnt need to be ordered by the key (level)
         std::set<std::pair<int, std::vector<Point>>, IntPointVectorPairCompareByInt> _points;
     };
 
     class Polyline : public Shape {
-    private:
     public:
+    private:
     };
 
     class Polygon : public Shape {
+    
+    public:
+        void SetBackground(bool _background) {
+            this->_background = _background;
+        }
+
+        bool IsBackground() const {
+            return _background;
+        }
+        
     private:
         bool _background = false;
     };

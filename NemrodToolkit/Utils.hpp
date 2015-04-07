@@ -45,6 +45,7 @@ namespace Nemrod {
      * @param shouldContinue function, if returns it false reading the file stops
      */
     void polish_file_reader(std::ifstream& fileStream, const char* currentSectionParam,
+                                std::function<void(std::string)> reachedSectionStart,
                                 std::function<void(std::string)> reachedSectionEnd,
                                 std::function<void(std::string, std::string)> readLineInSection,
                                 std::function<bool()> shouldContinue) ;
