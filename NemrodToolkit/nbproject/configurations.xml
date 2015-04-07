@@ -57,6 +57,7 @@
             <standard>8</standard>
             <preprocessorList>
               <Elem>DEBUG</Elem>
+              <Elem>__cplusplus=201103L</Elem>
             </preprocessorList>
           </ccTool>
         </makeTool>
