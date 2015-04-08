@@ -24,9 +24,9 @@ ProjectFile ProjectFile::LoadProjectFile(std::string fileName) {
         // reading a line
         [&projectFile] (std::string sectionName, std::string lineRead) {
             if(sectionName == "project") {
-                if(starts_with(lineRead, "product=") && lineRead.length() > 8)
+                if(starts_with(lineRead, "product=", false) && lineRead.length() > 8)
                     projectFile._product = lineRead.substr(8,lineRead.length() - 8);
-                 else if(starts_with(lineRead, "copyright=") && lineRead.length() > 10)      
+                 else if(starts_with(lineRead, "copyright=", false) && lineRead.length() > 10)      
                     projectFile._copyright = lineRead.substr(10,lineRead.length() - 10);
             } else if (sectionName == "img")
                 projectFile._imgs.push_back(lineRead);

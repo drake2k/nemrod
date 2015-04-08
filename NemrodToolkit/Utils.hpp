@@ -18,27 +18,35 @@ namespace Nemrod {
         long res;
         return !(stream >> res) ? 0 : res;
     }
-    
+
     template <typename T>
     long to_number_from_hex(const std::basic_string<T> &str) {
         std::basic_stringstream<T> stream(str);
         long res;
         return !(stream >> std::hex >> res) ? 0 : res;
     }
-    
+
     template< typename T >
-    std::string to_hex_from_number( T i ){
+    std::string to_hex_from_number(T i) {
         std::stringstream stream;
         stream << std::showbase
-               << std::setfill ('0') << std::setw(sizeof(T)*2) 
-               << std::hex << i;
+                << std::setfill('0') << std::setw(sizeof (T)*2)
+                << std::hex << i;
         return stream.str();
     }
+
+    bool string_equals(const std::string& str1, const std::string& str2, const bool caseSensitive);
+
+    inline bool starts_with(const std::string& toMatch, const std::string& prefix, const bool caseSensitive) {
+        if(prefix.length() > toMatch.length())
+            return false;
+        return string_equals(toMatch.substr(0, prefix.length()), prefix, caseSensitive);
+    }
     
-    inline bool starts_with(std::string& toMatch, std::string prefix) {
-        return toMatch.compare(0, prefix.length(), prefix) == 0;
-    }   
-    
+    inline bool starts_with(const std::string& toMatch, const std::string& prefix) {
+        return starts_with(toMatch, prefix, true);
+    }
+
     inline std::string& ltrim(std::string &s) {
         s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
         return s;
@@ -52,7 +60,7 @@ namespace Nemrod {
     inline std::string& trim(std::string &s) {
         return ltrim(rtrim(s));
     }
-    
+
     /**
      * Helper to read polish files
      * 
@@ -63,10 +71,10 @@ namespace Nemrod {
      * @param shouldContinue function, if returns it false reading the file stops
      */
     void polish_file_reader(std::ifstream& fileStream, const char* currentSectionParam,
-                                std::function<void(std::string)> reachedSectionStart,
-                                std::function<void(std::string)> reachedSectionEnd,
-                                std::function<void(std::string, std::string)> readLineInSection,
-                                std::function<bool()> shouldContinue) ;
+            std::function<void(std::string) > reachedSectionStart,
+            std::function<void(std::string) > reachedSectionEnd,
+            std::function<void(std::string, std::string) > readLineInSection,
+            std::function<bool() > shouldContinue);
 }
 
 #endif	/* UTILS_H */
