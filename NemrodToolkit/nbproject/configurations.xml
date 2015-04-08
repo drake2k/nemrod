@@ -98,9 +98,14 @@
           <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
           <executablePath></executablePath>
           <ccTool>
+            <standard>8</standard>
             <incDir>
               <pElem></pElem>
             </incDir>
+            <preprocessorList>
+              <Elem>DEBUG</Elem>
+              <Elem>__cplusplus=201103L</Elem>
+            </preprocessorList>
           </ccTool>
         </makeTool>
       </makefileType>

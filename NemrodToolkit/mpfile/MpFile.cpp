@@ -44,12 +44,12 @@ MpFileHeader MpFileHeader::ReadHeader(std::ifstream& fileStream) {
                 else if (starts_with(line, "levels="))
                     fileHeader.SetLevels(Nemrod::to_number(line.substr(7, line.length() - 7)));
                 else if (starts_with(line, "level") && line.length()>5) {
-                    std::string levelId = line.substr(5, line.length() - line.find_first_of('='));
-                    int bits = Nemrod::to_number(line.substr(6 + levelId.length(), line.length() - 6 + levelId.length()));
+                    std::string levelId = line.substr(5, line.find_first_of('=') - 5);
+                    int bits = Nemrod::to_number(line.substr(6 + levelId.length(), line.length() - 6 - levelId.length()));
                     fileHeader.AddLevelBits(Nemrod::to_number(levelId), bits);
                 } else if (starts_with(line, "zoom") && line.length()>4) {
-                    std::string zoomId = line.substr(4, line.length() - line.find_first_of('='));
-                    int bits = Nemrod::to_number(line.substr(5 + zoomId.length(), line.length() - 5 + zoomId.length()));
+                    std::string zoomId = line.substr(4, line.find_first_of('=') - 4);
+                    int bits = Nemrod::to_number(line.substr(5 + zoomId.length(), line.length() - 5 - zoomId.length()));
                     fileHeader.AddMapSourceZoom(Nemrod::to_number(zoomId), bits);
                 } else if (starts_with(line, "drawpriority=")&& line.length() > 13)
                     fileHeader.SetDrawPriority(Nemrod::to_number(line.substr(13, line.length() - 13)));
@@ -111,14 +111,18 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
             if(sectionName == "polygon" || sectionName == "polyline") {
                 if(starts_with(lineRead, "background=") && lineRead.length() > 11 && sectionName=="polygon") // if "polygon" make the cast somewhat safer
                     dynamic_cast<Polygon&>(currentShape).SetBackground('y' == lineRead[11]);
-                else if(starts_with(lineRead,"typecode=") && lineRead.length() > 9)
-                    currentShape.SetTypeCode(Nemrod::to_number(lineRead.substr(9, lineRead.length() - 9)));
+                else if(starts_with(lineRead,"type=") && lineRead.length() > 5)
+                    currentShape.SetTypeCode(Nemrod::to_number_from_hex(lineRead.substr(5, lineRead.length() - 5)));
                 else if(starts_with(lineRead,"label=") && lineRead.length() > 6)
                     currentShape.SetLabel(lineRead.substr(6, lineRead.length() - 6));
                 else if(starts_with(lineRead,"endlevel=") && lineRead.length() > 9)
                     currentShape.SetEndLevel(Nemrod::to_number(lineRead.substr(9, lineRead.length() - 9)));
-
-                // todo handle points
+                else if(starts_with(lineRead, "data")){
+                    std::string level = lineRead.substr(4, lineRead.find_first_of('=') - 4);
+                    std::string pointsString = lineRead.substr(6 + level.length(), lineRead.length() - 5 - level.length());
+                    
+                    // todo parse points
+                }
                 
             }
         },

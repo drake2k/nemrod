@@ -1,12 +1,11 @@
 #include <iostream>
-#include "Utils.hpp"
+
 #include "Diagnostics.hpp"
 #include <string>
 
 int main() {
     
     std::string test = "  lol  lolol \t";
-    Nemrod::trim(test);
     std::cout << test;
     
 #if DEBUG

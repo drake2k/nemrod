@@ -1,12 +1,14 @@
 #ifndef UTILS_H
 #define	UTILS_H
 
+#include <ios>
+#include <iostream>
 #include <string>
 #include <sstream>
-#include <iostream>
 #include <fstream>
 #include <functional>
 #include <algorithm>
+#include <iomanip>
 
 namespace Nemrod {
 
@@ -15,6 +17,22 @@ namespace Nemrod {
         std::basic_stringstream<T> stream(str);
         long res;
         return !(stream >> res) ? 0 : res;
+    }
+    
+    template <typename T>
+    long to_number_from_hex(const std::basic_string<T> &str) {
+        std::basic_stringstream<T> stream(str);
+        long res;
+        return !(stream >> std::hex >> res) ? 0 : res;
+    }
+    
+    template< typename T >
+    std::string to_hex_from_number( T i ){
+        std::stringstream stream;
+        stream << std::showbase
+               << std::setfill ('0') << std::setw(sizeof(T)*2) 
+               << std::hex << i;
+        return stream.str();
     }
     
     inline bool starts_with(std::string& toMatch, std::string prefix) {
@@ -52,4 +70,3 @@ namespace Nemrod {
 }
 
 #endif	/* UTILS_H */
-
