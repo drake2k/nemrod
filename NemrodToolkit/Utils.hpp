@@ -9,18 +9,26 @@
 #include <functional>
 #include <algorithm>
 #include <iomanip>
+#include <utility>
 
 namespace Nemrod {
 
     template <typename T>
-    long to_number(const std::basic_string<T> &str) {
+    long to_number(const std::basic_string<T>& str) {
         std::basic_stringstream<T> stream(str);
         long res;
         return !(stream >> res) ? 0 : res;
     }
-
+    
     template <typename T>
-    long to_number_from_hex(const std::basic_string<T> &str) {
+    float to_float(const std::basic_string<T>& str) {
+        std::basic_stringstream<T> stream(str);
+        float res;
+        return !(stream >> res) ? 0 : res;
+    }
+    
+    template <typename T>
+    long to_number_from_hex(const std::basic_string<T>& str) {
         std::basic_stringstream<T> stream(str);
         long res;
         return !(stream >> std::hex >> res) ? 0 : res;
@@ -62,10 +70,11 @@ namespace Nemrod {
     }
 
     /**
-     * Helper to read polish files
+     * Helper method to read polish files. SectionName in callbacks are always lowercased, but lineRead is always passed as is
      * 
-     * @param fileStream
-     * @param currentSectionParam
+     * @param fileStream FileStream on the polish file
+     * @param currentSectionParam If calling method with the fileStream positionned in a Section, pass-in the section name
+     * @param reachedSectionStart function, first parameter is the section name
      * @param reachedSectionEnd function, first parameter is the section name
      * @param readLineInSection function, first parameter is the section name, second parameter is the line
      * @param shouldContinue function, if returns it false reading the file stops
@@ -75,6 +84,16 @@ namespace Nemrod {
             std::function<void(std::string) > reachedSectionEnd,
             std::function<void(std::string, std::string) > readLineInSection,
             std::function<bool() > shouldContinue);
+    
+    float read_polish_float(const std::string& attrName, const std::string& polishLine);
+    int read_polish_int(const std::string& attrName, const std::string& polishLine);
+    char read_polish_char(const std::string& attrName, const std::string& polishLine);
+    bool read_polish_bool(const std::string& attrName, const std::string& polishLine);
+    std::string read_polish_string(const std::string& attrName, const std::string& polishLine);
+    
+    std::pair<int,std::string> read_polish_leveledstring(const std::string& attrName, const std::string& polishLine);
+    std::pair<int,int> read_polish_leveledint(const std::string& attrName, const std::string& polishLine);
+    
 }
 
 #endif	/* UTILS_H */

@@ -11,7 +11,7 @@ namespace Nemrod {
     
     class Point {
     public:
-        Point(double lat, double longi) {
+        Point(float lat, float longi) {
             this->SetLatitude(lat);
             this->SetLongitude(longi);
         }
@@ -28,29 +28,29 @@ namespace Nemrod {
             return !(p==*this);
         }
 
-        void SetLongitude(double _longitude) {
+        void SetLongitude(float _longitude) {
             if (_longitude >= -90 && _longitude <= 90)
                 this->_longitude = _longitude;
         }
 
-        double GetLongitude() const {
+        float GetLongitude() const {
             return _longitude;
         }
 
-        void SetLatitude(double _latitude) {
+        void SetLatitude(float _latitude) {
             if (_latitude >= -90 && _latitude <= 90)
                 this->_latitude = _latitude;
         }
 
-        double GetLatitude() const {
+        float GetLatitude() const {
             return _latitude;
         }
 
     private:
         /*N=90 S=-90*/
-        double _latitude = -91;
+        float _latitude = -91;
         /*W=90 E=-90*/
-        double _longitude = -91;
+        float _longitude = -91;
 
     };
     
@@ -73,7 +73,7 @@ namespace Nemrod {
     class Shape {
     public:
         virtual ~Shape() {}
-        void AddPoints(int level, std::vector<Point>);
+        void AddPoints(int level, const std::vector<Point>&);
         
         const std::set<std::pair<int, std::vector<Point>>, IntPointVectorPairCompareByInt>& GetPoints() const {
             return _points;
@@ -347,6 +347,8 @@ namespace Nemrod {
         const MpFileHeader& GetHeader() const;
     private:
         MpFileHeader _header;
+        std::vector<Polygon> _polygons;
+        std::vector<Polyline> _polylines;
     };
 }
 

@@ -5,10 +5,12 @@
 #include <iostream>
 #include <stdlib.h>
 #include "../Utils.hpp"
+#include <iterator>
+//#include <regex>
 
 using namespace Nemrod;
 
-void Shape::AddPoints(int level, std::vector<Point> points){
+void Shape::AddPoints(int level, const std::vector<Point>& points){
     this->_points.insert(std::pair<int,std::vector<Point>>(level, points));
 }
 
@@ -107,7 +109,7 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
         // reaching the end of a section
         NULL,
         // reading a line
-        [&currentShape] (std::string sectionName, std::string lineRead) {
+        [&currentShape, &mpFile] (std::string sectionName, std::string lineRead) {
             if(sectionName == "polygon" || sectionName == "polyline") {
                 if(starts_with(lineRead, "background=", false) && lineRead.length() > 11 && sectionName=="polygon") // if "polygon" make the cast somewhat safer
                     dynamic_cast<Polygon&>(currentShape).SetBackground('y' == lineRead[11]);
@@ -119,9 +121,88 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
                     currentShape.SetEndLevel(Nemrod::to_number(lineRead.substr(9, lineRead.length() - 9)));
                 else if(starts_with(lineRead, "data", false)){
                     std::string level = lineRead.substr(4, lineRead.find_first_of('=') - 4);
-                    std::string pointsString = lineRead.substr(6 + level.length(), lineRead.length() - 5 - level.length());
+                    std::string pointsString = lineRead.substr(5 + level.length(), lineRead.length() - 5 - level.length());
+
+                    // lat always first
+                    //float latitude = -2, longitude = -2;
+                    int state = 0; //0 nowhere, 1 reading lat, 2 reading long
+                    std::stringstream latBuffer, longBuffer;
+                    std::vector<Point> points;
                     
-                    // todo parse points
+                    for(auto i = pointsString.begin(), pointsStringEnd = pointsString.end(); i <= pointsStringEnd; i++) {
+                        switch(state) {
+                            case 0:
+                                if(*i == '(')
+                                    state = 1;
+                                break;
+                            case 1:
+                                if(*i == ',')
+                                    state = 2;
+                                else {
+                                    // check numeric or . and fill lat buffer
+                                    if(isdigit(*i) || *i == '.')
+                                        latBuffer << *i;
+                                }
+                                break;
+                            case 2:
+                                if(*i != ')') {
+                                    // check numeric or . and fill long buffer
+                                    if(isdigit(*i) || *i == '.')
+                                        longBuffer << *i;
+                                } else {
+                                    // flush buffers in vector
+                                    state = 0;
+                                    points.push_back(Point(Nemrod::to_float(latBuffer.str()),Nemrod::to_float(longBuffer.str())));
+                                    
+                                    latBuffer.str("");
+                                    latBuffer.clear();
+                                    longBuffer.str("");
+                                    longBuffer.clear();
+                                }
+                                break;  
+                        }
+                        
+                       /* if(latitude == -2){
+                            if(*i == '(')
+                                latitude = -1;
+                        }else{
+                            if(longitude != -1) {                            
+                                if(latitude == -1) {
+                                    if(*i == ',') {
+                                        longitude = -1;
+                                    }else {
+                                        // check numeric or . and fill lat buffer
+                                    }
+                                }
+                            } else {
+                                if(*i != ')') {
+                                    // check numeric or . and fill long buffer
+                                } else {
+                                    // flush buffers in vector
+                                    
+                                    latitude = -2;
+                                    longitude = -2;
+                                }
+                            }
+                        }*/
+                    }
+                    currentShape.AddPoints(Nemrod::to_number(level), points);
+                    
+                    /*
+                    if we get gcc4.9 support 
+                    const std::string regexString = "(\\s*\\(\\s*(-?\\d+\\.?\\d*)\\s*,\\s*(-?\\d+\\.?\\d*)\\s*\\)\\s*(,|\\z|,\\z))";
+                    
+                    std::regex pointsRegex(regexString);
+                    auto pointsStart = 
+                        std::sregex_iterator(pointsString.begin(), pointsString.end(), pointsRegex);
+                    auto pointsEnd = std::sregex_iterator();
+                    
+                    for (std::sregex_iterator i = pointsStart; i != pointsEnd; ++i) {
+                        std::smatch match = *i;
+                        
+                    }*/
+                    
+                    
                     
                 }
                 

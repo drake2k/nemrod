@@ -3,7 +3,16 @@
 
 namespace Nemrod {
 
-    // todo document (what is lowered and what not)
+    /**
+     * Helper method to read polish files. SectionName in callbacks are always lowercased, but lineRead is always passed as is
+     * 
+     * @param fileStream FileStream on the polish file
+     * @param currentSectionParam If calling method with the fileStream positionned in a Section, pass-in the section name
+     * @param reachedSectionStart function, first parameter is the section name
+     * @param reachedSectionEnd function, first parameter is the section name
+     * @param readLineInSection function, first parameter is the section name, second parameter is the line
+     * @param shouldContinue function, if returns it false reading the file stops
+     */
     void polish_file_reader(std::ifstream& fileStream, const char* currentSectionParam,
             std::function<void(std::string) > reachedSectionStart,
             std::function<void(std::string) > reachedSectionEnd,
