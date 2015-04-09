@@ -97,28 +97,32 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
     
     fileStream.seekg(0);
     
-    Shape currentShape;
+    Shape* currentShape;
     polish_file_reader(fileStream, NULL,
         // reaching the start of a section
         [&currentShape] (std::string sectionName) {
-            if(sectionName == "polygon")
-                currentShape = Polygon();
-            else if(sectionName == "polyline")
-                currentShape = Polyline();
+            if(sectionName == "polygon") {
+                Polygon poly;
+                currentShape =&poly;
+            }
+            else if(sectionName == "polyline") {
+                Polyline poly;
+                currentShape = &poly;
+            }
         },
         // reaching the end of a section
         NULL,
         // reading a line
-        [&currentShape, &mpFile] (std::string sectionName, std::string lineRead) {
+        [currentShape, &mpFile] (std::string sectionName, std::string lineRead) {
             if(sectionName == "polygon" || sectionName == "polyline") {
                 if(starts_with(lineRead, "background=", false) && lineRead.length() > 11 && sectionName=="polygon") // if "polygon" make the cast somewhat safer
-                    dynamic_cast<Polygon&>(currentShape).SetBackground('y' == lineRead[11]);
+                    dynamic_cast<Polygon*>(currentShape)->SetBackground('y' == lineRead[11]);
                 else if(starts_with(lineRead,"type=", false) && lineRead.length() > 5)
-                    currentShape.SetTypeCode(Nemrod::to_number_from_hex(lineRead.substr(5, lineRead.length() - 5)));
+                    currentShape->SetTypeCode(Nemrod::to_number_from_hex(lineRead.substr(5, lineRead.length() - 5)));
                 else if(starts_with(lineRead,"label=", false) && lineRead.length() > 6)
-                    currentShape.SetLabel(lineRead.substr(6, lineRead.length() - 6));
+                    currentShape->SetLabel(lineRead.substr(6, lineRead.length() - 6));
                 else if(starts_with(lineRead,"endlevel=", false) && lineRead.length() > 9)
-                    currentShape.SetEndLevel(Nemrod::to_number(lineRead.substr(9, lineRead.length() - 9)));
+                    currentShape->SetEndLevel(Nemrod::to_number(lineRead.substr(9, lineRead.length() - 9)));
                 else if(starts_with(lineRead, "data", false)){
                     std::string level = lineRead.substr(4, lineRead.find_first_of('=') - 4);
                     std::string pointsString = lineRead.substr(5 + level.length(), lineRead.length() - 5 - level.length());
@@ -186,7 +190,7 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
                             }
                         }*/
                     }
-                    currentShape.AddPoints(Nemrod::to_number(level), points);
+                    currentShape->AddPoints(Nemrod::to_number(level), points);
                     
                     /*
                     if we get gcc4.9 support 
