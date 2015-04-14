@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "../Utils.hpp"
 #include <iterator>
+#include <memory>
 //#include <regex>
 
 using namespace Nemrod;
@@ -103,22 +104,27 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
         // reaching the start of a section
         [&currentShape] (std::string sectionName) {
             if(sectionName == "polygon") {
-                *currentShape = Polygon();
+                currentShape = new Polygon();
                 TRACE("Creating polygon")
             }
             else if(sectionName == "polyline") {
-                *currentShape = Polyline();
+                currentShape = new Polyline();
                 TRACE("Creating polyline")
             }
         },
         // reaching the end of a section
-        NULL,
-        // reading a line
-        [currentShape, &mpFile] (std::string sectionName, std::string lineRead) {
+        [&currentShape] (std::string sectionName) {
             if(sectionName == "polygon" || sectionName == "polyline") {
-                if(starts_with(lineRead, "background=", false) && lineRead.length() > 11 && sectionName=="polygon") // if "polygon" make the cast somewhat safer
-                    ((Polygon*)currentShape)->SetBackground('y' == tolower(lineRead[11]));
-                else if(starts_with(lineRead,"type=", false) && lineRead.length() > 5)
+                delete currentShape;
+                TRACE("Deleting shape")
+            }
+        },
+        // reading a line
+        [&currentShape, &mpFile] (std::string sectionName, std::string lineRead) {
+            if(sectionName == "polygon" || sectionName == "polyline") {
+                if(starts_with(lineRead, "background=", false) && lineRead.length() > 11 && sectionName=="polygon") { // if "polygon" make the cast somewhat safer
+                    dynamic_cast<Polygon*>(currentShape)->SetBackground('y' == tolower(lineRead[11]));
+                } else if(starts_with(lineRead,"type=", false) && lineRead.length() > 5)
                     currentShape->SetTypeCode(Nemrod::to_number_from_hex(lineRead.substr(5, lineRead.length() - 5)));
                 else if(starts_with(lineRead,"label=", false) && lineRead.length() > 6)
                     currentShape->SetLabel(lineRead.substr(6, lineRead.length() - 6));
@@ -193,9 +199,6 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
         // shouldContinue
         NULL
     );
+    mpFile.PrintSizes();
     return mpFile;
 }
-
-
-
-

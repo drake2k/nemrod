@@ -348,6 +348,10 @@ namespace Nemrod {
         static MpFile LoadMPFile(std::string fileName, bool onlyHeader = false);
 
         const MpFileHeader& GetHeader() const;
+        
+        void PrintSizes() {
+            std::cout << "Polygons: " << _polygons.size() << " Polylines: " << _polylines.size() << std::endl;
+        }
     private:
         MpFileHeader _header;
         std::vector<Polygon> _polygons;
