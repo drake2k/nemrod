@@ -8,7 +8,7 @@
 #include <set>
 
 namespace Nemrod {
-    
+
     class Point {
     public:
         Point(float lat, float longi) {
@@ -55,16 +55,18 @@ namespace Nemrod {
     };
     
     struct IntPairCompareByFirst {
-        bool operator()(const std::pair<int, int> &a, const std::pair<int, int> &b) {
+        bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) {
             return a.first < b.first;
         }
     };
     
     struct IntPointVectorPairCompareByInt {
-        bool operator()(const std::pair<int, std::vector<Point>> &a, const std::pair<int, std::vector<Point>> &b) {
+        bool operator()(const std::pair<int, std::vector<Point>>& a, const std::pair<int, std::vector<Point>>& b) {
             return a.first < b.first;
         }
     };
+    
+    
     
     /**
      * When implementing writing this class' method will be abstract
@@ -72,6 +74,7 @@ namespace Nemrod {
      */
     class Shape {
     public:
+        Shape() : _points() {} ;
         virtual ~Shape() {}
         void AddPoints(int level, const std::vector<Point>&);
         
@@ -103,12 +106,12 @@ namespace Nemrod {
             return _typeCode;
         }
     private:
-        short _typeCode;
-        std::string _label;
-        int _endLevel;
-
+        short _typeCode = 0;
+        std::string _label = "";
+        int _endLevel = 0;
+        
         // todo this could as well be a map since it doesnt need to be ordered by the key (level)
-        std::set<std::pair<int, std::vector<Point>>, IntPointVectorPairCompareByInt> _points;
+        std::set<std::pair<int, std::vector<Point>>, IntPointVectorPairCompareByInt> _points ;
     };
 
     class Polyline : public Shape {

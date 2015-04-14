@@ -11,7 +11,7 @@
 using namespace Nemrod;
 
 void Shape::AddPoints(int level, const std::vector<Point>& points){
-    this->_points.insert(std::pair<int,std::vector<Point>>(level, points));
+    this->_points.insert(std::pair<int,const std::vector<Point>&>(level, points));
 }
 
 void MpFileHeader::AddLevelBits(int level, int bits) {
@@ -60,15 +60,15 @@ MpFileHeader MpFileHeader::ReadHeader(std::ifstream& fileStream) {
                 else if (starts_with(line, "lblCoding=", false) && line.length() > 10)
                     fileHeader.SetLblCoding(Nemrod::to_number(line.substr(10, line.length() - 10)));
                 else if (starts_with(line, "poiindex=", false) && line.length() > 9)
-                    fileHeader.SetPoiIndex(line[9] == 'y');
+                    fileHeader.SetPoiIndex(line[9] == tolower('y'));
                 else if (starts_with(line, "poinumberfirst=", false) && line.length() > 15)
-                    fileHeader.SetPoiNumberFirst(line[15] == 'y');
+                    fileHeader.SetPoiNumberFirst(line[15] == tolower('y'));
                 else if (starts_with(line, "poizipfirst=", false) && line.length() > 12)
-                    fileHeader.SetPoiZipFirst(line[12] == 'y');
+                    fileHeader.SetPoiZipFirst(line[12] == tolower('y'));
                 else if (starts_with(line, "preprocess=", false) && line.length() > 11)
                     fileHeader.SetPreProcess(line[11]);
                 else if (starts_with(line, "transparent=", false) && line.length() > 12)
-                    fileHeader.SetTransparent(line[12] == 'y');
+                    fileHeader.SetTransparent(line[12] == tolower('y'));
                 else if (starts_with(line, "rgnlimit=", false) && line.length()>9)
                     fileHeader.SetRgnLimit(Nemrod::to_number(line.substr(9, line.length() - 9)));
                 else if (starts_with(line, "tremargin=", false) && line.length() > 10)
@@ -98,16 +98,17 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
     fileStream.seekg(0);
     
     Shape* currentShape;
+    
     polish_file_reader(fileStream, NULL,
         // reaching the start of a section
         [&currentShape] (std::string sectionName) {
             if(sectionName == "polygon") {
-                Polygon poly;
-                currentShape =&poly;
+                *currentShape = Polygon();
+                TRACE("Creating polygon")
             }
             else if(sectionName == "polyline") {
-                Polyline poly;
-                currentShape = &poly;
+                *currentShape = Polyline();
+                TRACE("Creating polyline")
             }
         },
         // reaching the end of a section
@@ -116,7 +117,7 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
         [currentShape, &mpFile] (std::string sectionName, std::string lineRead) {
             if(sectionName == "polygon" || sectionName == "polyline") {
                 if(starts_with(lineRead, "background=", false) && lineRead.length() > 11 && sectionName=="polygon") // if "polygon" make the cast somewhat safer
-                    dynamic_cast<Polygon*>(currentShape)->SetBackground('y' == lineRead[11]);
+                    ((Polygon*)currentShape)->SetBackground('y' == tolower(lineRead[11]));
                 else if(starts_with(lineRead,"type=", false) && lineRead.length() > 5)
                     currentShape->SetTypeCode(Nemrod::to_number_from_hex(lineRead.substr(5, lineRead.length() - 5)));
                 else if(starts_with(lineRead,"label=", false) && lineRead.length() > 6)
@@ -133,7 +134,7 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
                     std::stringstream latBuffer, longBuffer;
                     std::vector<Point> points;
                     
-                    for(auto i = pointsString.begin(), pointsStringEnd = pointsString.end(); i <= pointsStringEnd; i++) {
+                    for(auto i = pointsString.begin(), pointsStringEnd = pointsString.end(); i < pointsStringEnd; i++) {
                         switch(state) {
                             case 0:
                                 if(*i == '(')
@@ -165,31 +166,8 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
                                 }
                                 break;  
                         }
-                        
-                       /* if(latitude == -2){
-                            if(*i == '(')
-                                latitude = -1;
-                        }else{
-                            if(longitude != -1) {                            
-                                if(latitude == -1) {
-                                    if(*i == ',') {
-                                        longitude = -1;
-                                    }else {
-                                        // check numeric or . and fill lat buffer
-                                    }
-                                }
-                            } else {
-                                if(*i != ')') {
-                                    // check numeric or . and fill long buffer
-                                } else {
-                                    // flush buffers in vector
-                                    
-                                    latitude = -2;
-                                    longitude = -2;
-                                }
-                            }
-                        }*/
                     }
+                    TRACE("Adding " << points.size() << " points to shape.")
                     currentShape->AddPoints(Nemrod::to_number(level), points);
                     
                     /*
