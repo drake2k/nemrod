@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <utility>
+#include <memory>
 
 namespace Nemrod {
 
@@ -94,6 +95,25 @@ namespace Nemrod {
     std::pair<int,std::string> read_polish_leveledstring(const std::string& attrName, const std::string& polishLine);
     std::pair<int,int> read_polish_leveledint(const std::string& attrName, const std::string& polishLine);
     
+    
+    template<typename Derived, typename Base, typename Del>
+    std::unique_ptr<Derived, Del> 
+    static_unique_ptr_cast( std::unique_ptr<Base, Del>&& p )
+    {
+        auto d = static_cast<Derived *>(p.release());
+        return std::unique_ptr<Derived, Del>(d, std::move(p.get_deleter()));
+    }
+
+    template<typename Derived, typename Base, typename Del>
+    std::unique_ptr<Derived, Del> 
+    dynamic_unique_ptr_cast( std::unique_ptr<Base, Del>&& p )
+    {
+        if(Derived *result = dynamic_cast<Derived *>(p.get())) {
+            p.release();
+            return std::unique_ptr<Derived, Del>(result, std::move(p.get_deleter()));
+        }
+        return std::unique_ptr<Derived, Del>(nullptr, p.get_deleter());
+    }
 }
 
 #endif	/* UTILS_H */

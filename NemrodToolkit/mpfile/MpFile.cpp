@@ -100,6 +100,11 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
     
     Shape* currentShape;
     
+    /*
+    std::unique_ptr<Shape> testPtr;
+    auto testPoly = dynamic_unique_ptr_cast<Polygon, Shape>(std::move(testPtr));
+*/
+    
     polish_file_reader(fileStream, NULL,
         // reaching the start of a section
         [&currentShape] (std::string sectionName) {
