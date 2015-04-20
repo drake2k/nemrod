@@ -110,18 +110,18 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
         [&currentShape] (std::string sectionName) {
             if(sectionName == "polygon") {
                 currentShape = new Polygon();
-                TRACE("Creating polygon")
+                TRACE("Created polygon @" << currentShape)
             }
             else if(sectionName == "polyline") {
                 currentShape = new Polyline();
-                TRACE("Creating polyline")
+                TRACE("Created polyline @" << currentShape)
             }
         },
         // reaching the end of a section
         [&currentShape] (std::string sectionName) {
             if(sectionName == "polygon" || sectionName == "polyline") {
                 delete currentShape;
-                TRACE("Deleting shape")
+                TRACE("Deleted shape @" << currentShape)
             }
         },
         // reading a line

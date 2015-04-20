@@ -18,6 +18,8 @@ void usage() {
 }
 
 int main(int argc, char** argv) {
+    // getcwd 255 magic number might be unsafe, but PATH_MAX is undefined when there is no limits
+    TRACE("Current working directory: " << getcwd(NULL, 255))
     
     std::string outputFileName, workingDir;
 
@@ -50,7 +52,7 @@ int main(int argc, char** argv) {
     
     workingDir = projectFileArg.substr(0, projectFileArg.find_last_of("/\\"));
     
-    std::cout << "Generating overview map" << outputFileName << std::endl;
+    std::cout << "Generating overview map: " << outputFileName << std::endl;
     
     ProjectFile projectFile = ProjectFile::LoadProjectFile(projectFileArg);
     
