@@ -52,17 +52,18 @@ int main(int argc, char** argv) {
     
     workingDir = projectFileArg.substr(0, projectFileArg.find_last_of("/\\"));
     
-    std::cout << "Generating overview map: " << outputFileName << std::endl;
+    std::cout << "Generating overview map: " << outputFileName << std::endl << std::endl;
     
     ProjectFile projectFile = ProjectFile::LoadProjectFile(projectFileArg);
     
     for(auto &it : projectFile.GetImgs()) {
-        TRACE("Loading: " << it)
+        std::cout << std::endl << "Loading: " << it << std::endl;
         
         MpFile mpFile = MpFile::LoadMPFile(workingDir + "\\" + it + ".mp", false);
         
+        std::cout << it << " loaded." << std::endl;
     }
-    std::cout << "Generated overview map: " << outputFileName << std::endl;
+    std::cout << std::endl << "Generated overview map: " << outputFileName << std::endl;
     
 #ifdef DEBUG
     std::cout << "DEBUG Build, press ENTER to continue" << std::endl;
