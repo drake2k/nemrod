@@ -61,15 +61,17 @@ MpFileHeader MpFileHeader::ReadHeader(std::ifstream& fileStream) {
                 else if (starts_with(line, "lblCoding=", false) && line.length() > 10)
                     fileHeader.SetLblCoding(Nemrod::to_number(line.substr(10, line.length() - 10)));
                 else if (starts_with(line, "poiindex=", false) && line.length() > 9)
-                    fileHeader.SetPoiIndex(line[9] == tolower('y'));
+                    fileHeader.SetPoiIndex(tolower(line[9]) == 'y');
                 else if (starts_with(line, "poinumberfirst=", false) && line.length() > 15)
-                    fileHeader.SetPoiNumberFirst(line[15] == tolower('y'));
+                    fileHeader.SetPoiNumberFirst(tolower(line[15]) == 'y');
                 else if (starts_with(line, "poizipfirst=", false) && line.length() > 12)
-                    fileHeader.SetPoiZipFirst(line[12] == tolower('y'));
+                    fileHeader.SetPoiZipFirst(tolower(line[12]) == 'y');
                 else if (starts_with(line, "preprocess=", false) && line.length() > 11)
                     fileHeader.SetPreProcess(line[11]);
                 else if (starts_with(line, "transparent=", false) && line.length() > 12)
-                    fileHeader.SetTransparent(line[12] == tolower('y'));
+                    fileHeader.SetTransparent(tolower(line[12]) == 'y');
+                else if (starts_with(line, "preview=", false) && line.length() > 8)
+                    fileHeader.SetPreview(tolower(line[8]) == 'y');
                 else if (starts_with(line, "rgnlimit=", false) && line.length()>9)
                     fileHeader.SetRgnLimit(Nemrod::to_number(line.substr(9, line.length() - 9)));
                 else if (starts_with(line, "tremargin=", false) && line.length() > 10)
@@ -118,8 +120,12 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
             }
         },
         // reaching the end of a section
-        [&currentShape] (std::string sectionName) {
+        [&currentShape, &mpFile] (std::string sectionName) {
             if(sectionName == "polygon" || sectionName == "polyline") {
+                if(sectionName == "polygon")
+                    mpFile._polygons.push_back(*dynamic_cast<Polygon*>(currentShape));
+                else
+                    mpFile._polylines.push_back(*dynamic_cast<Polyline*>(currentShape));
                 delete currentShape;
                 TRACE("Deleted shape @" << currentShape)
             }

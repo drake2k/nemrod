@@ -156,7 +156,11 @@ namespace Nemrod {
         /**
          * BITMASK Flag indicating the poizipfirst property is initialized
          */
-        static const unsigned char POIZIPFIRST_INITIALIZED = 0x8;
+        static const unsigned char POIZIPFIRST_INITIALIZED = 0x8;        
+        /**
+         * BITMASK Flag indicating the preview property is initialized
+         */
+        static const unsigned char PREVIEW_INITIALIZED = 0x10;
 
         void SetPoiZipFirst(bool _poiZipFirst) {
             this->_poiZipFirst = _poiZipFirst;
@@ -192,6 +196,15 @@ namespace Nemrod {
 
         bool IsTransparent() const {
             return _transparent;
+        }
+        
+        void SetPreview(bool _preview) {
+            this->_preview = _preview;
+            this->_boolInitStatus = this->_boolInitStatus | PREVIEW_INITIALIZED;
+        }
+
+        bool IsPreview() const {
+            return _preview;
         }
 
         void SetPreProcess(char _preProcess) {
@@ -316,18 +329,16 @@ namespace Nemrod {
         std::set<std::pair<int, int>, IntPairCompareByFirst> _levelBits;
         std::set<std::pair<int, int>, IntPairCompareByFirst> _mapSourceZooms;
 
-        std::vector<Polyline> _polylines;
-        std::vector<Polygon> _polygons;
-
         float _treMargin = -1;
 
         char _elevation = -1;
         char _preProcess = -1;
 
-        bool _transparent;
-        bool _poiIndex;
-        bool _poiNumberFirst;
-        bool _poiZipFirst;
+        bool _transparent = false;
+        bool _poiIndex = false;
+        bool _poiNumberFirst = false;
+        bool _poiZipFirst = false;
+        bool _preview = false;
 
         unsigned char _boolInitStatus = 0x0;
     };
@@ -347,11 +358,23 @@ namespace Nemrod {
          */
         static MpFile LoadMPFile(std::string fileName, bool onlyHeader = false);
 
-        const MpFileHeader& GetHeader() const;
+        const MpFileHeader& GetHeader() const {
+            return _header;
+        }
+        
+        const std::vector<Polygon>& GetPolygons() const {
+            return _polygons;
+        }
+        
+        const std::vector<Polyline>& GetPolylines() const {
+            return _polylines;
+        }
         
         void PrintSizes() {
             std::cout << "Polygons: " << _polygons.size() << " Polylines: " << _polylines.size() << std::endl;
         }
+        
+        
     private:
         MpFileHeader _header;
         std::vector<Polygon> _polygons;

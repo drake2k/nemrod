@@ -57,11 +57,16 @@ int main(int argc, char** argv) {
     ProjectFile projectFile = ProjectFile::LoadProjectFile(projectFileArg);
     
     for(auto &it : projectFile.GetImgs()) {
-        std::cout << std::endl << "Loading: " << it << std::endl;
-        
+        std::cout << std::endl << "Loading: " << it << std::endl;        
         MpFile mpFile = MpFile::LoadMPFile(workingDir + "\\" + it + ".mp", false);
-        
         std::cout << it << " loaded." << std::endl;
+        
+        if(mpFile.GetHeader().IsPreview()) {
+            std::cout << it << " is an overview map, skipping." << std::endl;
+            continue;
+        }
+        
+        
     }
     std::cout << std::endl << "Generated overview map: " << outputFileName << std::endl;
     
