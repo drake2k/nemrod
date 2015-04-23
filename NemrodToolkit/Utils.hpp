@@ -45,27 +45,9 @@ namespace Nemrod {
         return stream.str();
     }
     
+    // this one is implemented in Utils.cpp and explicitely instanciated
     template <typename T>
-    void get_shapes_max_extents(const std::vector<T>& vector, float& minLat, float& maxLat, float& minLong, float& maxLong){
-        for(auto &it : vector) {
-             if(dynamic_cast<const Shape*>(&it) != 0) {
-                 for(auto &itShapePoints : ((Shape)it).GetPoints()) {
-                    /*for(auto &itShapePointsOnLevel : itShapePoints.second) {
-                        if(itShapePointsOnLevel.GetLongitude() > maxLong)
-                            maxLong = itShapePointsOnLevel.GetLongitude();
-                        if(itShapePointsOnLevel.GetLongitude() < minLong)
-                            minLong = itShapePointsOnLevel.GetLongitude();
-                        if(itShapePointsOnLevel.GetLatitude() > maxLat)
-                            maxLat = itShapePointsOnLevel.GetLatitude();
-                        if(itShapePointsOnLevel.GetLatitude() < minLat)
-                            minLat = itShapePointsOnLevel.GetLatitude();
-                    }*/
-                }
-             }else{
-                 std::cout << "Vector contains instances that are not of type Shape" << std::endl;
-             }
-        }
-    }
+    void get_shapes_max_extents(const std::vector<T>& vector, float& minLat, float& maxLat, float& minLong, float& maxLong);
 
     bool string_equals(const std::string& str1, const std::string& str2, const bool caseSensitive);
 

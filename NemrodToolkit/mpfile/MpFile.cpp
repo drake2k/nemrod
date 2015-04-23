@@ -162,14 +162,14 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
                                     state = 2;
                                 else {
                                     // check numeric or . and fill lat buffer
-                                    if(isdigit(*i) || *i == '.')
+                                    if(isdigit(*i) || *i == '-' || *i == '.')
                                         latBuffer << *i;
                                 }
                                 break;
                             case 2:
                                 if(*i != ')') {
                                     // check numeric or . and fill long buffer
-                                    if(isdigit(*i) || *i == '.')
+                                    if(isdigit(*i) || *i == '-' || *i == '.')
                                         longBuffer << *i;
                                 } else {
                                     // flush buffers in vector

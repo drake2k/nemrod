@@ -73,4 +73,29 @@ namespace Nemrod {
         }
         return true;
     }
+    
+    template <typename T> 
+    void get_shapes_max_extents(const std::vector<T>& vector, float& minLat, float& maxLat, float& minLong, float& maxLong){
+        for(auto &it : vector) {
+            const Shape* currentShape;
+             if((currentShape = dynamic_cast<const Shape*>(&it)) != 0) {
+                 for(auto &itShapePoints : currentShape->GetPoints()) {
+                    for(auto &itShapePointsOnLevel : itShapePoints.second) {
+                        if(itShapePointsOnLevel.GetLongitude() > maxLong)
+                            maxLong = itShapePointsOnLevel.GetLongitude();                        
+                        if(itShapePointsOnLevel.GetLongitude() < minLong)
+                            minLong = itShapePointsOnLevel.GetLongitude();
+                        if(itShapePointsOnLevel.GetLatitude() > maxLat)
+                            maxLat = itShapePointsOnLevel.GetLatitude();
+                        if(itShapePointsOnLevel.GetLatitude() < minLat)
+                            minLat = itShapePointsOnLevel.GetLatitude();
+                    }
+                }
+             }else{
+                 std::cout << "Vector contains instances that are not of type Shape" << std::endl;
+             }
+        }
+    }
+    template void get_shapes_max_extents<Nemrod::Polyline>(const std::vector<Nemrod::Polyline>&, float&, float&, float&, float&);
+    template void get_shapes_max_extents<Nemrod::Polygon>(const std::vector<Nemrod::Polygon>&, float&, float&, float&, float&);
 }

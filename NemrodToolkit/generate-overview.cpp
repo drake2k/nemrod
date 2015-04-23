@@ -18,7 +18,6 @@ void usage() {
     exit(1);
 }
 
-
 int main(int argc, char** argv) {
     // getcwd 255 magic number might be unsafe, but PATH_MAX is undefined when there is no limits
     TRACE("Current working directory: " << getcwd(NULL, 255))
@@ -58,6 +57,11 @@ int main(int argc, char** argv) {
     
     ProjectFile projectFile = ProjectFile::LoadProjectFile(projectFileArg);
 
+    float globalMinLat = std::numeric_limits<float>::max(),
+          globalMaxLat = std::numeric_limits<float>::lowest(), 
+          globalMinLong = std::numeric_limits<float>::max(), 
+          globalMaxLong = std::numeric_limits<float>::lowest();
+    
     for(auto &it : projectFile.GetImgs()) {
         std::cout << std::endl << "Loading: " << it << std::endl;        
         MpFile mpFile = MpFile::LoadMPFile(workingDir + "\\" + it + ".mp", false);
@@ -69,23 +73,35 @@ int main(int argc, char** argv) {
         }
         
         float minLat = std::numeric_limits<float>::max(),
-              maxLat = std::numeric_limits<float>::min(), 
+              maxLat = std::numeric_limits<float>::lowest(), 
               minLong = std::numeric_limits<float>::max(), 
-              maxLong = std::numeric_limits<float>::min();
+              maxLong = std::numeric_limits<float>::lowest();
         
         get_shapes_max_extents(mpFile.GetPolylines(), minLat, maxLat, minLong, maxLong);
         get_shapes_max_extents(mpFile.GetPolygons(), minLat, maxLat, minLong, maxLong);
         
-        // generate 4 points that will represent the extents of the basemap
-        /*
-         
-            topLeft:  min-max
-            botLeft:  min-min
-            topRight: max-max
-            botRight: max-min
-         
-         */
+        // update Area of coverage points (0x4b polygon)
+        if(maxLong > globalMaxLong)
+            globalMaxLong = maxLong;                        
+        if(minLong < globalMinLong)
+            globalMinLong = minLong;
+        if(maxLat > globalMaxLat)
+            globalMaxLat = maxLat;
+        if(minLat < globalMinLat)
+            globalMinLat = minLat;
+        
+        // generate 4 points that will represent the extents this map's Area of selection (0x4a polygon)
+        Point topLeft(minLat, maxLong),
+              botLeft(minLat, minLong),
+              topRight(maxLat, maxLong),
+              botRight(maxLat, minLong);
+        
+        
+        
     }
+    // add Area of coverage (background) Polygon 0x4b
+    
+    
     std::cout << std::endl << "Generated overview map: " << outputFileName << std::endl;
     
 #ifdef DEBUG

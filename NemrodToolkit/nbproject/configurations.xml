@@ -90,7 +90,7 @@
           </incDir>
         </ccTool>
       </item>
-      <item path="hello.cpp" ex="true" tool="1" flavor2="9">
+      <item path="hello.cpp" ex="false" tool="1" flavor2="9">
       </item>
       <item path="mapTk/ProjectFile.cpp" ex="false" tool="1" flavor2="0">
         <ccTool>
