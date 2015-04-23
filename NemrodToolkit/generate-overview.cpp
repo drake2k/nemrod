@@ -7,6 +7,7 @@
 #include "mpfile/MpFile.hpp"
 #include "mapTk/ProjectFile.hpp"
 #include "Diagnostics.hpp"
+#include "Utils.hpp"
 
 using namespace Nemrod;
 using namespace Nemrod::MapTk;
@@ -16,6 +17,7 @@ void usage() {
     // todo
     exit(1);
 }
+
 
 int main(int argc, char** argv) {
     // getcwd 255 magic number might be unsafe, but PATH_MAX is undefined when there is no limits
@@ -55,7 +57,7 @@ int main(int argc, char** argv) {
     std::cout << "Generating overview map: " << outputFileName << std::endl << std::endl;
     
     ProjectFile projectFile = ProjectFile::LoadProjectFile(projectFileArg);
-    
+
     for(auto &it : projectFile.GetImgs()) {
         std::cout << std::endl << "Loading: " << it << std::endl;        
         MpFile mpFile = MpFile::LoadMPFile(workingDir + "\\" + it + ".mp", false);
@@ -66,7 +68,23 @@ int main(int argc, char** argv) {
             continue;
         }
         
+        float minLat = std::numeric_limits<float>::max(),
+              maxLat = std::numeric_limits<float>::min(), 
+              minLong = std::numeric_limits<float>::max(), 
+              maxLong = std::numeric_limits<float>::min();
         
+        get_shapes_max_extents(mpFile.GetPolylines(), minLat, maxLat, minLong, maxLong);
+        get_shapes_max_extents(mpFile.GetPolygons(), minLat, maxLat, minLong, maxLong);
+        
+        // generate 4 points that will represent the extents of the basemap
+        /*
+         
+            topLeft:  min-max
+            botLeft:  min-min
+            topRight: max-max
+            botRight: max-min
+         
+         */
     }
     std::cout << std::endl << "Generated overview map: " << outputFileName << std::endl;
     
@@ -76,4 +94,6 @@ int main(int argc, char** argv) {
 #endif
     return 0;
 }
+
+
 

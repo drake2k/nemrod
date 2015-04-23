@@ -56,31 +56,58 @@
           <ccTool>
             <standard>8</standard>
             <preprocessorList>
-              <Elem>DEBUG</Elem>
+              <Elem>DEBUG=1</Elem>
+              <Elem>__GNUC_STDC_INLINE__=1</Elem>
+              <Elem>__GXX_EXPERIMENTAL_CXX0X__=1</Elem>
+              <Elem>__REGISTER_PREFIX__=</Elem>
+              <Elem>__STRICT_ANSI__=1</Elem>
               <Elem>__cplusplus=201103L</Elem>
             </preprocessorList>
           </ccTool>
         </makeTool>
       </makefileType>
       <item path="Diagnostics.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Diagnostics.hpp" ex="false" tool="3" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem></pElem>
+          </incDir>
+        </ccTool>
       </item>
       <item path="Utils.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>mpfile</pElem>
+            <pElem></pElem>
+          </incDir>
+        </ccTool>
       </item>
-      <item path="Utils.hpp" ex="false" tool="3" flavor2="0">
+      <item path="generate-overview.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>mpfile</pElem>
+            <pElem>mapTk</pElem>
+            <pElem></pElem>
+          </incDir>
+        </ccTool>
       </item>
-      <item path="generate-overview.cpp" ex="false" tool="1" flavor2="9">
-      </item>
-      <item path="hello.cpp" ex="false" tool="1" flavor2="9">
+      <item path="hello.cpp" ex="true" tool="1" flavor2="9">
       </item>
       <item path="mapTk/ProjectFile.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="mapTk/ProjectFile.hpp" ex="false" tool="3" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem></pElem>
+            <pElem>mapTk</pElem>
+            <pElem>mpfile</pElem>
+          </incDir>
+        </ccTool>
       </item>
       <item path="mpfile/MpFile.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="mpfile/MpFile.hpp" ex="false" tool="3" flavor2="0">
+        <ccTool>
+          <incDir>
+            <pElem>mpfile</pElem>
+            <pElem></pElem>
+          </incDir>
+        </ccTool>
       </item>
     </conf>
     <conf name="Release" type="0">
