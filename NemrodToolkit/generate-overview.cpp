@@ -56,7 +56,25 @@ int main(int argc, char** argv) {
     std::cout << "Generating overview map: " << outputFileName << std::endl << std::endl;
     
     ProjectFile projectFile = ProjectFile::LoadProjectFile(projectFileArg);
+    
+    MpFile overviewMap;
+    
+    // header 
+    overviewMap.GetHeader().SetName(projectFile.GetProduct());
+    overviewMap.GetHeader().SetId(projectFile.GetFamilyID());
+    overviewMap.GetHeader().SetCopyright(projectFile.GetCopyright());    
+    overviewMap.GetHeader().SetPreview(true);
+    
+    // for these maybe they should be parametrable or rely on IMGs parsed further on
+    overviewMap.GetHeader().SetCodePage("1252");
+    overviewMap.GetHeader().SetElevation('M');
+    overviewMap.GetHeader().SetLblCoding(9);
+    overviewMap.GetHeader().SetLevels(2); // this should be removed and read/write from the size of the levelbits set
+    overviewMap.GetHeader().GetLevelBits().insert(std::pair<int,int>(0,18));
+    overviewMap.GetHeader().GetLevelBits().insert(std::pair<int,int>(1,16));
+    // end of header
 
+    // body of the map
     float globalMinLat = std::numeric_limits<float>::max(),
           globalMaxLat = std::numeric_limits<float>::lowest(), 
           globalMinLong = std::numeric_limits<float>::max(), 
@@ -96,10 +114,22 @@ int main(int argc, char** argv) {
               topRight(maxLat, maxLong),
               botRight(maxLat, minLong);
         
+        // create the area of map selection polygon and add to overview map
+        Polygon areaMapSelection;
+        areaMapSelection.SetTypeCode(0x4a);
+        areaMapSelection.SetLabel(mpFile.GetHeader().GetName());
+        std::vector<Point> mapExtents;
+        mapExtents.push_back(topLeft);
+        mapExtents.push_back(botLeft);
+        mapExtents.push_back(topRight);
+        mapExtents.push_back(botRight);
         
-        
+        areaMapSelection.AddPoints(0, mapExtents);
+        overviewMap.GetPolygons().push_back(areaMapSelection);
     }
-    // add Area of coverage (background) Polygon 0x4b
+    // add Area of coverage (background) Polygon 0x4b ?
+    
+    // write file
     
     
     std::cout << std::endl << "Generated overview map: " << outputFileName << std::endl;

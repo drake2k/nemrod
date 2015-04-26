@@ -44,6 +44,8 @@ MpFileHeader MpFileHeader::ReadHeader(std::ifstream& fileStream) {
                     fileHeader.SetName(line.substr(5, line.length() - 5));
                 else if (starts_with(line, "codepage=", false))
                     fileHeader.SetCodePage(line.substr(9, line.length() - 9));
+                else if (starts_with(line, "copyright=", false))
+                    fileHeader.SetCopyright(line.substr(10, line.length() - 10));
                 else if (starts_with(line, "levels=", false))
                     fileHeader.SetLevels(Nemrod::to_number(line.substr(7, line.length() - 7)));
                 else if (starts_with(line, "level", false) && line.length()>5) {

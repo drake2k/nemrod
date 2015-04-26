@@ -38,8 +38,7 @@ $(HELLO_OBJ) : hello.cpp
 	mkdir -p $(ODIR)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-# Utils.hpp: overview uses templates from utils
-$(GENERATE_OVERVIEW_OBJ) : generate-overview.cpp Utils.hpp
+$(GENERATE_OVERVIEW_OBJ) : generate-overview.cpp
 	mkdir -p $(ODIR)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 

@@ -28,6 +28,8 @@ ProjectFile ProjectFile::LoadProjectFile(std::string fileName) {
                     projectFile._product = lineRead.substr(8,lineRead.length() - 8);
                  else if(starts_with(lineRead, "copyright=", false) && lineRead.length() > 10)      
                     projectFile._copyright = lineRead.substr(10,lineRead.length() - 10);
+                 else if(starts_with(lineRead, "familyid=", false) && lineRead.length() > 9)
+                    projectFile._familyID = to_number(lineRead.substr(9, lineRead.length() - 9));
             } else if (sectionName == "img")
                 projectFile._imgs.push_back(lineRead);
         },

@@ -41,10 +41,20 @@ namespace Nemrod {
             std::string GetProduct() const {
                 return _product;
             }
+            
+            void SetFamilyID(int _familyID) {
+                this->_familyID = _familyID;
+            }
+
+            int GetFamilyID() const {
+                return _familyID;
+            }
         private:
             std::string _product;
             std::string _copyright;
             std::vector<std::string> _imgs;
+            
+            int _familyID;
         };
     }
 }

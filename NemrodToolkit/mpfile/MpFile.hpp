@@ -239,7 +239,7 @@ namespace Nemrod {
 
         void AddLevelBits(int level, int bits);
 
-        const std::set<std::pair<int, int>, IntPairCompareByFirst>& GetLevelBits() const {
+        std::set<std::pair<int, int>, IntPairCompareByFirst>& GetLevelBits() {
             return _levelBits;
         }
 
@@ -306,6 +306,14 @@ namespace Nemrod {
         std::string GetCodePage() const {
             return _codePage;
         }
+        
+        void SetCopyright(std::string _copyright) {
+            this->_copyright = _copyright;
+        }
+
+        std::string GetCopyright() const {
+            return _copyright;
+        }
 
         /**
          * Usefull when writing, if a property has not been initialized it will not be writen to the file.
@@ -318,12 +326,14 @@ namespace Nemrod {
     private:
         std::string _codePage;
         std::string _name;
+        std::string _copyright;
 
         int _lblCoding = -1;
         int _id = -1;
         int _treSize = -1;
         int _rgnLimit = -1;
         int _drawPriority = -1;
+        // todo, this should be removed and read/write from the size of the levelbits set
         int _levels = -1;
 
         std::set<std::pair<int, int>, IntPairCompareByFirst> _levelBits;
@@ -358,15 +368,15 @@ namespace Nemrod {
          */
         static MpFile LoadMPFile(std::string fileName, bool onlyHeader = false);
 
-        const MpFileHeader& GetHeader() const {
+        MpFileHeader& GetHeader() {
             return _header;
         }
         
-        const std::vector<Polygon>& GetPolygons() const {
+        std::vector<Polygon>& GetPolygons() {
             return _polygons;
         }
         
-        const std::vector<Polyline>& GetPolylines() const {
+        std::vector<Polyline>& GetPolylines() {
             return _polylines;
         }
         
