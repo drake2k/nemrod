@@ -108,7 +108,7 @@ namespace Nemrod {
     private:
         short _typeCode = 0;
         std::string _label = "";
-        int _endLevel = 0;
+        int _endLevel = -1;
         
         // todo this could as well be a map since it doesnt need to be ordered by the key (level)
         std::set<std::pair<int, std::vector<Point>>, IntPointVectorPairCompareByInt> _points ;
@@ -139,7 +139,20 @@ namespace Nemrod {
      */
     class MpFileHeader {
     public:
+        
+        /**
+         * Reads the MpFileHeader at the given filestream
+         * 
+         * @param fileStream filestream positioned at the [IMG ID] section
+         * @return A MpFileHeader object
+         */
         static MpFileHeader ReadHeader(std::ifstream& fileStream);
+        
+        /**
+         * Writes the header using the given fileStream at the current position
+         * @param fileStream the filestream to write the MpFileHeader to
+         */
+        void WriteHeader(std::ofstream& fileStream);
 
         /**
          * BITMASK Flag indicating the transparent property is initialized
@@ -367,6 +380,12 @@ namespace Nemrod {
          * @return MpFile instance
          */
         static MpFile LoadMPFile(std::string fileName, bool onlyHeader = false);
+        
+        /**
+         * Writes the object into a MpFile to the given filename
+         * @param fileName where to write the object
+         */
+        void WriteMPFile(std::string fileName);
 
         MpFileHeader& GetHeader() {
             return _header;

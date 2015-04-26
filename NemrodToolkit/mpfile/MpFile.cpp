@@ -1,10 +1,11 @@
 #include "MpFile.hpp"
 #include "../Diagnostics.hpp"
+#include "../Utils.hpp"
 
 #include <string>
 #include <iostream>
+#include <ios>
 #include <stdlib.h>
-#include "../Utils.hpp"
 #include <iterator>
 #include <memory>
 //#include <regex>
@@ -212,6 +213,60 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
         // shouldContinue
         NULL
     );
+    fileStream.close();
     mpFile.PrintSizes();
     return mpFile;
+}
+
+void MpFileHeader::WriteHeader(std::ofstream& fileStream) {
+    
+}
+
+void MpFile::WriteMPFile(std::string fileName) {
+    std::ofstream fileStream(fileName);
+    if(!fileStream.is_open())
+        EXIT_WITH_MSG("Failed opening stream to write @: " + fileName);
+    
+    // write header
+    _header.WriteHeader(fileStream);
+    
+    // write body (this could be generified by using Shapes instead of child class, only polygon has the IsBackground special case)
+    
+    // polygons
+    for(auto &it : _polygons) {
+        fileStream << "[POLYGON]" << std::endl;
+        fileStream << "Type=" << to_hex_from_number(it.GetTypeCode())<< std::endl;
+        fileStream << "Label=" << it.GetLabel()<< std::endl;
+        if(it.GetEndLevel() != -1)
+            fileStream << "Endlevel=" << it.GetEndLevel()<< std::endl;
+        if(it.IsBackground())
+            fileStream << "Background=Y" << std::endl;
+        for(auto &itLevels : it.GetPoints()){
+            fileStream << "Data" << &itLevels.first << "=";
+            for(auto &itDataPoints : itLevels.second) {
+                fileStream << "(" << itDataPoints.GetLongitude() << "," << itDataPoints.GetLatitude() << "),";
+            }
+            fileStream << std::endl;
+        }
+        fileStream << "[END]"<< std::endl;
+    }
+    
+    // polylines
+    for(auto &it : _polylines) {
+        fileStream << "[POLYLINE]" << std::endl;
+        fileStream << "Type=" << to_hex_from_number(it.GetTypeCode())<< std::endl;
+        fileStream << "Label=" << it.GetLabel()<< std::endl;
+        if(it.GetEndLevel() != -1)
+            fileStream << "Endlevel=" << it.GetEndLevel()<< std::endl;
+        for(auto &itLevels : it.GetPoints()){
+            fileStream << "Data" << &itLevels.first << "=";
+            for(auto &itDataPoints : itLevels.second) {
+                fileStream << "(" << itDataPoints.GetLongitude() << "," << itDataPoints.GetLatitude() << "),";
+            }
+            fileStream << std::endl;
+        }
+        fileStream << "[END]"<< std::endl;
+    }
+    
+    fileStream.close();
 }

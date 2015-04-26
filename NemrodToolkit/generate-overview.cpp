@@ -116,8 +116,8 @@ int main(int argc, char** argv) {
         
         // create the area of map selection polygon and add to overview map
         Polygon areaMapSelection;
-        areaMapSelection.SetTypeCode(0x4a);
-        areaMapSelection.SetLabel(mpFile.GetHeader().GetName());
+        areaMapSelection.SetTypeCode(0x4a);                               // ~[0x1d] means that what follows is an abbreviation
+        areaMapSelection.SetLabel(mpFile.GetHeader().GetName() + " - 10000000~[0x1d]10000000");
         std::vector<Point> mapExtents;
         mapExtents.push_back(topLeft);
         mapExtents.push_back(botLeft);
