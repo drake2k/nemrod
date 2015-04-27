@@ -252,7 +252,7 @@ namespace Nemrod {
 
         void AddLevelBits(int level, int bits);
 
-        std::set<std::pair<int, int>, IntPairCompareByFirst>& GetLevelBits() {
+        const std::set<std::pair<int, int>, IntPairCompareByFirst>& GetLevelBits() const {
             return _levelBits;
         }
 
@@ -288,11 +288,11 @@ namespace Nemrod {
             return _treSize;
         }
 
-        void SetId(int _id) {
+        void SetId(std::string  _id) {
             this->_id = _id;
         }
 
-        int GetId() const {
+        std::string GetId() const {
             return _id;
         }
 
@@ -341,10 +341,10 @@ namespace Nemrod {
         std::string _codePage = "1252";
         std::string _name;
         std::string _copyright;
+        std::string _id;
 
         // spec says default is 6, we use 9 anyway, like other tools do
         int _lblCoding = 9;
-        int _id = -1;
         int _treSize = -1;
         // suggested default
         int _rgnLimit = 1024;

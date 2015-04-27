@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
     MpFile overviewMap;
     // header 
     overviewMap.GetHeader().SetName(projectFile.GetProduct());
-    overviewMap.GetHeader().SetId(projectFile.GetFamilyID());
+    overviewMap.GetHeader().SetId(projectFile.GetOverviewMapName().substr(0, projectFile.GetOverviewMapName().length()-4));
     overviewMap.GetHeader().SetCopyright(projectFile.GetCopyright());    
     overviewMap.GetHeader().SetPreview(true);
     
@@ -69,8 +69,8 @@ int main(int argc, char** argv) {
     overviewMap.GetHeader().SetElevation('M');
     overviewMap.GetHeader().SetLblCoding(9);
     overviewMap.GetHeader().SetLevels(2); // this should be removed and read/write from the size of the levelbits set
-    overviewMap.GetHeader().GetLevelBits().insert(std::pair<int,int>(0,18));
-    overviewMap.GetHeader().GetLevelBits().insert(std::pair<int,int>(1,16));
+    overviewMap.GetHeader().AddLevelBits(0,18);
+    overviewMap.GetHeader().AddLevelBits(1,16);
     // end of header
 
     // body of the map
@@ -117,13 +117,7 @@ int main(int argc, char** argv) {
         Polygon areaMapSelection;
         areaMapSelection.SetTypeCode(0x4a);                               // ~[0x1d] means that what follows is an abbreviation
         areaMapSelection.SetLabel(mpFile.GetHeader().GetName() + " - 10000000~[0x1d]10000000");
-        std::vector<Point> mapExtents;
-        mapExtents.push_back(topLeft);
-        mapExtents.push_back(botLeft);
-        mapExtents.push_back(topRight);
-        mapExtents.push_back(botRight);
-        
-        areaMapSelection.AddPoints(0, mapExtents);
+        areaMapSelection.AddPoints(0, {topLeft, topRight, botRight, botLeft});
         overviewMap.GetPolygons().push_back(areaMapSelection);
     }
     // add Area of coverage (background) Polygon 0x4b ?

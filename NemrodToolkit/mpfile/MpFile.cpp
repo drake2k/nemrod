@@ -40,7 +40,7 @@ MpFileHeader MpFileHeader::ReadHeader(std::ifstream& fileStream) {
         [&fileHeader] (std::string sectionName, std::string line) {
             if (sectionName == "img id") {
                 if (starts_with(line, "id=", false) && line.length()>3)
-                    fileHeader.SetId(Nemrod::to_number(line.substr(3, line.length() - 3)));
+                    fileHeader.SetId(line.substr(3, line.length() - 3));
                 else if (starts_with(line, "name=", false))
                     fileHeader.SetName(line.substr(5, line.length() - 5));
                 else if (starts_with(line, "codepage=", false))
@@ -252,54 +252,51 @@ void MpFileHeader::WriteHeader(std::ofstream& fileStream) {
     fileStream << "[END-IMG ID]" << std::endl << std::endl;
 }
 
+void WriteShape(Shape& shape, std::ofstream& fileStream){
+    fileStream << "Type=" << to_hex_from_number(shape.GetTypeCode()) << std::endl;
+        fileStream << "Label=" << shape.GetLabel()<< std::endl;
+        if(shape.GetEndLevel() != -1)
+            fileStream << "Endlevel=" << shape.GetEndLevel() << std::endl;
+        for(auto &itLevels : shape.GetPoints()){
+            fileStream << "Data" << itLevels.first << "=";
+            for(auto &itDataPoints : itLevels.second) 
+                fileStream <<  
+                // only prefix with a comma if not first
+                ((&(*itLevels.second.begin()) != &itDataPoints)?",(":"(")  << 
+                itDataPoints.GetLatitude() << "," << itDataPoints.GetLongitude() << ")";
+            fileStream << std::endl;
+        }
+}
+
 void MpFile::WriteMPFile(std::string fileName) {
     std::ofstream fileStream(fileName);
+    fileStream.setf(std::ofstream::fixed);
+    fileStream.precision(5);
     if(!fileStream.is_open())
         EXIT_WITH_MSG("Failed opening stream to write @: " + fileName);
     
     // write header
     _header.WriteHeader(fileStream);
     
-    // write body (this could be generified by using Shapes instead of child class, only polygon has the IsBackground special case)
-    
+    // write body
     // polygons
     for(auto &it : _polygons) {
         fileStream << "[POLYGON]" << std::endl;
-        fileStream << "Type=" << to_hex_from_number(it.GetTypeCode())<< std::endl;
-        fileStream << "Label=" << it.GetLabel()<< std::endl;
-        if(it.GetEndLevel() != -1)
-            fileStream << "Endlevel=" << it.GetEndLevel()<< std::endl;
+        // write shape stuff
+        WriteShape(it, fileStream);
+        // specific to polygon attributes
         if(it.IsBackground())
             fileStream << "Background=Y" << std::endl;
-        for(auto &itLevels : it.GetPoints()){
-            fileStream << "Data" << itLevels.first << "=";
-            for(auto &itDataPoints : itLevels.second) 
-                fileStream <<  
-                // only prefix with a comma if not first
-                ((&(*itLevels.second.begin()) != &itDataPoints)?",(":"(")  << 
-                itDataPoints.GetLatitude() << "," << itDataPoints.GetLongitude() << ")";
-            fileStream << std::endl;
-        }
         fileStream << "[END]"<< std::endl << std::endl;
     }
     
     // polylines
     for(auto &it : _polylines) {
         fileStream << "[POLYLINE]" << std::endl;
-        fileStream << "Type=" << to_hex_from_number(it.GetTypeCode())<< std::endl;
-        fileStream << "Label=" << it.GetLabel()<< std::endl;
-        if(it.GetEndLevel() != -1)
-            fileStream << "Endlevel=" << it.GetEndLevel()<< std::endl;
-        for(auto &itLevels : it.GetPoints()){
-            fileStream << "Data" << itLevels.first << "=";
-            for(auto &itDataPoints : itLevels.second) 
-                fileStream <<  
-                // only prefix with a comma if not first
-                ((&(*itLevels.second.begin()) != &itDataPoints)?",(":"(")  << 
-                itDataPoints.GetLatitude() << "," << itDataPoints.GetLongitude() << ")";
-            fileStream << std::endl;
-        }
+        // write shape stuff
+        WriteShape(it, fileStream);
         fileStream << "[END]"<< std::endl << std::endl;
     }
     fileStream.close();
 }
+

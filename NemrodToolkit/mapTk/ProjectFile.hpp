@@ -42,6 +42,14 @@ namespace Nemrod {
                 return _product;
             }
             
+            void SetOverviewMapName(std::string _overviewMapName) {
+                this->_overviewMapName = _overviewMapName;
+            }
+
+            std::string GetOverviewMapName() const {
+                return _overviewMapName;
+            }
+            
             void SetFamilyID(int _familyID) {
                 this->_familyID = _familyID;
             }
@@ -52,6 +60,7 @@ namespace Nemrod {
         private:
             std::string _product;
             std::string _copyright;
+            std::string _overviewMapName;
             std::vector<std::string> _imgs;
             
             int _familyID;
