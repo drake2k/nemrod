@@ -108,8 +108,7 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
     /*
     std::unique_ptr<Shape> testPtr;
     auto testPoly = dynamic_unique_ptr_cast<Polygon, Shape>(std::move(testPtr));
-*/
-    
+    */
     polish_file_reader(fileStream, NULL,
         // reaching the start of a section
         [&currentShape] (std::string sectionName) {
@@ -203,11 +202,7 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
                         std::smatch match = *i;
                         
                     }*/
-                    
-                    
-                    
                 }
-                
             }
         },
         // shouldContinue
@@ -219,7 +214,42 @@ MpFile MpFile::LoadMPFile(std::string fileName, bool onlyHeader) {
 }
 
 void MpFileHeader::WriteHeader(std::ofstream& fileStream) {
+    fileStream << "[IMG ID]" << std::endl;
     
+    // simple fields
+    fileStream << "Name=" << _name << std::endl;
+    fileStream << "ID=" << _id << std::endl;
+    fileStream << "Codepage=" << _codePage << std::endl;
+    fileStream << "Copyright=" << _copyright << std::endl;
+    fileStream << "DrawPriority=" << _drawPriority << std::endl;
+    fileStream << "Elevation=" << _elevation << std::endl;
+    fileStream << "LblCoding=" << _lblCoding << std::endl;
+    fileStream << "Preprocess=" << _preProcess << std::endl;
+    fileStream << "RgnLimit=" << _rgnLimit << std::endl;
+    fileStream << "TreMargin=" << _treMargin << std::endl; // todo format at 5 decimal, always even if zeros
+    if(_treSize != -1)
+        fileStream << "TreSize=" << _treSize << std::endl;
+    
+    // levels and zooms
+    fileStream << "Levels=" << _levels << std::endl;
+    for(auto &itLevelBits : _levelBits)
+        fileStream << "Level" << itLevelBits.first << "=" << itLevelBits.second << std::endl;
+    for(auto &itZooms : _mapSourceZooms)
+        fileStream << "Zoom" << itZooms.first << "=" << itZooms.second << std::endl;
+
+    // bools
+    if(_boolInitStatus & PREVIEW_INITIALIZED)
+        fileStream << "Preview=" << ((_preview)?'Y':'N') << std::endl;
+    if(_boolInitStatus & TRANSPARENT_INITIALIZED)
+        fileStream << "Transparent=" << ((_transparent)?'Y':'N') << std::endl;
+    if(_boolInitStatus & POIINDEX_INITIALIZED)
+        fileStream << "POIIndex=" << ((_poiIndex)?'Y':'N') << std::endl;
+    if(_boolInitStatus & POINUMBERFIRST_INITIALIZED)
+        fileStream << "POINumberFirst=" << ((_poiNumberFirst)?'Y':'N') << std::endl;
+    if(_boolInitStatus & POIZIPFIRST_INITIALIZED)
+        fileStream << "POIZipFirst=" << ((_poiZipFirst)?'Y':'N') << std::endl;
+    
+    fileStream << "[END-IMG ID]" << std::endl << std::endl;
 }
 
 void MpFile::WriteMPFile(std::string fileName) {
@@ -242,13 +272,15 @@ void MpFile::WriteMPFile(std::string fileName) {
         if(it.IsBackground())
             fileStream << "Background=Y" << std::endl;
         for(auto &itLevels : it.GetPoints()){
-            fileStream << "Data" << &itLevels.first << "=";
-            for(auto &itDataPoints : itLevels.second) {
-                fileStream << "(" << itDataPoints.GetLongitude() << "," << itDataPoints.GetLatitude() << "),";
-            }
+            fileStream << "Data" << itLevels.first << "=";
+            for(auto &itDataPoints : itLevels.second) 
+                fileStream <<  
+                // only prefix with a comma if not first
+                ((&(*itLevels.second.begin()) != &itDataPoints)?",(":"(")  << 
+                itDataPoints.GetLatitude() << "," << itDataPoints.GetLongitude() << ")";
             fileStream << std::endl;
         }
-        fileStream << "[END]"<< std::endl;
+        fileStream << "[END]"<< std::endl << std::endl;
     }
     
     // polylines
@@ -259,14 +291,15 @@ void MpFile::WriteMPFile(std::string fileName) {
         if(it.GetEndLevel() != -1)
             fileStream << "Endlevel=" << it.GetEndLevel()<< std::endl;
         for(auto &itLevels : it.GetPoints()){
-            fileStream << "Data" << &itLevels.first << "=";
-            for(auto &itDataPoints : itLevels.second) {
-                fileStream << "(" << itDataPoints.GetLongitude() << "," << itDataPoints.GetLatitude() << "),";
-            }
+            fileStream << "Data" << itLevels.first << "=";
+            for(auto &itDataPoints : itLevels.second) 
+                fileStream <<  
+                // only prefix with a comma if not first
+                ((&(*itLevels.second.begin()) != &itDataPoints)?",(":"(")  << 
+                itDataPoints.GetLatitude() << "," << itDataPoints.GetLongitude() << ")";
             fileStream << std::endl;
         }
-        fileStream << "[END]"<< std::endl;
+        fileStream << "[END]"<< std::endl << std::endl;
     }
-    
     fileStream.close();
 }

@@ -337,30 +337,37 @@ namespace Nemrod {
             return _boolInitStatus;
         }
     private:
-        std::string _codePage;
+        // specs defaults to 0 (single byte) but we use 1252, like other tools do
+        std::string _codePage = "1252";
         std::string _name;
         std::string _copyright;
 
-        int _lblCoding = -1;
+        // spec says default is 6, we use 9 anyway, like other tools do
+        int _lblCoding = 9;
         int _id = -1;
         int _treSize = -1;
-        int _rgnLimit = -1;
-        int _drawPriority = -1;
+        // suggested default
+        int _rgnLimit = 1024;
+        // suggested default
+        int _drawPriority = 25;
         // todo, this should be removed and read/write from the size of the levelbits set
         int _levels = -1;
 
         std::set<std::pair<int, int>, IntPairCompareByFirst> _levelBits;
         std::set<std::pair<int, int>, IntPairCompareByFirst> _mapSourceZooms;
 
-        float _treMargin = -1;
+        // not documented, GPSMapEdit sets that to 0
+        float _treMargin = 0;
 
-        char _elevation = -1;
-        char _preProcess = -1;
+        // default elevation data to meters
+        char _elevation = 'M';
+        char _preProcess = 'F';
 
+        // todo fix this, its not a bool it has 3 possible char values, Y, N or S
         bool _transparent = false;
         bool _poiIndex = false;
-        bool _poiNumberFirst = false;
-        bool _poiZipFirst = false;
+        bool _poiNumberFirst = true;
+        bool _poiZipFirst = true;
         bool _preview = false;
 
         unsigned char _boolInitStatus = 0x0;

@@ -20,9 +20,9 @@ void usage() {
 
 int main(int argc, char** argv) {
     // getcwd 255 magic number might be unsafe, but PATH_MAX is undefined when there is no limits
-    TRACE("Current working directory: " << getcwd(NULL, 255))
+    TRACE("Current working directory(getcwd): " << getcwd(NULL, 255))
     
-    std::string outputFileName, workingDir;
+    std::string outputFileName, projectFileDir;
 
     if ((argc <= 1) || (argv[argc-1] == NULL) || (argv[argc-1][0] == '-')) 
         EXIT_WITH_MSG("No target file name was given, command must end with target file name for the overview map. Use -h for help.");
@@ -46,19 +46,18 @@ int main(int argc, char** argv) {
         }
     }
     
+    std::cout << std::endl << "Generating overview map: " << outputFileName << std::endl << std::endl;
+    
     if(projectFileArg.empty())
         usage();
     else
         std::cout << "Using ProjectFile: " << projectFileArg << std::endl;
     
-    workingDir = projectFileArg.substr(0, projectFileArg.find_last_of("/\\"));
-    
-    std::cout << "Generating overview map: " << outputFileName << std::endl << std::endl;
+    projectFileDir = projectFileArg.substr(0, projectFileArg.find_last_of("/\\"));
     
     ProjectFile projectFile = ProjectFile::LoadProjectFile(projectFileArg);
     
     MpFile overviewMap;
-    
     // header 
     overviewMap.GetHeader().SetName(projectFile.GetProduct());
     overviewMap.GetHeader().SetId(projectFile.GetFamilyID());
@@ -82,7 +81,7 @@ int main(int argc, char** argv) {
     
     for(auto &it : projectFile.GetImgs()) {
         std::cout << std::endl << "Loading: " << it << std::endl;        
-        MpFile mpFile = MpFile::LoadMPFile(workingDir + "\\" + it + ".mp", false);
+        MpFile mpFile = MpFile::LoadMPFile(projectFileDir + "\\" + it + ".mp", false);
         std::cout << it << " loaded." << std::endl;
         
         if(mpFile.GetHeader().IsPreview()) {
@@ -129,13 +128,12 @@ int main(int argc, char** argv) {
     }
     // add Area of coverage (background) Polygon 0x4b ?
     
-    // write file
-    
-    
-    std::cout << std::endl << "Generated overview map: " << outputFileName << std::endl;
+    std::cout << std::endl << "Writing overview map: " << outputFileName << std::endl;
+    overviewMap.WriteMPFile(outputFileName);
+    std::cout << "Generated overview map: " << outputFileName << std::endl;
     
 #ifdef DEBUG
-    std::cout << "DEBUG Build, press ENTER to continue" << std::endl;
+    std::cout << std::endl << "DEBUG Build, press ENTER to continue" << std::endl;
     std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
 #endif
     return 0;

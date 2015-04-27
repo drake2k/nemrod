@@ -119,6 +119,27 @@ namespace Nemrod {
         }
         return std::unique_ptr<Derived, Del>(nullptr, p.get_deleter());
     }
+    
+    /**
+     * Returns a copy of the incremented iterator
+     * @param iter iterator to increment and copy
+     * @return an incremented copy of the given iterator
+     */
+    template <typename Iter>
+    Iter next(Iter iter) {
+        return ++iter;
+    }
+    
+    /**
+     * Checks if the iterator is pointing to the last element of the sequence
+     * @param iter iterator to check
+     * @param cont sequence to check
+     * @return true if the iterator is pointing to the last element of the sequence
+     */
+    template <typename Iter, typename Cont>
+    bool is_last(Iter iter, const Cont& cont) {
+        return (iter != cont.end()) && (next(iter) == cont.end());
+    }
 }
 
 #endif	/* UTILS_H */
