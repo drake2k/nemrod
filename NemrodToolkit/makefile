@@ -5,7 +5,7 @@ CFLAGS=-Wall
 CXXFLAGS=-Wall -std=c++11
 
 # must match source tree
-_OBJ = Diagnostics.o Utils.o mpfile/MpFile.o  maptk/ProjectFile.o
+_OBJ = Diagnostics.o Utils.o mpfile/MpFile.o  maptk/ProjectFile.o Geodata.o
 ODIR=obj
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 HELLO_OBJ=$(ODIR)/hello.o

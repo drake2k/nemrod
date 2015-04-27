@@ -1,6 +1,8 @@
 #ifndef MPFILE_H
 #define	MPFILE_H
 
+#include "../Geodata.hpp"
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -9,50 +11,6 @@
 
 namespace Nemrod {
 
-    class Point {
-    public:
-        Point(float lat, float longi) {
-            this->SetLatitude(lat);
-            this->SetLongitude(longi);
-        }
-
-        operator bool() const {
-            return _latitude != 91 && _longitude != -91;
-        }
-        
-        bool operator==(const Point& p) const{
-            return p._latitude == this->_latitude && p._longitude == this->_longitude;
-        }
-        
-        bool operator!=(const Point& p) const{
-            return !(p==*this);
-        }
-
-        void SetLongitude(float _longitude) {
-            if (_longitude >= -90 && _longitude <= 90)
-                this->_longitude = _longitude;
-        }
-
-        float GetLongitude() const {
-            return _longitude;
-        }
-
-        void SetLatitude(float _latitude) {
-            if (_latitude >= -90 && _latitude <= 90)
-                this->_latitude = _latitude;
-        }
-
-        float GetLatitude() const {
-            return _latitude;
-        }
-
-    private:
-        /*N=90 S=-90*/
-        float _latitude = -91;
-        /*W=-90 E=90*/
-        float _longitude = -91;
-
-    };
     
     struct IntPairCompareByFirst {
         bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) {

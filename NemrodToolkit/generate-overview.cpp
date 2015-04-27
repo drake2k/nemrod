@@ -113,6 +113,12 @@ int main(int argc, char** argv) {
               topRight(maxLat, maxLong),
               botRight(maxLat, minLong);
         
+        // todo, these 4 points are at boundaries of objects, we will want to extend it a little bit (~100M default)
+        // and probably make it parameterable via a commandlinearg
+        // formulas: http://www.movable-type.co.uk/scripts/latlong.html
+        // Section: Destination point given distance and bearing from start point
+        
+        
         // create the area of map selection polygon and add to overview map
         Polygon areaMapSelection;
         areaMapSelection.SetTypeCode(0x4a);                               // ~[0x1d] means that what follows is an abbreviation
@@ -121,6 +127,7 @@ int main(int argc, char** argv) {
         overviewMap.GetPolygons().push_back(areaMapSelection);
     }
     // add Area of coverage (background) Polygon 0x4b ?
+    // if we do it make it parameterable (yes/no) and it should fix itselft directly on edges or areaMapSelections (no extension)
     
     std::cout << std::endl << "Writing overview map: " << outputFileName << std::endl;
     overviewMap.WriteMPFile(outputFileName);
