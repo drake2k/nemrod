@@ -6,6 +6,7 @@
 
 CFLAGS=-Wall
 CXXFLAGS=-Wall -std=gnu++11
+LDFLAGS=-static-libstdc++ -static-libgcc
 
 # must match source tree
 _OBJ = Diagnostics.o Utils.o mpfile/MpFile.o  maptk/ProjectFile.o Geodata.o
@@ -18,6 +19,7 @@ GENERATE_OVERVIEW_OBJ=$(ODIR)/generate-overview.o
 
 release: CFLAGS += -O3 -funroll-loops
 release: CXXFLAGS += -O3 -funroll-loops
+release: LDFLAGS += -s
 release: all
 
 debug: CFLAGS += -g3 -DDEBUG
