@@ -8,6 +8,7 @@
 #include "mapTk/ProjectFile.hpp"
 #include "Diagnostics.hpp"
 #include "Utils.hpp"
+#include "Geodata.hpp"
 
 using namespace Nemrod;
 using namespace Nemrod::MapTk;
@@ -53,7 +54,10 @@ int main(int argc, char** argv) {
     else
         std::cout << "Using ProjectFile: " << projectFileArg << std::endl;
     
-    projectFileDir = projectFileArg.substr(0, projectFileArg.find_last_of("/\\"));
+    if(projectFileArg.find_last_of("/\\") != std::string::npos)
+        projectFileDir = projectFileArg.substr(0, projectFileArg.find_last_of("/\\"));
+    else
+        projectFileDir="";
     
     ProjectFile projectFile = ProjectFile::LoadProjectFile(projectFileArg);
     
@@ -81,7 +85,7 @@ int main(int argc, char** argv) {
     
     for(auto &it : projectFile.GetImgs()) {
         std::cout << std::endl << "Loading: " << it << std::endl;        
-        MpFile mpFile = MpFile::LoadMPFile(projectFileDir + "\\" + it + ".mp", false);
+        MpFile mpFile = MpFile::LoadMPFile(projectFileDir + ((projectFileDir != "")?"\\":"") + it + ".mp", false);
         std::cout << it << " loaded." << std::endl;
         
         if(mpFile.GetHeader().IsPreview()) {
@@ -113,11 +117,12 @@ int main(int argc, char** argv) {
               topRight(maxLat, maxLong),
               botRight(maxLat, minLong);
         
-        // todo, these 4 points are at boundaries of objects, we will want to extend it a little bit (~100M default)
-        // and probably make it parameterable via a commandlinearg
-        // formulas: http://www.movable-type.co.uk/scripts/latlong.html
-        // Section: Destination point given distance and bearing from start point
-        
+        // these 4 points are at boundaries of objects, we want to extend it a little bit (~100M default?)
+        // probably make it parameterable via a commandlinearg
+        move_point_in_direction(Nemrod::NORTH_WEST, 100, topLeft);
+        move_point_in_direction(Nemrod::NORTH_EAST, 100, topRight);
+        move_point_in_direction(Nemrod::SOUTH_WEST, 100, botLeft);
+        move_point_in_direction(Nemrod::SOUTH_EAST, 100, botRight);
         
         // create the area of map selection polygon and add to overview map
         Polygon areaMapSelection;
