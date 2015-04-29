@@ -2,7 +2,7 @@
 # if planning to not use autotools or CMake
 
 CFLAGS=-Wall
-CXXFLAGS=-Wall -std=c++11
+CXXFLAGS=-Wall -std=gnu++11
 
 # must match source tree
 _OBJ = Diagnostics.o Utils.o mpfile/MpFile.o  maptk/ProjectFile.o Geodata.o

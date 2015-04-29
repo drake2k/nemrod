@@ -136,9 +136,11 @@
               <pElem></pElem>
             </incDir>
             <preprocessorList>
-              <Elem>DEBUG</Elem>
               <Elem>__cplusplus=201103L</Elem>
             </preprocessorList>
+            <undefinedList>
+              <Elem>__NO_INLINE__</Elem>
+            </undefinedList>
           </ccTool>
         </makeTool>
       </makefileType>
