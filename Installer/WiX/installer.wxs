@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+	<Product Name='Nemrod Maps' 
+        Id='C9D25926-FCE0-4EB6-8FF5-4686EE5AB089'
+        Language='1033' Codepage='1252' Version='1.1.0' 
+        Manufacturer='Jf Beaulac'
+        UpgradeCode='0A3C458F-AE09-459A-BD02-536414AD1B95'>
+
+		<Package Id='*' 
+			 Keywords='Installer'
+			 Description='Nemrod Maps Installer'
+			 InstallerVersion='100' Languages='1033' 
+			 Compressed='yes' SummaryCodepage='1252' />
+		 
+		<Media Id='1' Cabinet='Nemrod.cab' EmbedCab='yes'/>
+		 
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="CommonAppDataFolder">
+				<Directory Id="NEMRODMAPSDIR" Name="Nemrod Maps">
+					<Component Id="ProductFiles" Guid="18348B87-5B81-4083-A61C-C15555892871">
+						<File Id='maplacdesplages' Name='10000000.img' 
+							  Source='..\..\Output-MapTK\10000000.img' Vital='yes' DiskId='1'/>
+						<File Id='mapsthilaire' Name='10000001.img' 
+							  Source='..\..\Output-MapTK\10000001.img' Vital='yes' DiskId='1'/>
+						<File Id='mdx' Name='M00101.mdx' 
+							  Source='..\..\Output-MapTK\M00101.mdx' Vital='yes' DiskId='1'/>
+						<File Id='rdb' Name='M00101.tdb' 
+							  Source='..\..\Output-MapTK\M00101.tdb' Vital='yes' DiskId='1'/>
+						<File Id='addresses' Name='M00101_mdr.img' 
+						      Source='..\..\Output-MapTK\M00101_mdr.img' Vital='yes' DiskId='1'/>
+						<File Id='overview' Name='nemrod.img' 
+							  Source='..\..\Output-MapTK\nemrod.img' Vital='yes' DiskId='1'/>
+					</Component>
+				</Directory>
+			</Directory>
+			<Component Id="RegistryKeys" Guid="F35AB64E-5B6E-433F-9467-DF855580E76B">
+				<RegistryKey Root="HKLM"
+							 Key="Software\Garmin\Mapsource\Families\Nemrod Maps"
+							 ForceDeleteOnUninstall="yes">
+					<RegistryValue Name="BMP" Type="string" Value="[NEMRODMAPSDIR]nemrod.img"/>
+					<RegistryValue Name="LOC" Type="string" Value="[NEMRODMAPSDIR]"/>
+					<RegistryValue Name="TDB" Type="string" Value="[NEMRODMAPSDIR]M00101.tdb"/>
+					<RegistryKey Key="1">
+						<RegistryValue Name="ID" Type="binary" Value="6500"/>
+						<RegistryValue Name="MDR" Type="string" Value="[NEMRODMAPSDIR]M00101_mdr.img"/>
+						<RegistryValue Name="IDX" Type="string" Value="[NEMRODMAPSDIR]M00101.mdx"/>
+					</RegistryKey>
+				</RegistryKey>
+			</Component>
+		</Directory>
+		
+		<WixVariable Id="WixUIBannerBmp" Value="banner.jpg" />
+		
+		<Property Id="WIXUI_INSTALLDIR" Value="NEMRODMAPSDIR" />
+		<UI Id="InstallDirUI">
+			<UIRef Id="WixUI_InstallDir" />
+			<Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg"  Order="3">1</Publish>
+			<Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg"  Order="3">1</Publish>
+		</UI>
+		
+		<Feature Id="Product" Title="Map Product" Level="1">
+			<ComponentRef Id="ProductFiles" />
+			<ComponentRef Id="RegistryKeys" />
+		</Feature>
+	 </Product>
+</Wix>
+
+
