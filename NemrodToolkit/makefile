@@ -1,9 +1,6 @@
 # take a look at http://stackoverflow.com/questions/5273374/make-file-with-source-subdirectories
 # if planning to not use autotools or CMake
 
-# todo static link libstdc++ and libgcc++
-# todo implement LDFLAGS and set the '-s' flag while linking
-
 CFLAGS=-Wall
 CXXFLAGS=-Wall -std=gnu++11
 LDFLAGS=-static-libstdc++ -static-libgcc
