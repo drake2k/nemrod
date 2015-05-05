@@ -98,8 +98,8 @@ int main(int argc, char** argv) {
               minLong = std::numeric_limits<float>::max(), 
               maxLong = std::numeric_limits<float>::lowest();
         
-        get_shapes_max_extents(mpFile.GetPolylines(), minLat, maxLat, minLong, maxLong);
-        get_shapes_max_extents(mpFile.GetPolygons(), minLat, maxLat, minLong, maxLong);
+        compute_shapes_max_extents(mpFile.GetPolylines(), minLat, maxLat, minLong, maxLong);
+        compute_shapes_max_extents(mpFile.GetPolygons(), minLat, maxLat, minLong, maxLong);
         
         // update Area of coverage points (0x4b polygon)
         if(maxLong > globalMaxLong)
@@ -112,10 +112,10 @@ int main(int argc, char** argv) {
             globalMinLat = minLat;
         
         // generate 4 points that will represent the extents this map's Area of selection (0x4a polygon)
-        Point topLeft(minLat, maxLong),
+        Point topLeft(maxLat, minLong),
               botLeft(minLat, minLong),
               topRight(maxLat, maxLong),
-              botRight(maxLat, minLong);
+              botRight(minLat, maxLong);
         
         // these 4 points are at boundaries of objects, we want to extend it a little bit (~100M default?)
         // probably make it parameterable via a commandlinearg
@@ -127,7 +127,7 @@ int main(int argc, char** argv) {
         // create the area of map selection polygon and add to overview map
         Polygon areaMapSelection;
         areaMapSelection.SetTypeCode(0x4a);                               // ~[0x1d] means that what follows is an abbreviation
-        areaMapSelection.SetLabel(mpFile.GetHeader().GetName() + " - 10000000~[0x1d]10000000");
+        areaMapSelection.SetLabel(mpFile.GetHeader().GetName() + " - " + mpFile.GetHeader().GetId() + "~[0x1d]" + mpFile.GetHeader().GetId());
         areaMapSelection.AddPoints(0, {topLeft, topRight, botRight, botLeft});
         overviewMap.GetPolygons().push_back(areaMapSelection);
     }

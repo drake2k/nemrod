@@ -47,7 +47,7 @@ namespace Nemrod {
     
     // this one is implemented in Utils.cpp and explicitely instanciated
     template <typename T>
-    void get_shapes_max_extents(const std::vector<T>& vector, float& minLat, float& maxLat, float& minLong, float& maxLong);
+    void compute_shapes_max_extents(const std::vector<T>& vector, float& minLat, float& maxLat, float& minLong, float& maxLong);
 
     bool string_equals(const std::string& str1, const std::string& str2, const bool caseSensitive);
 

@@ -75,7 +75,7 @@ namespace Nemrod {
     }
     
     template <typename T> 
-    void get_shapes_max_extents(const std::vector<T>& vector, float& minLat, float& maxLat, float& minLong, float& maxLong){
+    void compute_shapes_max_extents(const std::vector<T>& vector, float& minLat, float& maxLat, float& minLong, float& maxLong){
         for(auto &it : vector) {
             const Shape* currentShape;
              if((currentShape = dynamic_cast<const Shape*>(&it)) != 0) {
@@ -96,6 +96,6 @@ namespace Nemrod {
              }
         }
     }
-    template void get_shapes_max_extents<Nemrod::Polyline>(const std::vector<Nemrod::Polyline>&, float&, float&, float&, float&);
-    template void get_shapes_max_extents<Nemrod::Polygon>(const std::vector<Nemrod::Polygon>&, float&, float&, float&, float&);
+    template void compute_shapes_max_extents<Nemrod::Polyline>(const std::vector<Nemrod::Polyline>&, float&, float&, float&, float&);
+    template void compute_shapes_max_extents<Nemrod::Polygon>(const std::vector<Nemrod::Polygon>&, float&, float&, float&, float&);
 }

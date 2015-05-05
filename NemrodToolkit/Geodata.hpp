@@ -86,7 +86,7 @@ namespace Nemrod{
     private:
         /*N=90 S=-90*/
         float _latitude = -91;
-        /*W=-90 E=90*/
+        /*W=-180 E=180*/
         float _longitude = -181;
 
     };
