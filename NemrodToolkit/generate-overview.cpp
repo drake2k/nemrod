@@ -77,8 +77,8 @@ int main(int argc, char** argv) {
     overviewMap.GetHeader().SetElevation('M');
     overviewMap.GetHeader().SetLblCoding(9);
     overviewMap.GetHeader().SetLevels(2); // this should be removed and read/write from the size of the levelbits set
-    overviewMap.GetHeader().AddLevelBits(0,18);
-    overviewMap.GetHeader().AddLevelBits(1,16);
+    overviewMap.GetHeader().AddLevelBits(0,24);
+    overviewMap.GetHeader().AddLevelBits(1,18);
     // end of header
 
     // body of the map
@@ -121,12 +121,12 @@ int main(int argc, char** argv) {
               topRight(maxLat, maxLong),
               botRight(minLat, maxLong);
         
-        // these 4 points are at boundaries of objects, we want to extend it a little bit (~100M default?)
+        // these 4 points are at boundaries of objects, we want to extend it a little bit (~200M default?)
         // probably make it parameterable via a commandlinearg
-        move_point_in_direction(Nemrod::NORTH_WEST, 100, topLeft);
-        move_point_in_direction(Nemrod::NORTH_EAST, 100, topRight);
-        move_point_in_direction(Nemrod::SOUTH_WEST, 100, botLeft);
-        move_point_in_direction(Nemrod::SOUTH_EAST, 100, botRight);
+        move_point_in_direction(Nemrod::NORTH_WEST, 200, topLeft);
+        move_point_in_direction(Nemrod::NORTH_EAST, 200, topRight);
+        move_point_in_direction(Nemrod::SOUTH_WEST, 200, botLeft);
+        move_point_in_direction(Nemrod::SOUTH_EAST, 200, botRight);
         
         // create the area of map selection polygon and add to overview map
         Polygon areaMapSelection;
@@ -142,12 +142,12 @@ int main(int argc, char** argv) {
               topRight(globalMaxLat, globalMaxLong),
               botRight(globalMinLat, globalMaxLong);
         
-        // extend 200M default, 100M more than the tiles extent
+        // extend 400M default, 200M more than the tiles extent
         // todo make parameter
-        move_point_in_direction(Nemrod::NORTH_WEST, 1000, topLeft);
-        move_point_in_direction(Nemrod::NORTH_EAST, 1000, topRight);
-        move_point_in_direction(Nemrod::SOUTH_WEST, 1000, botLeft);
-        move_point_in_direction(Nemrod::SOUTH_EAST, 1000, botRight);
+        move_point_in_direction(Nemrod::NORTH_WEST, 400, topLeft);
+        move_point_in_direction(Nemrod::NORTH_EAST, 400, topRight);
+        move_point_in_direction(Nemrod::SOUTH_WEST, 400, botLeft);
+        move_point_in_direction(Nemrod::SOUTH_EAST, 400, botRight);
         
         // create the  Area of coverage polygon and add to overview map
         Polygon areaMapCoverage;

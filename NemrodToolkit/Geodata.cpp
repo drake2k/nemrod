@@ -7,6 +7,9 @@
 using namespace Nemrod;
 
 void Nemrod::move_point_in_direction(int direction_deg, int distance_meter, Point& point) {
+    std::streamsize prevCoutPrecision = std::cout.precision();
+    std::cout.precision(5);
+    std::ios::fmtflags prevFlags = std::cout.setf(std::ios::fixed);
     TRACE("move_point_in_direction: " << point.GetLatitude() << "," << point.GetLongitude() << " by " << distance_meter << " @ " << direction_deg)
     float newRadLat, newRadLong;
 
@@ -27,5 +30,7 @@ void Nemrod::move_point_in_direction(int direction_deg, int distance_meter, Poin
     point.SetLatitude(newRadLat*180/M_PI);
     point.SetLongitude(newRadLong*180/M_PI);
     TRACE("move_point_in_direction: resulting point is: " <<  point.GetLatitude() << "," << point.GetLongitude())
+    std::cout.precision(prevCoutPrecision);
+    std::cout.setf(prevFlags);
 }
 
