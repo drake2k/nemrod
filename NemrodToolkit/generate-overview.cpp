@@ -33,13 +33,17 @@ int main(int argc, char** argv) {
     opterr = 0; // suppress getopt errors
     
     std::string projectFileArg;
+    bool generateAreaOfMapCoveragePoly = false;
     char opt;
-    while((opt = getopt(argc -1, argv, "p:")) != -1) {
+    while((opt = getopt(argc -1, argv, "cp:")) != -1) {
         if(optind >= argc)
             break;
         switch(opt){
             case 'p':
                 projectFileArg = optarg;
+                break;
+            case 'c':
+                generateAreaOfMapCoveragePoly = true;
                 break;
             case '?':
                 usage();
@@ -131,8 +135,27 @@ int main(int argc, char** argv) {
         areaMapSelection.AddPoints(0, {topLeft, topRight, botRight, botLeft});
         overviewMap.GetPolygons().push_back(areaMapSelection);
     }
-    // add Area of coverage (background) Polygon 0x4b ?
-    // if we do it make it parameterable (yes/no) and it should fix itselft directly on edges or areaMapSelections (no extension)
+    
+    if(generateAreaOfMapCoveragePoly) {
+        Point topLeft(globalMaxLat, globalMinLong),
+              botLeft(globalMinLat, globalMinLong),
+              topRight(globalMaxLat, globalMaxLong),
+              botRight(globalMinLat, globalMaxLong);
+        
+        // extend 200M default, 100M more than the tiles extent
+        // todo make parameter
+        move_point_in_direction(Nemrod::NORTH_WEST, 1000, topLeft);
+        move_point_in_direction(Nemrod::NORTH_EAST, 1000, topRight);
+        move_point_in_direction(Nemrod::SOUTH_WEST, 1000, botLeft);
+        move_point_in_direction(Nemrod::SOUTH_EAST, 1000, botRight);
+        
+        // create the  Area of coverage polygon and add to overview map
+        Polygon areaMapCoverage;
+        areaMapCoverage.SetTypeCode(0x4b);
+        areaMapCoverage.SetLabel("");
+        areaMapCoverage.AddPoints(0, {topLeft, topRight, botRight, botLeft});
+        overviewMap.GetPolygons().push_back(areaMapCoverage);
+    }
     
     std::cout << std::endl << "Writing overview map: " << outputFileName << std::endl;
     overviewMap.WriteMPFile(outputFileName);

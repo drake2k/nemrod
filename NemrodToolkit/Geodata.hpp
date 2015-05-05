@@ -94,14 +94,14 @@ namespace Nemrod{
     /** In meters */
     const int EARTH_RADIUS = 6371000;
     
-    /** Cardinal directions, the value is the angle in degrees */
+    /** Cardinal directions (bearings), the value is the angle in degrees */
     enum CARDINAL_DIRECTION {
         /** 0 degree */
         NORTH=0,
         /** 45 degrees */
         NORTH_EAST = 45,
-        /** 45 degrees */
-        NORTH_WEST = -45,
+        /** 315 degrees */
+        NORTH_WEST = 315,
         /** 180 degrees */
         SOUTH=180,
         /** 135 degrees */
@@ -110,8 +110,8 @@ namespace Nemrod{
         SOUTH_WEST=225,
         /** 90 degrees */
         EAST=90,
-        /** -90 degrees */
-        WEST=-90
+        /** 270 degrees */
+        WEST=270
     };
     
     // formulas: http://www.movable-type.co.uk/scripts/latlong.html

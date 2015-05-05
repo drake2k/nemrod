@@ -10,16 +10,20 @@ void Nemrod::move_point_in_direction(int direction_deg, int distance_meter, Poin
     TRACE("move_point_in_direction: " << point.GetLatitude() << "," << point.GetLongitude() << " by " << distance_meter << " @ " << direction_deg)
     float newRadLat, newRadLong;
 
-    const float pointRadLat = point.GetLatitude()*M_PI/180;
-    const float pointRadLong = point.GetLongitude()*M_PI/180;
+    const double angularDistance = (double)distance_meter/EARTH_RADIUS;
     
-    newRadLat = asin(sin(pointRadLat) * cos((double)distance_meter/EARTH_RADIUS) + 
-             cos(pointRadLat) * sin((double)distance_meter/EARTH_RADIUS) * cos(direction_deg*M_PI/180) );
+    const double pointRadLat = point.GetLatitude()*M_PI/180;
+    const double pointRadLong = point.GetLongitude()*M_PI/180;
+    
+    newRadLat = asin(sin(pointRadLat) * cos(angularDistance) + 
+                     cos(pointRadLat) * sin(angularDistance) * cos(direction_deg*M_PI/180) );
     
     newRadLong = pointRadLong + 
-                 atan2(sin(direction_deg*M_PI/180) * sin((double)distance_meter/EARTH_RADIUS) *  cos(pointRadLat), 
-                         cos((double)distance_meter/EARTH_RADIUS) - sin(pointRadLat) * sin(newRadLat));
+                 atan2(sin(direction_deg*M_PI/180) * sin(angularDistance) *  cos(pointRadLat),
+                       cos(angularDistance) - sin(pointRadLat) * sin(newRadLat));
 
+    newRadLong = fmod((newRadLong+3*M_PI), (2*M_PI)) - M_PI; // normalise to -180..+180°
+    
     point.SetLatitude(newRadLat*180/M_PI);
     point.SetLongitude(newRadLong*180/M_PI);
     TRACE("move_point_in_direction: resulting point is: " <<  point.GetLatitude() << "," << point.GetLongitude())
