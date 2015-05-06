@@ -37,13 +37,13 @@
 				<RegistryKey Root="HKLM"
 							 Key="Software\Garmin\Mapsource\Families\Nemrod Maps"
 							 ForceDeleteOnUninstall="yes">
-					<RegistryValue Name="BMP" Type="string" Value="[NEMRODMAPSDIR]nemrod.img"/>
-					<RegistryValue Name="LOC" Type="string" Value="[NEMRODMAPSDIR]"/>
-					<RegistryValue Name="TDB" Type="string" Value="[NEMRODMAPSDIR]M00101.tdb"/>
+					<RegistryValue Name="ID" Type="binary" Value="6500"/>
+					<RegistryValue Name="MDR" Type="string" Value="[NEMRODMAPSDIR]M00101_mdr.img"/>
+					<RegistryValue Name="IDX" Type="string" Value="[NEMRODMAPSDIR]M00101.mdx"/>
 					<RegistryKey Key="1">
-						<RegistryValue Name="ID" Type="binary" Value="6500"/>
-						<RegistryValue Name="MDR" Type="string" Value="[NEMRODMAPSDIR]M00101_mdr.img"/>
-						<RegistryValue Name="IDX" Type="string" Value="[NEMRODMAPSDIR]M00101.mdx"/>
+						<RegistryValue Name="BMAP" Type="string" Value="[NEMRODMAPSDIR]nemrod.img"/>
+						<RegistryValue Name="LOC" Type="string" Value="[NEMRODMAPSDIR]"/>
+						<RegistryValue Name="TDB" Type="string" Value="[NEMRODMAPSDIR]M00101.tdb"/>
 					</RegistryKey>
 				</RegistryKey>
 			</Component>
