@@ -76,9 +76,12 @@ int main(int argc, char** argv) {
     overviewMap.GetHeader().SetCodePage("1252");
     overviewMap.GetHeader().SetElevation('M');
     overviewMap.GetHeader().SetLblCoding(9);
+    // overview should have 2 levels
     overviewMap.GetHeader().SetLevels(2); // this should be removed and read/write from the size of the levelbits set
-    overviewMap.GetHeader().AddLevelBits(0,24);
-    overviewMap.GetHeader().AddLevelBits(1,18);
+    
+    // most detailed level needs to be lower than lowest details across maps, todo validate
+    overviewMap.GetHeader().AddLevelBits(0,18);
+    overviewMap.GetHeader().AddLevelBits(1,16);
     // end of header
 
     // body of the map
@@ -122,11 +125,13 @@ int main(int argc, char** argv) {
               botRight(minLat, maxLong);
         
         // these 4 points are at boundaries of objects, we want to extend it a little bit (~200M default?)
-        // probably make it parameterable via a commandlinearg
-        move_point_in_direction(Nemrod::NORTH_WEST, 200, topLeft);
-        move_point_in_direction(Nemrod::NORTH_EAST, 200, topRight);
-        move_point_in_direction(Nemrod::SOUTH_WEST, 200, botLeft);
-        move_point_in_direction(Nemrod::SOUTH_EAST, 200, botRight);
+        // todo warn or adjust depending on zoom levels, there is no data for mapsource level/precision, but
+        // device precision seems to correlate
+        // todo make it parameterable via a commandlinearg
+        move_point_in_direction(Nemrod::NORTH_WEST, 250, topLeft);
+        move_point_in_direction(Nemrod::NORTH_EAST, 250, topRight);
+        move_point_in_direction(Nemrod::SOUTH_WEST, 250, botLeft);
+        move_point_in_direction(Nemrod::SOUTH_EAST, 250, botRight);
         
         // create the area of map selection polygon and add to overview map
         Polygon areaMapSelection;
@@ -144,15 +149,17 @@ int main(int argc, char** argv) {
         
         // extend 400M default, 200M more than the tiles extent
         // todo make parameter
-        move_point_in_direction(Nemrod::NORTH_WEST, 400, topLeft);
-        move_point_in_direction(Nemrod::NORTH_EAST, 400, topRight);
-        move_point_in_direction(Nemrod::SOUTH_WEST, 400, botLeft);
-        move_point_in_direction(Nemrod::SOUTH_EAST, 400, botRight);
+        // todo warn or adjust depending on zoom levels, there is no data for mapsource level/precision, but
+        // device precision seems to correlate
+        move_point_in_direction(Nemrod::NORTH_WEST, 500, topLeft);
+        move_point_in_direction(Nemrod::NORTH_EAST, 500, topRight);
+        move_point_in_direction(Nemrod::SOUTH_WEST, 500, botLeft);
+        move_point_in_direction(Nemrod::SOUTH_EAST, 500, botRight);
         
         // create the  Area of coverage polygon and add to overview map
         Polygon areaMapCoverage;
         areaMapCoverage.SetTypeCode(0x4b);
-        areaMapCoverage.SetLabel("");
+        areaMapCoverage.SetLabel("Nemrod");
         areaMapCoverage.AddPoints(0, {topLeft, topRight, botRight, botLeft});
         overviewMap.GetPolygons().push_back(areaMapCoverage);
     }

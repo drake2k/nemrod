@@ -15,17 +15,15 @@ POIIndex=Y
 POINumberFirst=Y
 POIZipFirst=N
 DrawPriority=1
-Levels=5
+Levels=4
 Level0=24
 Level1=22
 Level2=20
 Level3=19
-Level4=18
 Zoom0=0
 Zoom1=1
 Zoom2=2
 Zoom3=3
-Zoom4=4
 [END-IMG ID]
 
 [POLYLINE]

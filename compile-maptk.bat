@@ -9,7 +9,7 @@ echo --------- INITIALIZATION ------------
 
 
 SET OVERVIEW_GEN_EXE="bin/generate-overview.exe"
-SET OVERVIEW_GEN_ARGS=-p Maptk.prj nemrod_overview.mp
+SET OVERVIEW_GEN_ARGS=-c -p Maptk.prj nemrod_overview.mp
 
 SET MAP_TK_EXE=
 call :TRY_PATH_DEFAULT_OR_EXIT_MAPTK
