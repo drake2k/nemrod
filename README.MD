@@ -9,7 +9,7 @@ Nemrod St-Hilaire map ID: 	10000001
 
 ### Directory Structure
 
-./bin: Binaries from our homemade tools
+./bin: Binaries from our homemade tools  
 ./Installer: Generated installers  
 ./MappingData: Source data used to generated tracks and POIs  
 ./NemrodToolkit: Homemade tools source code  
