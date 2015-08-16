@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="MapSource 6.16.3" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+
+  <metadata>
+    <link href="http://www.garmin.com">
+      <text>Garmin International</text>
+    </link>
+    <time>2015-08-16T18:31:47Z</time>
+    <bounds maxlat="45.519349174574018" maxlon="-73.197554089128971" minlat="45.516934935003519" minlon="-73.201395850628614"/>
+  </metadata>
+
+  <wpt lat="45.519349174574018" lon="-73.201395850628614">
+    <ele>43.6251220703125</ele>
+    <name>Tube</name>
+    <cmt>16-AUG-15 12:18:07</cmt>
+    <desc>16-AUG-15 12:18:07</desc>
+    <sym>Pin, Blue</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.516934935003519" lon="-73.197554089128971">
+    <ele>63.572509765625</ele>
+    <name>Tubes</name>
+    <cmt>16-AUG-15 11:36:59</cmt>
+    <desc>16-AUG-15 11:36:59</desc>
+    <sym>Pin, Blue</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+  <wpt lat="45.518087865784764" lon="-73.198155825957656">
+    <ele>51.0753173828125</ele>
+    <name>Tubes 2</name>
+    <cmt>16-AUG-15 11:58:35</cmt>
+    <desc>16-AUG-15 11:58:35</desc>
+    <sym>Pin, Blue</sym>
+    <extensions>
+      <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
+        <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+      </gpxx:WaypointExtension>
+    </extensions>
+  </wpt>
+
+</gpx>
