@@ -1,5 +1,3 @@
-Installer/Nemrod Installer/Debug/*
-Installer/Nemrod Installer/Release/*
 Installer/WiX/installer.wixpdb
 Installer/WiX/installer.wixobj
 Installer/WiX/installer.msi

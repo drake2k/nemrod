@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="MapSource 6.16.3" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+
+  <metadata>
+    <link href="http://www.garmin.com">
+      <text>Garmin International</text>
+    </link>
+    <time>2015-09-23T04:04:09Z</time>
+    <bounds maxlat="45.994719006121159" maxlon="-74.968749973922968" minlat="45.99422900006175" minlon="-74.969411976635456"/>
+  </metadata>
+
+  <trk>
+    <name>CheminCachePot</name>
+    <trkseg>
+      <trkpt lat="45.99422900006175" lon="-74.968892969191074">
+        <ele>314.10700000000003</ele>
+        <time>2015-09-19T14:25:40Z</time>
+      </trkpt>
+      <trkpt lat="45.994231011718512" lon="-74.968974022194743">
+        <ele>310.33600000000001</ele>
+        <time>2015-09-19T14:26:08Z</time>
+      </trkpt>
+      <trkpt lat="45.994264958426356" lon="-74.968952983617783">
+        <ele>307.767</ele>
+        <time>2015-09-19T14:26:25Z</time>
+      </trkpt>
+      <trkpt lat="45.994266970083117" lon="-74.968879977241158">
+        <ele>308.97699999999998</ele>
+        <time>2015-09-19T14:26:44Z</time>
+      </trkpt>
+      <trkpt lat="45.99431499838829" lon="-74.968833038583398">
+        <ele>306.90800000000002</ele>
+        <time>2015-09-19T14:27:03Z</time>
+      </trkpt>
+      <trkpt lat="45.994370989501476" lon="-74.968790961429477">
+        <ele>303.697</ele>
+        <time>2015-09-19T14:27:17Z</time>
+      </trkpt>
+      <trkpt lat="45.994435027241707" lon="-74.968792973086238">
+        <ele>301.66699999999997</ele>
+        <time>2015-09-19T14:27:34Z</time>
+      </trkpt>
+      <trkpt lat="45.994471991434693" lon="-74.968792973086238">
+        <ele>307.20800000000003</ele>
+        <time>2015-09-19T14:27:47Z</time>
+      </trkpt>
+      <trkpt lat="45.994484983384609" lon="-74.968749973922968">
+        <ele>307.02600000000001</ele>
+        <time>2015-09-19T14:28:07Z</time>
+      </trkpt>
+      <trkpt lat="45.994524965062737" lon="-74.968810994178057">
+        <ele>304.91699999999997</ele>
+        <time>2015-09-19T14:28:28Z</time>
+      </trkpt>
+      <trkpt lat="45.994532005861402" lon="-74.96881702914834">
+        <ele>311.83699999999999</ele>
+        <time>2015-09-19T14:28:49Z</time>
+      </trkpt>
+      <trkpt lat="45.994578022509813" lon="-74.968940997496247">
+        <ele>311.077</ele>
+        <time>2015-09-19T14:29:08Z</time>
+      </trkpt>
+      <trkpt lat="45.994524965062737" lon="-74.968954995274544">
+        <ele>314.08800000000002</ele>
+        <time>2015-09-19T14:29:21Z</time>
+      </trkpt>
+      <trkpt lat="45.994543991982937" lon="-74.969046022742987">
+        <ele>318.89800000000002</ele>
+        <time>2015-09-19T14:29:42Z</time>
+      </trkpt>
+      <trkpt lat="45.994595037773252" lon="-74.969196980819106">
+        <ele>311.74599999999998</ele>
+        <time>2015-09-19T14:30:03Z</time>
+      </trkpt>
+      <trkpt lat="45.99459202028811" lon="-74.969215001910925">
+        <ele>319.55799999999999</ele>
+        <time>2015-09-19T14:30:21Z</time>
+      </trkpt>
+      <trkpt lat="45.994628984481096" lon="-74.969298988580704">
+        <ele>314.05700000000002</ele>
+        <time>2015-09-19T14:30:42Z</time>
+      </trkpt>
+      <trkpt lat="45.994709031656384" lon="-74.969394039362669">
+        <ele>310.21600000000001</ele>
+        <time>2015-09-19T14:31:00Z</time>
+      </trkpt>
+      <trkpt lat="45.994719006121159" lon="-74.969411976635456">
+        <ele>312.19799999999998</ele>
+        <time>2015-09-19T14:31:15Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+
+</gpx>
