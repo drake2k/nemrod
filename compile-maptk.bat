@@ -6,8 +6,6 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 echo.
 echo --------- INITIALIZATION ------------
 
-
-
 SET OVERVIEW_GEN_EXE="bin/generate-overview.exe"
 SET OVERVIEW_GEN_ARGS=-c -p Maptk.prj nemrod_overview.mp
 
@@ -42,9 +40,10 @@ echo.
 echo ----- Assembling installer ------
 echo.
 pushd Installer\Wix\
-"%CANDLE_EXE%" %CANDLE_ARGS%
-"%LIGHT_EXE%" %LIGHT_ARGS%
+%CANDLE_EXE% %CANDLE_ARGS%
+%LIGHT_EXE% %LIGHT_ARGS%
 popd
+
 
 echo.
 echo ----- DONE ------
@@ -53,7 +52,7 @@ echo.
 GOTO :eof
 
 :TRY_PATH_DEFAULT_OR_EXIT_MAPTK
-for /f "delims=" %%i in (' where MapTK.exe 2^> nul ') do SET MAP_TK_EXE=%%i
+for /f "delims=" %%i in (' where MapTK.exe 2^> nul ') do SET MAP_TK_EXE="%%i"
 if not exist "!MAP_TK_EXE!" (
 	echo MapTK.exe is not on the path, trying default dir.
 	SET MAP_TK_EXE="C:\program files (x86)\MapTK\MapTK.exe"
@@ -69,30 +68,42 @@ rem test for x86 systems
 GOTO :eof
 
 :TRY_PATH_DEFAULT_OR_EXIT_WIX
-for /f "delims=" %%i in (' where candle.exe 2^> nul ') do SET CANDLE_EXE=%%i
+for /f "delims=" %%i in (' where candle.exe 2^> nul ') do SET CANDLE_EXE="%%i"
 if not exist "!CANDLE_EXE!" (
 	echo Candle.exe is not on the path, trying default dir.
 	SET CANDLE_EXE="C:\Program Files (x86)\WiX Toolset v3.9\bin\candle.exe"
 	if not exist "!CANDLE_EXE!" (
-rem test for x86 systems
-		SET CANDLE_EXE="C:\program files\WiX Toolset v3.9\bin\candle.exe"
+		SET CANDLE_EXE="C:\Program Files (x86)\WiX Toolset v3.10\bin\candle.exe"
 		if not exist "!CANDLE_EXE!" (
-			echo CANNOT FIND CANDLE.EXE, ABORTING
-			goto :errord
+rem test for x86 systems
+			SET CANDLE_EXE="C:\program files\WiX Toolset v3.9\bin\candle.exe"
+			if not exist "!CANDLE_EXE!" (
+				SET CANDLE_EXE="C:\program files\WiX Toolset v3.10\bin\candle.exe"
+				if not exist "!CANDLE_EXE!" (
+					echo CANNOT FIND CANDLE.EXE, ABORTING
+					goto :errord
+				)
+			)
 		)
 	)
 )
 
-for /f "delims=" %%i in (' where light.exe 2^> nul ') do SET LIGHT_EXE=%%i
+for /f "delims=" %%i in (' where light.exe 2^> nul ') do SET LIGHT_EXE="%%i"
 if not exist "!LIGHT_EXE!" (
 	echo Light.exe is not on the path, trying default dir.
 	SET LIGHT_EXE="C:\Program Files (x86)\WiX Toolset v3.9\bin\light.exe"
 	if not exist "!LIGHT_EXE!" (
-rem test for x86 systems
-		SET LIGHT_EXE="C:\program files\WiX Toolset v3.9\bin\light.exe"
+		SET LIGHT_EXE="C:\Program Files (x86)\WiX Toolset v3.10\bin\light.exe"
 		if not exist "!LIGHT_EXE!" (
-			echo CANNOT FIND LIGHT.EXE, ABORTING
-			goto :errord
+rem test for x86 systems
+			SET LIGHT_EXE="C:\program files\WiX Toolset v3.9\bin\light.exe"
+			if not exist "!LIGHT_EXE!" (
+				SET LIGHT_EXE="C:\program files\WiX Toolset v3.10\bin\light.exe"
+				if not exist "!LIGHT_EXE!" (
+					echo CANNOT FIND LIGHT.EXE, ABORTING
+					goto :errord
+				)
+			)
 		)
 	)
 )
