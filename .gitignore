@@ -1,6 +1,6 @@
-Installer/WiX/installer.wixpdb
-Installer/WiX/installer.wixobj
-Installer/WiX/installer.msi
+Installer/WiX/*
+!Installer/WiX/banner.jpg
+!Installer/WiX/installer.wxs
 *.suo
 MapTk.prj.bak
 MapTK.log
