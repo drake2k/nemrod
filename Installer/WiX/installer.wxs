@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
 	<Product Name='Nemrod Maps' 
-        Id='A5588577-377D-4855-9DC2-49072C39862B'
+        Id='AEA1C5C8-7F74-11E5-8BCF-FEFF819CDC9F'
         Language='1033' Codepage='1252' Version='1.2.0' 
         Manufacturer='Jf Beaulac'
         UpgradeCode='0A3C458F-AE09-459A-BD02-536414AD1B95'>
