@@ -65,6 +65,8 @@
 			<ComponentRef Id="ProductFiles" />
 			<ComponentRef Id="RegistryKeys" />
 		</Feature>
+		<MajorUpgrade
+			DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit."/>
 	 </Product>
 </Wix>
 
