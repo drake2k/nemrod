@@ -4,7 +4,7 @@
         Id='AEA1C5C8-7F74-11E5-8BCF-FEFF819CDC9F'
         Language='1033' Codepage='1252' Version='1.2.0' 
         Manufacturer='Jf Beaulac'
-        UpgradeCode='0A3C458F-AE09-459A-BD02-536414AD1B95'>
+        UpgradeCode='237151F8-85AF-11E5-AF63-FEFF819CDC9F'>
 
 		<Package Id='*' 
 			 Keywords='Installer'
@@ -24,6 +24,8 @@
 							  Source='..\..\Output-MapTK\10000001.img' Vital='yes' DiskId='1'/>
 						<File Id='mdx' Name='M00101.mdx' 
 							  Source='..\..\Output-MapTK\M00101.mdx' Vital='yes' DiskId='1'/>
+						<File Id='typ' Name='M00101.typ' 
+							  Source='..\..\Output-MapTK\M00101.typ' Vital='yes' DiskId='1'/>
 						<File Id='rdb' Name='M00101.tdb' 
 							  Source='..\..\Output-MapTK\M00101.tdb' Vital='yes' DiskId='1'/>
 						<File Id='addresses' Name='M00101_mdr.img' 
@@ -38,6 +40,7 @@
 							 Key="Software\Garmin\Mapsource\Families\Nemrod Maps"
 							 ForceDeleteOnUninstall="yes">
 					<RegistryValue Name="ID" Type="binary" Value="6500"/>
+					<RegistryValue Name="TYP" Type="string" Value="[NEMRODMAPSDIR]M00101.typ"/>
 					<RegistryValue Name="MDR" Type="string" Value="[NEMRODMAPSDIR]M00101_mdr.img"/>
 					<RegistryValue Name="IDX" Type="string" Value="[NEMRODMAPSDIR]M00101.mdx"/>
 					<RegistryKey Key="1">
