@@ -1,24 +1,23 @@
 # Project file
 
 [Project]
-Product=Nemrod Maps
-FamilyID=101
-Version=120
+Product=Nemrod Complete Maps
+FamilyID=102
+Version=200
 Compile=1
 Index=1
 Style=1
 GarminColor=1
-Overview=nemrod.img
-IMGpath=Output-MapTK
+Overview=overview.img
+IMGpath=Output-MapTK\NemrodComplete
 IMGfiles=1000000*.img
-Copyright=Nemrod 2011
+Copyright=Nemrod 2011-2015
 [END]
 
 # IMGs
 
 [IMG]
-NemrodCamp - 10000000
-NemrodStHilaire - 10000001
+NemrodCompleteCamp - 10000000
 [END]
 
 # Polylines
@@ -31,6 +30,57 @@ String=4,Lot line
 TextSize=3
 Linewidth=1
 Color=0,0x000000
+[END]
+
+# Polygons
+
+[Polygon]
+Type=0x0e
+DrawOrder=4
+String=0,Piste d'atterissage
+String=1,Piste d'atterissage
+String=4,Landing strip
+Color=0,0xd5d5d5
+[END]
+
+[Polygon]
+Type=0x14
+DrawOrder=2
+String=0,Boisé
+String=1,Boisé
+String=4,Woods
+Color=0,0xb8e999
+[END]
+
+[Polygon]
+Type=0x40
+DrawOrder=5
+String=0,Lac
+String=1,Lac
+String=4,Lake
+Color=0,0x8cc7ff
+[END]
+
+[Polygon]
+Type=0x49
+DrawOrder=5
+String=0,Rivière
+String=1,Rivière
+String=4,River
+Color=0,0x8cc7ff
+[END]
+
+[Polygon]
+Type=0x51
+DrawOrder=4
+String=0,Humide
+String=1,Humide
+String=4,Humid
+Color=0,0x0000ff
+Line=................................
+Line=00000000000000000000000000000000
+Line=................................
+Line=................................
 [END]
 
 # Python scripts used by 'Script'

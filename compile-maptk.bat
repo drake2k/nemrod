@@ -7,7 +7,9 @@ echo.
 echo --------- INITIALIZATION ------------
 
 SET OVERVIEW_GEN_EXE="bin/generate-overview.exe"
-SET OVERVIEW_GEN_ARGS=-c -p Maptk.prj nemrod_overview.mp
+
+SET TRANS_OVERVIEW_GEN_ARGS=-c -p Maptk_NemrodTrans.prj nemrod_trans_overview.mp
+SET COMPLETE_OVERVIEW_GEN_ARGS=-c -p Maptk_NemrodComplete.prj nemrod_complete_overview.mp
 
 SET MAP_TK_EXE=
 call :TRY_PATH_DEFAULT_OR_EXIT_MAPTK
@@ -23,18 +25,31 @@ echo Using candle: %CANDLE_EXE%
 echo Using light: %LIGHT_EXE%
 echo ------------ END-INIT ---------------
 echo.
+echo ---- BUILDING NEMROD TRANSPARENT -----
 echo ------- Generate overview map --------
 echo.
-%OVERVIEW_GEN_EXE% %OVERVIEW_GEN_ARGS%
-
+%OVERVIEW_GEN_EXE% %TRANS_OVERVIEW_GEN_ARGS%
 echo.
 echo ----- Compiling overview map to Output-MapTK ------
 echo.
-%MAP_TK_EXE% nemrod_overview.mp Output-MapTK\nemrod.img
+%MAP_TK_EXE% nemrod_trans_overview.mp Output-MapTK\NemrodTransparent\overview.img
 echo.
 echo ----- Compiling project file ------
 echo.
-%MAP_TK_EXE% -make MapTk.prj
+@echo on
+%MAP_TK_EXE% MapTk_NemrodTrans.prj
+echo ------ BUILDING NEMROD COMPLETE ------
+echo ------- Generate overview map --------
+echo.
+%OVERVIEW_GEN_EXE% %COMPLETE_OVERVIEW_GEN_ARGS%
+echo.
+echo ----- Compiling overview map to Output-MapTK ------
+echo.
+%MAP_TK_EXE% nemrod_complete_overview.mp Output-MapTK\NemrodComplete\overview.img
+echo.
+echo ----- Compiling project file ------
+echo.
+%MAP_TK_EXE% MapTk_NemrodComplete.prj
 
 echo.
 echo ----- Assembling installer ------
@@ -43,7 +58,6 @@ pushd Installer\Wix\
 %CANDLE_EXE% %CANDLE_ARGS%
 %LIGHT_EXE% %LIGHT_ARGS%
 popd
-
 
 echo.
 echo ----- DONE ------

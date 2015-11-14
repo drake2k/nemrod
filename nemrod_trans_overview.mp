@@ -1,8 +1,8 @@
 [IMG ID]
-Name=Nemrod Maps
-ID=nemrod
+Name=Nemrod Transparent Maps
+ID=overview
 Codepage=1252
-Copyright=Nemrod 2011
+Copyright=Nemrod 2011-2015
 DrawPriority=25
 Elevation=M
 LblCoding=9
@@ -17,13 +17,13 @@ Preview=Y
 
 [POLYGON]
 Type=0x4a
-Label=Nemrod Camp - 10000000~[0x1d]10000000
+Label=Nemrod Camp Transparent - 10000000~[0x1d]10000000
 Data0=(46.01242,-74.98407),(46.01242,-74.95159),(45.98632,-74.95159),(45.98632,-74.98407)
 [END]
 
 [POLYGON]
 Type=0x4a
-Label=St-Hilaire - 10000001~[0x1d]10000001
+Label=St-Hilaire Transparent - 10000001~[0x1d]10000001
 Data0=(45.52619,-73.21017),(45.52619,-73.19045),(45.51159,-73.19045),(45.51159,-73.21017)
 [END]
 

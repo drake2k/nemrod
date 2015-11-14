@@ -1,10 +1,12 @@
-### Mapset informations
+### Mapsets informations
 
-MapSet name : Nemrod Maps  
-Family ID: 101  
-
-Nemrod Camp map ID: 		10000000  
-Nemrod St-Hilaire map ID: 	10000001  
+ - MapSet name : Nemrod Transparent Trails (Family ID: 101)
+   - Nemrod Camp map ID: 		10000000  
+   - Nemrod St-Hilaire map ID: 	10000001
+   
+ - MapSet name : Nemrod Complete (Family ID: 102)
+   - Nemrod Camp map ID: 		10000000
+   
 
 
 ### Directory Structure
@@ -34,6 +36,14 @@ It is only used for routing, and is ignored by MapTK overview map generator rega
 Custom types are declared in the MapTK.prj file. To use them in GPSMapEdit use map skins (View Menu). 
 
  - 0x10F00 : Lot lines
+ 
+###### Default altered Types
+ 
+ - 0x0e : Landing Strip
+ - 0x14 : Forest
+ - 0x40 : Lake
+ - 0x49 : River
+ - 0x51 : Humid
 
 ###### Generation
  

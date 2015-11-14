@@ -4,7 +4,7 @@
 CodePage=1252
 LblCoding=9
 ID=10000000
-Name=Nemrod Camp
+Name=Nemrod Camp Transparent
 Elevation=M
 Preprocess=G
 TreSize=500
@@ -14,6 +14,7 @@ Transparent=Y
 POIIndex=Y
 POINumberFirst=Y
 POIZipFirst=N
+PolygonEvaluate=N
 DrawPriority=1
 Levels=4
 Level0=24

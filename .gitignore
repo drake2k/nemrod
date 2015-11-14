@@ -2,10 +2,15 @@ Installer/WiX/*
 !Installer/WiX/banner.jpg
 !Installer/WiX/installer.wxs
 *.suo
-MapTk.prj.bak
-MapTK.log
+MapTk.log
+MapTk_NemrodTrans.prj.bak
+MapTK_NemrodTrans.log
+MapTk_NemrodComplete.prj.bak
+MapTK_NemrodComplete.log
 NemrodToolkit/nbproject/private
 NemrodToolkit/hello.exe
 NemrodToolkit/generate-overview.exe
 NemrodToolkit/debugOverview.mp
 obj/
+Output-MapTK/NemrodComplete/*
+Output-MapTK/NemrodTransparent/*

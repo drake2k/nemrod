@@ -1,0 +1,177 @@
+# Project file
+
+[Project]
+Product=Nemrod Transparent Maps
+FamilyID=101
+Version=200
+Compile=1
+Index=1
+Style=1
+GarminColor=1
+Overview=overview.img
+IMGpath=Output-MapTK\NemrodTransparent
+IMGfiles=1000000*.img
+Copyright=Nemrod 2011-2015
+[END]
+
+# IMGs
+
+[IMG]
+NemrodTransCamp - 10000000
+NemrodTransStHilaire - 10000001
+[END]
+
+# Polylines
+
+[Polyline]
+Type=0x10f00
+String=0,Ligne lot
+String=1,Ligne lot
+String=4,Lot line
+TextSize=3
+Linewidth=1
+Color=0,0x000000
+[END]
+
+# Python scripts used by 'Script'
+
+[CUSTOM_HEADER]
+# Python script: customizing cities
+# variables:    overview     1 overview map
+#                            0 detailed map
+#               name         name of the tile
+#               ident        ident of tile ( 8 character string )
+#               familyid     family ID ( 16 bit, read only )
+#               drawpriority draw priority of tile ( 1 ... 31 )
+#               transparent  1 map is transparent
+#                            0 map is not transparent
+#               copyright    copyright in MapSource
+#               levels       number of levels in map
+#               level[]      bit / coord, index is level
+#               zoom[]       zoom level
+zoom = []                               # use default
+if overview:                            # modify in overview map
+    levels = 2
+    level[0] = 24
+    level[1] = 22
+else:                                   # modify in detailed map
+    levels = 5
+    level[0] = 24
+    level[1] = 23
+    level[2] = 22
+    level[3] = 20
+    level[4] = 19
+    transparent = 0
+
+if name == "nemrod":
+    name = "Nemrod Maps"
+[END]
+
+[CUSTOM_POI]
+# Python script: customizing points
+# variables:    overview   1 overview map
+#                          0 detailed map
+#               type       code of object
+#               levels     number of levels in map
+#               level      visibility up to level, -1: remove
+#               label      text for object
+#               data[]     array of coordinates [y,x]
+# type changes
+if type == 0x2f04:                      # airport (invisible)
+    type = 0x2d0b                       # -> visible
+if overview:                            # modify in overview map
+    grp = type >> 8                     # group of types
+    if type < 0x0500 or type == 0x1400:
+        level = 2
+    elif type < 0x0700 or type == 0x1500:
+        level = 1
+    else:
+        level = 0
+else:                                   # modify in detailed map
+    grp = type >> 8                     # group of types
+    # level changes
+    if type < 0x0b00:
+        level = 3
+    elif type < 0x1200:
+        level = 2
+    elif type == (0x2f0b, 0x6616):      # parking, summit
+        level = 2
+    elif grp in (0x2c, 0x62, 0x63, 0x64): # spots
+        level = 2
+    elif level != -1:                   # do not overwrite -1
+        level = 1
+[END]
+
+[CUSTOM_POLYLINE]
+# Python script: customizing polylines
+# variables:    overview   1 overview map
+#                          0 detailed map
+#               type       code of object
+#               levels     number of levels in map
+#               level      visibility up to level, -1: remove
+#               label      text for object
+#               data[]     array of coordinates [y,x]
+if overview:                            # modify in overview map
+    if type in (1, 0x1e):
+        level = 2
+    elif type in (2, 0x1c):
+        level = 1
+    else:
+        level = 0
+else:                                   # modify in detailed map
+    # type changes
+    if type in (0x20, 0x21, 0x22):
+        if  label.find('000 ') != -1:
+            type = 0x22
+        elif label.find('00 ') != -1:
+            type = 0x21
+        else:
+            type = 0x20
+    # level changes
+    if type in (1, 2, 3, 4, 5, 0x14, 0x1c, 0x1e):
+        level = 3
+    elif type in (6, 7, 8, 0x0a, 0x0c, 0x0d, 0x12, 0x13, 0x1b,
+        0x1f, 0x27):
+        level = 2
+    elif type in (0x10, 0x11, 0x15, 0x17, 0x19, 0x20, 0x2a):
+        level = 0
+    elif level != -1:                    # do not overwrite -1
+        level = 1                        # all others
+[END]
+
+[CUSTOM_POLYGON]
+# Python script: customizing polygons [RGN80]
+# variables:    overview   1 overview map
+#                          0 detailed map
+#               type       code of object
+#               levels     number of levels in map
+#               level      visibility level, -1: remove
+#               label      text for object
+#               data[]     array of coordinates [y,x]
+if overview:                            # modify in overview map
+    if type == 0x4b:
+        level = levels - 1
+    elif type in (0x28, 0x3c, 0x40, 0x41, 0x42, 0x43, 0x46, 0x47, 0x48,
+        0x4a):
+        level = 1
+    elif type in (1, 0x3d, 0x3e, 0x3f, 0x44):
+        level = 1
+    else:
+        level = 0
+else:                                   # modify in detailed map
+    # level changes
+    if type == 0x4b:                    # background
+        level = levels - 1
+    elif type in (1, 2, 0x28, 0x29, 0x3c, 0x3d, 0x3e, 0x3f, 0x40,
+        0x42, 0x43, 0x44, 0x46, 0x47, 0x48):
+        level = 3
+    elif type in (3, 4, 5, 6, 7, 8, 9, 0x0a, 0x0b, 0x0c, 0x0e,
+        0x11, 0x13, 0x14, 0x15, 0x18, 0x19, 0x1e, 0x1f,
+        0x20, 0x24, 0x41, 0x45, 0x50):
+        level = 2
+    elif type in (0x1b, 0x4c):
+           level = 0
+    elif level != -1:                   # do not overwrite -1
+        level = 1                       # all others
+[END]
+

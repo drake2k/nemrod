@@ -1,0 +1,72 @@
+[_id]
+ProductCode=1
+FID=0x0001
+[end]
+
+[_drawOrder]
+Type=0x14,2
+Type=0x0e,4
+Type=0x51,4
+Type=0x40,5
+Type=0x49,5
+[end]
+
+[_polygon]
+Type=0x000e
+String=4,Piste d'atterissage
+String=0,Piste d'atterissage
+XPM="0 0 1 1"
+"0 c #d5d5d5"
+[end]
+
+[_polygon]
+Type=0x0014
+String=4,Woods
+String=1,Boisé
+String=0,Boisé
+XPM="0 0 1 1"
+"0 c #b8e999"
+[end]
+
+[_polygon]
+Type=0x0040
+String=4,Lake
+String=1,Lac
+String=0,Lac
+XPM="0 0 1 1"
+"0 c #8cc7ff"
+[end]
+
+[_polygon]
+Type=0x0049
+String=4,River
+String=1,Rivière
+String=0,Rivière
+XPM="0 0 1 1"
+"0 c #8cc7ff"
+[end]
+
+[_polygon]
+Type=0x0051
+String=4,Humid
+String=1,Humide
+String=0,Humide
+XPM="32 4 2 1"
+"0 c #0000ff"
+". c none"
+"................................"
+"00000000000000000000000000000000"
+"................................"
+"................................"
+[end]
+
+[_line]
+Type=0x10f00
+String=4,Lot line
+String=1,Ligne lot
+String=0,Ligne lot
+LineWidth=1
+XPM="0 0 1 1"
+"0 c #000000"
+[end]
+

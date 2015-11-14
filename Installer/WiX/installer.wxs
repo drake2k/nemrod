@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
 	<Product Name='Nemrod Maps' 
-        Id='237151F8-85AF-11E5-AF63-FEFF819CDC9F'
-        Language='1033' Codepage='1252' Version='1.3.0' 
+        Id='237151F8-85AF-11E5-AF63-FEFF819CDCA0'
+        Language='1033' Codepage='1252' Version='2.0.0' 
         Manufacturer='Jf Beaulac'
         UpgradeCode='0A3C458F-AE09-459A-BD02-536414AD1B95'>
 
@@ -17,36 +17,69 @@
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="CommonAppDataFolder">
 				<Directory Id="NEMRODMAPSDIR" Name="Nemrod Maps">
-					<Component Id="ProductFiles" Guid="18348B87-5B81-4083-A61C-C15555892871">
-						<File Id='maplacdesplages' Name='10000000.img' 
-							  Source='..\..\Output-MapTK\10000000.img' Vital='yes' DiskId='1'/>
-						<File Id='mapsthilaire' Name='10000001.img' 
-							  Source='..\..\Output-MapTK\10000001.img' Vital='yes' DiskId='1'/>
-						<File Id='mdx' Name='M00101.mdx' 
-							  Source='..\..\Output-MapTK\M00101.mdx' Vital='yes' DiskId='1'/>
-						<File Id='typ' Name='M00101.typ' 
-							  Source='..\..\Output-MapTK\M00101.typ' Vital='yes' DiskId='1'/>
-						<File Id='rdb' Name='M00101.tdb' 
-							  Source='..\..\Output-MapTK\M00101.tdb' Vital='yes' DiskId='1'/>
-						<File Id='addresses' Name='M00101_mdr.img' 
-						      Source='..\..\Output-MapTK\M00101_mdr.img' Vital='yes' DiskId='1'/>
-						<File Id='overview' Name='nemrod.img' 
-							  Source='..\..\Output-MapTK\nemrod.img' Vital='yes' DiskId='1'/>
-					</Component>
+					<Directory Id="NEMRODTRANSPARENT" Name="Transparent">
+						<Component Id="TransparentProductFiles" Guid="18348B87-5B81-4083-A61C-C15555892871">
+							<File Id='trans_maplacdesplages' Name='10000000.img' 
+								  Source='..\..\Output-MapTK\NemrodTransparent\10000000.img' Vital='yes' DiskId='1'/>
+							<File Id='trans_mapsthilaire' Name='10000001.img' 
+								  Source='..\..\Output-MapTK\NemrodTransparent\10000001.img' Vital='yes' DiskId='1'/>
+							<File Id='trans_mdx' Name='M00101.mdx' 
+								  Source='..\..\Output-MapTK\NemrodTransparent\M00101.mdx' Vital='yes' DiskId='1'/>
+							<File Id='trans_typ' Name='M00101.typ' 
+								  Source='..\..\Output-MapTK\NemrodTransparent\M00101.typ' Vital='yes' DiskId='1'/>
+							<File Id='trans_rdb' Name='M00101.tdb' 
+								  Source='..\..\Output-MapTK\NemrodTransparent\M00101.tdb' Vital='yes' DiskId='1'/>
+							<File Id='trans_addresses' Name='M00101_mdr.img' 
+								  Source='..\..\Output-MapTK\NemrodTransparent\M00101_mdr.img' Vital='yes' DiskId='1'/>
+							<File Id='trans_overview' Name='overview.img' 
+								  Source='..\..\Output-MapTK\NemrodTransparent\overview.img' Vital='yes' DiskId='1'/>
+						</Component>
+					</Directory>
+					<Directory Id="NEMRODCOMPLETE" Name="Complete">
+						<Component Id="CompleteProductFiles" Guid="18348B87-5B81-4083-A61C-C15555892872">
+							<File Id='comp_maplacdesplages' Name='10000000.img' 
+								  Source='..\..\Output-MapTK\NemrodComplete\10000000.img' Vital='yes' DiskId='1'/>
+							<File Id='comp_mdx' Name='M00102.mdx' 
+								  Source='..\..\Output-MapTK\NemrodComplete\M00102.mdx' Vital='yes' DiskId='1'/>
+							<File Id='comp_typ' Name='M00102.typ' 
+								  Source='..\..\Output-MapTK\NemrodComplete\M00102.typ' Vital='yes' DiskId='1'/>
+							<File Id='comp_rdb' Name='M00102.tdb' 
+								  Source='..\..\Output-MapTK\NemrodComplete\M00102.tdb' Vital='yes' DiskId='1'/>
+							<File Id='comp_addresses' Name='M00102_mdr.img' 
+								  Source='..\..\Output-MapTK\NemrodComplete\M00102_mdr.img' Vital='yes' DiskId='1'/>
+							<File Id='comp_overview' Name='overview.img' 
+								  Source='..\..\Output-MapTK\NemrodComplete\overview.img' Vital='yes' DiskId='1'/>
+						</Component>
+					</Directory>
 				</Directory>
 			</Directory>
-			<Component Id="RegistryKeys" Guid="F35AB64E-5B6E-433F-9467-DF855580E76B">
+			<Component Id="TransparentRegistryKeys" Guid="F35AB64E-5B6E-433F-9467-DF855580E76B">
 				<RegistryKey Root="HKLM"
-							 Key="Software\Garmin\Mapsource\Families\Nemrod Maps"
+							 Key="Software\Garmin\Mapsource\Families\Nemrod Maps Transparent"
 							 ForceDeleteOnUninstall="yes">
 					<RegistryValue Name="ID" Type="binary" Value="6500"/>
-					<RegistryValue Name="TYP" Type="string" Value="[NEMRODMAPSDIR]M00101.typ"/>
-					<RegistryValue Name="MDR" Type="string" Value="[NEMRODMAPSDIR]M00101_mdr.img"/>
-					<RegistryValue Name="IDX" Type="string" Value="[NEMRODMAPSDIR]M00101.mdx"/>
+					<RegistryValue Name="TYP" Type="string" Value="[NEMRODMAPSDIR]Transparent\M00101.typ"/>
+					<RegistryValue Name="MDR" Type="string" Value="[NEMRODMAPSDIR]Transparent\M00101_mdr.img"/>
+					<RegistryValue Name="IDX" Type="string" Value="[NEMRODMAPSDIR]Transparent\M00101.mdx"/>
 					<RegistryKey Key="1">
-						<RegistryValue Name="BMAP" Type="string" Value="[NEMRODMAPSDIR]nemrod.img"/>
-						<RegistryValue Name="LOC" Type="string" Value="[NEMRODMAPSDIR]"/>
-						<RegistryValue Name="TDB" Type="string" Value="[NEMRODMAPSDIR]M00101.tdb"/>
+						<RegistryValue Name="BMAP" Type="string" Value="[NEMRODMAPSDIR]Transparent\overview.img"/>
+						<RegistryValue Name="LOC" Type="string" Value="[NEMRODMAPSDIR]Transparent\"/>
+						<RegistryValue Name="TDB" Type="string" Value="[NEMRODMAPSDIR]Transparent\M00101.tdb"/>
+					</RegistryKey>
+				</RegistryKey>
+			</Component>
+			<Component Id="CompleteRegistryKeys" Guid="F35AB64E-5B6E-433F-9467-DF855580E76C">
+				<RegistryKey Root="HKLM"
+							 Key="Software\Garmin\Mapsource\Families\Nemrod Maps Complete"
+							 ForceDeleteOnUninstall="yes">
+					<RegistryValue Name="ID" Type="binary" Value="6600"/>
+					<RegistryValue Name="TYP" Type="string" Value="[NEMRODMAPSDIR]Complete\M00102.typ"/>
+					<RegistryValue Name="MDR" Type="string" Value="[NEMRODMAPSDIR]Complete\M00102_mdr.img"/>
+					<RegistryValue Name="IDX" Type="string" Value="[NEMRODMAPSDIR]Complete\M00102.mdx"/>
+					<RegistryKey Key="1">
+						<RegistryValue Name="BMAP" Type="string" Value="[NEMRODMAPSDIR]Complete\overview.img"/>
+						<RegistryValue Name="LOC" Type="string" Value="[NEMRODMAPSDIR]Complete\"/>
+						<RegistryValue Name="TDB" Type="string" Value="[NEMRODMAPSDIR]Complete\M00102.tdb"/>
 					</RegistryKey>
 				</RegistryKey>
 			</Component>
@@ -62,8 +95,10 @@
 		</UI>
 		
 		<Feature Id="Product" Title="Map Product" Level="1">
-			<ComponentRef Id="ProductFiles" />
-			<ComponentRef Id="RegistryKeys" />
+			<ComponentRef Id="TransparentProductFiles" />
+			<ComponentRef Id="TransparentRegistryKeys" />
+			<ComponentRef Id="CompleteProductFiles" />
+			<ComponentRef Id="CompleteRegistryKeys" />
 		</Feature>
 		<MajorUpgrade
 			DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit."/>
