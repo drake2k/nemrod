@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <cstdlib>
 #include <limits>
+#include <getopt.h>
 
 #include "mpfile/MpFile.hpp"
 #include "mapTk/ProjectFile.hpp"
@@ -33,16 +34,43 @@ int main(int argc, char** argv) {
     opterr = 0; // suppress getopt errors
     
     std::string projectFileArg;
-    bool generateAreaOfMapCoveragePoly = false;
-    char opt;
-    while((opt = getopt(argc -1, argv, "cp:")) != -1) {
+    int generateAreaOfMapCoveragePoly = false;
+    int extendMapCoverageDistance = 0;
+    int extendMapAreaSelectionDistance = 0;
+    
+    static struct option long_options[] =
+        {
+          /* These options set a flag. */
+          {"coverage", no_argument, &generateAreaOfMapCoveragePoly, 1},
+          {"project", required_argument, 0, 'p'},
+          /*extend map coverage distance*/
+          {"emc",  required_argument, 0, 'c'},
+          /*extend map selection distance*/
+          {"ems",  required_argument, 0, 's'},
+          {0, 0, 0, 0}
+        };
+    
+    char opt; int option_index = 0;
+    while((opt = getopt_long(argc -1, argv, "p:s:c:r", long_options, &option_index)) != -1) {
         if(optind >= argc)
             break;
         switch(opt){
+            case 0:
+                if (long_options[option_index].flag != 0)
+                    break;
+                // should never get to next line
+                std::cout << long_options[option_index].name << " has val " << long_options[option_index].val;
+                break;
             case 'p':
                 projectFileArg = optarg;
                 break;
             case 'c':
+                extendMapCoverageDistance = atoi(optarg);
+                break;
+            case 's':
+                extendMapAreaSelectionDistance = atoi(optarg);
+                break;
+            case 'r':
                 generateAreaOfMapCoveragePoly = true;
                 break;
             case '?':
@@ -124,14 +152,13 @@ int main(int argc, char** argv) {
               topRight(maxLat, maxLong),
               botRight(minLat, maxLong);
         
-        // these 4 points are at boundaries of objects, we want to extend it a little bit (~200M default?)
-        // todo warn or adjust depending on zoom levels, there is no data for mapsource level/precision, but
-        // device precision seems to correlate
-        // todo make it parameterable via a commandlinearg
-        move_point_in_direction(Nemrod::NORTH_WEST, 250, topLeft);
-        move_point_in_direction(Nemrod::NORTH_EAST, 250, topRight);
-        move_point_in_direction(Nemrod::SOUTH_WEST, 250, botLeft);
-        move_point_in_direction(Nemrod::SOUTH_EAST, 250, botRight);
+        // check if we extend map area selection distance, usefull for transparent maps
+        if(extendMapAreaSelectionDistance > 0) {
+            move_point_in_direction(Nemrod::NORTH_WEST, extendMapAreaSelectionDistance, topLeft);
+            move_point_in_direction(Nemrod::NORTH_EAST, extendMapAreaSelectionDistance, topRight);
+            move_point_in_direction(Nemrod::SOUTH_WEST, extendMapAreaSelectionDistance, botLeft);
+            move_point_in_direction(Nemrod::SOUTH_EAST, extendMapAreaSelectionDistance, botRight);
+        }
         
         // create the area of map selection polygon and add to overview map
         Polygon areaMapSelection;
@@ -147,19 +174,17 @@ int main(int argc, char** argv) {
               topRight(globalMaxLat, globalMaxLong),
               botRight(globalMinLat, globalMaxLong);
         
-        // extend 400M default, 200M more than the tiles extent
-        // todo make parameter
-        // todo warn or adjust depending on zoom levels, there is no data for mapsource level/precision, but
-        // device precision seems to correlate
-        move_point_in_direction(Nemrod::NORTH_WEST, 500, topLeft);
-        move_point_in_direction(Nemrod::NORTH_EAST, 500, topRight);
-        move_point_in_direction(Nemrod::SOUTH_WEST, 500, botLeft);
-        move_point_in_direction(Nemrod::SOUTH_EAST, 500, botRight);
+         // check if we extend map coverage area distance, usefull for transparent maps
+        if(extendMapCoverageDistance > 0) {        
+            move_point_in_direction(Nemrod::NORTH_WEST, extendMapCoverageDistance, topLeft);
+            move_point_in_direction(Nemrod::NORTH_EAST, extendMapCoverageDistance, topRight);
+            move_point_in_direction(Nemrod::SOUTH_WEST, extendMapCoverageDistance, botLeft);
+            move_point_in_direction(Nemrod::SOUTH_EAST, extendMapCoverageDistance, botRight);
+        }
         
         // create the  Area of coverage polygon and add to overview map
         Polygon areaMapCoverage;
         areaMapCoverage.SetTypeCode(0x4b);
-        areaMapCoverage.SetLabel("Nemrod");
         areaMapCoverage.AddPoints(0, {topLeft, topRight, botRight, botLeft});
         overviewMap.GetPolygons().push_back(areaMapCoverage);
     }

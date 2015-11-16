@@ -129,7 +129,7 @@
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>${MAKE} -f makefile release</buildCommand>
           <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>generate-overview.exe</executablePath>
           <ccTool>
             <standard>8</standard>
             <incDir>
