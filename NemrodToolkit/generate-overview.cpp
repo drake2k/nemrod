@@ -196,6 +196,7 @@ int main(int argc, char** argv) {
         // create the  Area of coverage polygon and add to overview map
         Polygon areaMapCoverage;
         areaMapCoverage.SetTypeCode(0x4b);
+        areaMapCoverage.SetLabel(projectFile.GetProduct());
         areaMapCoverage.AddPoints(0, {topLeft, topRight, botRight, botLeft});
         overviewMap.GetPolygons().push_back(areaMapCoverage);
     }

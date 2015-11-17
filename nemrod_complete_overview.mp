@@ -10,7 +10,7 @@ Preprocess=F
 RgnLimit=1024
 TreMargin=0.00000
 Levels=2
-Level0=18
+Level0=24
 Level1=16
 Preview=Y
 [END-IMG ID]
