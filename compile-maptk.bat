@@ -38,7 +38,7 @@ echo.
 echo.
 echo ----- Compiling project file ------
 echo.
-%MAP_TK_EXE% MapTk_NemrodTrans.prj
+%MAP_TK_EXE% -make MapTk_NemrodTrans.prj
 
 
 echo ------ BUILDING NEMROD COMPLETE ------
@@ -54,7 +54,7 @@ echo.
 echo.
 echo ----- Compiling project file ------
 echo.
-%MAP_TK_EXE% MapTk_NemrodComplete.prj
+%MAP_TK_EXE% -make MapTk_NemrodComplete.prj
 
 echo.
 echo ----- Assembling installer ------
