@@ -50,7 +50,7 @@ Custom types are declared in the MapTK.prj file. To use them in GPSMapEdit use m
  - Run the compile-maptk.bat file which will: 
    - Generate overview map
    - Compile overview
-   - Compile maps using maptk.prj file
+   - Compile maps using maptk.prj file *** Due to a bug in MapTK, if a project file is not named MapTK.prj you need to hit the make button.
    - Generate the MSI from WiX data
  
 ### Installing to MapSource/Basecamp on Windows

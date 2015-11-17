@@ -28,6 +28,8 @@ echo.
 echo ---- BUILDING NEMROD TRANSPARENT -----
 echo ------- Generate overview map --------
 echo.
+echo Options: %TRANS_OVERVIEW_GEN_ARGS%
+echo.
 %OVERVIEW_GEN_EXE% %TRANS_OVERVIEW_GEN_ARGS%
 echo.
 echo ----- Compiling overview map to Output-MapTK ------
@@ -36,10 +38,13 @@ echo.
 echo.
 echo ----- Compiling project file ------
 echo.
-@echo on
 %MAP_TK_EXE% MapTk_NemrodTrans.prj
+
+
 echo ------ BUILDING NEMROD COMPLETE ------
 echo ------- Generate overview map --------
+echo.
+echo Options: %COMPLETE_OVERVIEW_GEN_ARGS%
 echo.
 %OVERVIEW_GEN_EXE% %COMPLETE_OVERVIEW_GEN_ARGS%
 echo.
