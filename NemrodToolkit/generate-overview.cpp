@@ -14,23 +14,20 @@
 using namespace Nemrod;
 using namespace Nemrod::MapTk;
 
-void usage() {
-    std::cout << "Usage: " << std::endl;
-    // todo
+void help() {
+    std::cout << "Usage: generate-overview.exe [OPTIONS] outputFileName" << std::endl << std::endl;
+    std::cout << "Options:" << std::endl;
+    std::cout << "\t" << "-p, --project=projectFile: REQUIRED, Use the given project file" << std::endl;
+    std::cout << "\t" << "-r, --coverage: Enables the generation of the Area of Map coverage polygon" << std::endl;
+    std::cout << "\t" << "-c, --emc=extendMapCoverageDistance: Extend 0x4a polygon by the given amount of meters" << std::endl;
+    std::cout << "\t" << "-s, --ems=extendMapAreaSelectionDistance:  Extend 0x4b polygon by the given amount of meters" << std::endl;    
+    std::cout << "\t" << "-h, --help: Shows this message." << std::endl;
     exit(1);
 }
 
 int main(int argc, char** argv) {
     // getcwd 255 magic number might be unsafe, but PATH_MAX is undefined when there is no limits
     TRACE("Current working directory(getcwd): " << getcwd(NULL, 255))
-    
-    std::string outputFileName, projectFileDir;
-
-    if ((argc <= 1) || (argv[argc-1] == NULL) || (argv[argc-1][0] == '-')) 
-        EXIT_WITH_MSG("No target file name was given, command must end with target file name for the overview map. Use -h for help.");
-    else 
-        outputFileName = argv[argc-1];
-    
     opterr = 0; // suppress getopt errors
     
     std::string projectFileArg;
@@ -39,21 +36,20 @@ int main(int argc, char** argv) {
     int extendMapAreaSelectionDistance = 0;
     
     static struct option long_options[] =
-        {
-          /* These options set a flag. */
-          {"coverage", no_argument, &generateAreaOfMapCoveragePoly, 1},
-          {"project", required_argument, 0, 'p'},
-          /*extend map coverage distance*/
-          {"emc",  required_argument, 0, 'c'},
-          /*extend map selection distance*/
-          {"ems",  required_argument, 0, 's'},
-          {0, 0, 0, 0}
-        };
+    {
+      /* This option sets a flag. */
+      {"coverage", no_argument, &generateAreaOfMapCoveragePoly, 1},
+      {"help", no_argument, 0, 'h'},
+      {"project", required_argument, 0, 'p'},
+      /*extend map coverage distance*/
+      {"emc",  required_argument, 0, 'c'},
+      /*extend map selection distance*/
+      {"ems",  required_argument, 0, 's'},
+      {0, 0, 0, 0}
+    };
     
     char opt; int option_index = 0;
-    while((opt = getopt_long(argc -1, argv, "p:s:c:r", long_options, &option_index)) != -1) {
-        if(optind >= argc)
-            break;
+    while((opt = getopt_long(argc, argv, "rhp:s:c:", long_options, &option_index)) != -1) {
         switch(opt){
             case 0:
                 if (long_options[option_index].flag != 0)
@@ -73,16 +69,31 @@ int main(int argc, char** argv) {
             case 'r':
                 generateAreaOfMapCoveragePoly = true;
                 break;
+            case 'h':
             case '?':
-                usage();
+                help();
                 break;
         }
     }
     
+    std::string outputFileName, projectFileDir;
+    
+    // todo test if this could replace the previous logic, cleaner and we could also ignore trailing stuff instead of using last one (by making a lookup at optind instead)
+    /*if (optind < argc)
+        outputFileName = argv[argc-1];
+    else 
+        EXIT_WITH_MSG("No target file name was given, command must end with target file name for the overview map. Use -h for help.");
+    */
+    
+    if ((argc <= 1) || (argv[argc-1] == NULL) || (argv[argc-1][0] == '-')) 
+        EXIT_WITH_MSG("No target file name was given, command must end with target file name for the overview map. Use -h for help.");
+    else 
+        outputFileName = argv[argc-1];
+    
     std::cout << std::endl << "Generating overview map: " << outputFileName << std::endl << std::endl;
     
     if(projectFileArg.empty())
-        usage();
+        help();
     else
         std::cout << "Using ProjectFile: " << projectFileArg << std::endl;
     
@@ -175,7 +186,7 @@ int main(int argc, char** argv) {
               botRight(globalMinLat, globalMaxLong);
         
          // check if we extend map coverage area distance, usefull for transparent maps
-        if(extendMapCoverageDistance > 0) {        
+        if(extendMapCoverageDistance > 0) {
             move_point_in_direction(Nemrod::NORTH_WEST, extendMapCoverageDistance, topLeft);
             move_point_in_direction(Nemrod::NORTH_EAST, extendMapCoverageDistance, topRight);
             move_point_in_direction(Nemrod::SOUTH_WEST, extendMapCoverageDistance, botLeft);
