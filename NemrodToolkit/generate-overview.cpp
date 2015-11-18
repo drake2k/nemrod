@@ -77,15 +77,8 @@ int main(int argc, char** argv) {
     }
     
     std::string outputFileName, projectFileDir;
-    
-    // todo test if this could replace the previous logic, cleaner and we could also ignore trailing stuff instead of using last one (by making a lookup at optind instead)
-    /*if (optind < argc)
-        outputFileName = argv[argc-1];
-    else 
-        EXIT_WITH_MSG("No target file name was given, command must end with target file name for the overview map. Use -h for help.");
-    */
-    
-    if ((argc <= 1) || (argv[argc-1] == NULL) || (argv[argc-1][0] == '-')) 
+
+    if (optind < argc)
         EXIT_WITH_MSG("No target file name was given, command must end with target file name for the overview map. Use -h for help.");
     else 
         outputFileName = argv[argc-1];
@@ -236,6 +229,3 @@ int main(int argc, char** argv) {
 #endif
     return 0;
 }
-
-
-
