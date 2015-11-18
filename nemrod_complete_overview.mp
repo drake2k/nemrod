@@ -11,7 +11,7 @@ RgnLimit=1024
 TreMargin=0.00000
 Levels=2
 Level0=18
-Level1=16
+Level1=17
 Preview=Y
 [END-IMG ID]
 

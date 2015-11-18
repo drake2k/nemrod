@@ -115,12 +115,7 @@ int main(int argc, char** argv) {
     overviewMap.GetHeader().SetCodePage("1252");
     overviewMap.GetHeader().SetElevation('M');
     overviewMap.GetHeader().SetLblCoding(9);
-    // overview should have 2 levels
-    overviewMap.GetHeader().SetLevels(2); // this should be removed and read/write from the size of the levelbits set
     
-    // most detailed level needs to be lower than lowest details across maps, todo validate
-    overviewMap.GetHeader().AddLevelBits(0,18);
-    overviewMap.GetHeader().AddLevelBits(1,16);
     // end of header
 
     // body of the map
@@ -128,6 +123,7 @@ int main(int argc, char** argv) {
           globalMaxLat = std::numeric_limits<float>::lowest(), 
           globalMinLong = std::numeric_limits<float>::max(), 
           globalMaxLong = std::numeric_limits<float>::lowest();
+    int highestDetailledLevelBits = 0, lowestDetailledLevelBits = std::numeric_limits<int>::max(), imgCount = 0;
     
     for(auto &it : projectFile.GetImgs()) {
         std::cout << std::endl << "Loading: " << it << std::endl;        
@@ -137,6 +133,14 @@ int main(int argc, char** argv) {
         if(mpFile.GetHeader().IsPreview()) {
             std::cout << it << " is an overview map, skipping." << std::endl;
             continue;
+        }
+        imgCount ++;
+        if(!mpFile.GetHeader().GetLevelBits().empty()) {
+            if((*mpFile.GetHeader().GetLevelBits().begin()).second > highestDetailledLevelBits)
+                highestDetailledLevelBits = (*mpFile.GetHeader().GetLevelBits().begin()).second;
+
+            if((*--mpFile.GetHeader().GetLevelBits().end()).second < lowestDetailledLevelBits)
+                lowestDetailledLevelBits = (*--mpFile.GetHeader().GetLevelBits().end()).second;
         }
         
         float minLat = std::numeric_limits<float>::max(),
@@ -177,6 +181,27 @@ int main(int argc, char** argv) {
         areaMapSelection.SetLabel(mpFile.GetHeader().GetName() + " - " + mpFile.GetHeader().GetId() + "~[0x1d]" + mpFile.GetHeader().GetId());
         areaMapSelection.AddPoints(0, {topLeft, topRight, botRight, botLeft});
         overviewMap.GetPolygons().push_back(areaMapSelection);
+    }
+    
+    // overview should have 2 levels
+    overviewMap.GetHeader().SetLevels(2); // this should be removed and read/write from the size of the levelbits set
+    
+    // Now set the level details, level 0 will be the highest detail found in IMGs, level one is fixed to 16
+    // cGpsMapper spec says that the highest detailled level of the overview map should be lower 
+    // than the lowest level of the tiles (img). 
+    
+    // However this has the side effect that the tiles is offset since the coordinates precision is offset. In some cases
+    // this is not an issue but if you have a single tile, it looks weird
+    
+    // via expirimentation, I found that with 1 tile, using the highest possible level of details from the tile in the overview
+    // works perfectly, but with more than 1 tile it creates a mess. Therefore check imgCount and apply the correct logic
+    
+    if(imgCount == 0) {
+        overviewMap.GetHeader().AddLevelBits(0,highestDetailledLevelBits);
+        overviewMap.GetHeader().AddLevelBits(1,highestDetailledLevelBits > 16 ? 16 : highestDetailledLevelBits-1);
+    } else {
+        overviewMap.GetHeader().AddLevelBits(0,lowestDetailledLevelBits-1);
+        overviewMap.GetHeader().AddLevelBits(1,lowestDetailledLevelBits-2);
     }
     
     if(generateAreaOfMapCoveragePoly) {
