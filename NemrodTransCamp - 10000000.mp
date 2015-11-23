@@ -14,7 +14,6 @@ Transparent=Y
 POIIndex=Y
 POINumberFirst=Y
 POIZipFirst=N
-PolygonEvaluate=N
 DrawPriority=1
 Levels=4
 Level0=24

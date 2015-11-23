@@ -5,7 +5,6 @@ CodePage=1252
 LblCoding=9
 ID=10000000
 Name=Nemrod Camp Complete
-Elevation=F
 Preprocess=F
 TreSize=500
 TreMargin=0.00000
@@ -506,12 +505,6 @@ Data0=(45.98038,-74.93328)
 [END]
 
 [POI]
-Type=0x6600
-Label=Pointe Themens
-Data0=(45.98124,-74.90376)
-[END]
-
-[POI]
 Type=0x6402
 Data0=(45.98027,-74.90749)
 [END]
@@ -603,18 +596,6 @@ Data0=(45.99366,-74.92277)
 Type=0x6300
 Label=915
 Data0=(45.99452,-74.92373)
-[END]
-
-[POI]
-Type=0x2800
-Label=DU
-Data0=(45.98714,-74.91073)
-[END]
-
-[POI]
-Type=0x2800
-Label=CHEMIN
-Data0=(45.99014,-74.91212)
 [END]
 
 [POI]
