@@ -26,6 +26,7 @@ echo Using light: %LIGHT_EXE%
 echo ------------ END-INIT ---------------
 echo.
 echo ---- BUILDING NEMROD TRANSPARENT -----
+echo.
 echo ------- Generate overview map --------
 echo.
 echo Options: %TRANS_OVERVIEW_GEN_ARGS%
@@ -42,6 +43,7 @@ echo.
 
 
 echo ------ BUILDING NEMROD COMPLETE ------
+echo.
 echo ------- Generate overview map --------
 echo.
 echo Options: %COMPLETE_OVERVIEW_GEN_ARGS%
