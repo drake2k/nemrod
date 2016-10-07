@@ -69,7 +69,8 @@ String=4,Lot line
 String=1,Ligne lot
 String=0,Ligne lot
 LineWidth=1
-XPM="0 0 1 1"
+XPM="0 0 2 1"
 "0 c #000000"
+"1 c #000000"
 [end]
 

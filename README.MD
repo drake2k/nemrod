@@ -68,7 +68,7 @@ If you want to save this registry info, its a good time to back it up since MapT
 
 ### Extracting data from maps
 
-To get the data from a compiled map there are 2 cases. Either from an IMG file or from the files in the new garming format.
+To get the data from a compiled map there are 2 cases. Either from an IMG file or from the files in the new garmin format.
 
 ###### Old format (img)
 

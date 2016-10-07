@@ -6,6 +6,7 @@ FamilyID=102
 Version=201
 Compile=1
 Index=0
+Check=0
 Style=1
 GarminColor=1
 Overview=overview.img
