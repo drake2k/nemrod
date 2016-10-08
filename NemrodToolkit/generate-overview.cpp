@@ -77,8 +77,9 @@ int main(int argc, char** argv) {
     }
     
     std::string outputFileName, projectFileDir;
+    char overviewElevation = -1;
 
-    if (optind < argc)
+    if (optind < argc-1)
         EXIT_WITH_MSG("No target file name was given, command must end with target file name for the overview map. Use -h for help.");
     else 
         outputFileName = argv[argc-1];
@@ -106,7 +107,6 @@ int main(int argc, char** argv) {
     
     // for these maybe they should be parametrable or rely on IMGs parsed further on
     overviewMap.GetHeader().SetCodePage("1252");
-    overviewMap.GetHeader().SetElevation('M');
     overviewMap.GetHeader().SetLblCoding(9);
     
     // end of header
@@ -128,6 +128,12 @@ int main(int argc, char** argv) {
             continue;
         }
         imgCount ++;
+        if(overviewElevation == -1)
+            overviewElevation = mpFile.GetHeader().GetElevation();
+        else
+            if(overviewElevation != mpFile.GetHeader().GetElevation())
+                EXIT_WITH_MSG("All maps need to have the same elevation unit, failed on " + it + ".mp ");
+                
         if(!mpFile.GetHeader().GetLevelBits().empty()) {
             if((*mpFile.GetHeader().GetLevelBits().begin()).second > highestDetailledLevelBits)
                 highestDetailledLevelBits = (*mpFile.GetHeader().GetLevelBits().begin()).second;
@@ -175,6 +181,8 @@ int main(int argc, char** argv) {
         areaMapSelection.AddPoints(0, {topLeft, topRight, botRight, botLeft});
         overviewMap.GetPolygons().push_back(areaMapSelection);
     }
+    
+    overviewMap.GetHeader().SetElevation(overviewElevation);
     
     // overview should have 2 levels
     overviewMap.GetHeader().SetLevels(2); // this should be removed and read/write from the size of the levelbits set

@@ -2,7 +2,7 @@
 # if planning to not use autotools or CMake
 
 CFLAGS=-Wall
-CXXFLAGS=-Wall -std=gnu++11
+CXXFLAGS=-Wall -std=gnu++14
 LDFLAGS=-static-libstdc++ -static-libgcc
 
 # must match source tree
