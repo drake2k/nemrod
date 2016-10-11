@@ -5,7 +5,6 @@ CodePage=1252
 LblCoding=9
 ID=10000000
 Name=Nemrod Camp Transparent
-Elevation=M
 Preprocess=G
 TreSize=500
 TreMargin=0.00000

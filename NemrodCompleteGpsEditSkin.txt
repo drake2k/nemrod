@@ -12,6 +12,26 @@ Type=0x49,5
 [end]
 
 [_polygon]
+Type=0x10f00
+DrawOrder=4
+String=0,Agriculture
+String=1,Agriculture
+String=4,Agricultural
+XPM="0 0 1 1"
+"0 c #ffca6a
+[end]
+
+[_polygon]
+Type=0x10f01
+DrawOrder=4
+String=0,Plage
+String=1,Plage
+String=4,Beach
+XPM="0 0 1 1"
+"0 c #ffffd5
+[end]
+
+[_polygon]
 Type=0x000e
 String=4,Landing strip
 String=1,Piste d'atterissage

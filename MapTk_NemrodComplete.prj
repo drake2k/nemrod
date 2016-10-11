@@ -5,8 +5,8 @@ Product=Nemrod Complete Maps
 FamilyID=102
 Version=201
 Compile=1
-Index=0
-Check=0
+Index=1
+Check=1
 Style=1
 GarminColor=1
 Overview=overview.img
@@ -87,6 +87,24 @@ Line=00000000000000000000000000000000
 Line=00000000000000000000000000000000
 Line=00000000000000000000000000000000
 Line=00000000000000000000000000000000
+[END]
+
+[Polygon]
+Type=0x10f00
+DrawOrder=4
+String=0,Agriculture
+String=1,Agriculture
+String=4,Agricultural
+Color=0,0xffca6a
+[END]
+
+[Polygon]
+Type=0x10f01
+DrawOrder=4
+String=0,Plage
+String=1,Plage
+String=4,Beach
+Color=0,0xffffd5
 [END]
 
 # Python scripts used by 'Script'

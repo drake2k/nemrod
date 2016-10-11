@@ -317,8 +317,8 @@ namespace Nemrod {
         // not documented, GPSMapEdit sets that to 0
         float _treMargin = 0;
 
-        // default elevation data to meters
-        char _elevation = 'M';
+        // default elevation data to feets
+        char _elevation = 'F';
         char _preProcess = 'F';
 
         // todo fix this, its not a bool it has 3 possible char values, Y, N or S

@@ -5,7 +5,6 @@ CodePage=1252
 LblCoding=9
 ID=10000001
 Name=St-Hilaire Transparent
-Elevation=M
 Preprocess=G
 TreSize=500
 TreMargin=0.00000
@@ -14,7 +13,6 @@ Transparent=Y
 POIIndex=Y
 POINumberFirst=Y
 POIZipFirst=N
-PolygonEvaluate=N
 DrawPriority=1
 Levels=4
 Level0=24
@@ -30,11 +28,10 @@ Zoom3=3
 [POLYGON]
 Type=0x4b
 Background=Y
-Data0=(45.52460,-73.20791),(45.51318,-73.20791),(45.51318,-73.19272),(45.52460,-73.19272)
 EndLevel=3
+Data0=(45.52460,-73.20791),(45.51318,-73.20791),(45.51318,-73.19272),(45.52460,-73.19272)
 Transparent=Y
 [END]
-
 
 ;Converted from Nemrod\MappingData\st-hilaire.gpx
 [POLYLINE]

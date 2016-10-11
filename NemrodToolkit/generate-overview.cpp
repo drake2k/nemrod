@@ -15,9 +15,10 @@ using namespace Nemrod;
 using namespace Nemrod::MapTk;
 
 void help() {
+    std::cout << "Generates an overview map in polish format using a given MapTK project file" << std::endl << std::endl;
     std::cout << "Usage: generate-overview.exe [OPTIONS] outputFileName" << std::endl << std::endl;
     std::cout << "Options:" << std::endl;
-    std::cout << "\t" << "-p, --project=projectFile: REQUIRED, Use the given project file" << std::endl;
+    std::cout << "\t" << "-p, --project=projectFile: REQUIRED, Use the given MapTK project file" << std::endl;
     std::cout << "\t" << "-r, --coverage: Enables the generation of the Area of Map coverage polygon" << std::endl;
     std::cout << "\t" << "-c, --emc=extendMapCoverageDistance: Extend 0x4a polygon by the given amount of meters" << std::endl;
     std::cout << "\t" << "-s, --ems=extendMapAreaSelectionDistance:  Extend 0x4b polygon by the given amount of meters" << std::endl;    

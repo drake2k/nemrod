@@ -56,14 +56,14 @@
             <standard>10</standard>
           </cTool>
           <ccTool>
-            <standard>8</standard>
+            <standard>11</standard>
             <preprocessorList>
               <Elem>DEBUG=1</Elem>
               <Elem>__GNUC_STDC_INLINE__=1</Elem>
               <Elem>__GXX_EXPERIMENTAL_CXX0X__=1</Elem>
               <Elem>__REGISTER_PREFIX__=</Elem>
               <Elem>__STRICT_ANSI__=1</Elem>
-              <Elem>__cplusplus=201103L</Elem>
+              <Elem>__cplusplus=201402L</Elem>
             </preprocessorList>
           </ccTool>
         </makeTool>
@@ -134,13 +134,20 @@
           <buildCommand>${MAKE} -f makefile release</buildCommand>
           <cleanCommand>${MAKE} -f makefile clean</cleanCommand>
           <executablePath>generate-overview.exe</executablePath>
+          <cTool>
+            <standard>10</standard>
+          </cTool>
           <ccTool>
-            <standard>8</standard>
+            <standard>11</standard>
             <incDir>
               <pElem></pElem>
             </incDir>
             <preprocessorList>
-              <Elem>__cplusplus=201103L</Elem>
+              <Elem>__GNUC_STDC_INLINE__=1</Elem>
+              <Elem>__GXX_EXPERIMENTAL_CXX0X__=1</Elem>
+              <Elem>__REGISTER_PREFIX__=</Elem>
+              <Elem>__STRICT_ANSI__=1</Elem>
+              <Elem>__cplusplus=201402L</Elem>
             </preprocessorList>
             <undefinedList>
               <Elem>__NO_INLINE__</Elem>
