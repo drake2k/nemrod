@@ -23,7 +23,7 @@
 
 To generate maps using MapTK, use the MapTK.prj file.
 
-###### Map files
+#### Map files
 
 Maps use the MP format. Refer to MapTK documentation for the file structure, headers, features etc. MP files are edited with GPSMapEdit, in the tools folder. 
 Documentation from cGpsMapper can also be really usefull, there is the PDF in the tools folder.
@@ -31,29 +31,29 @@ Documentation from cGpsMapper can also be really usefull, there is the PDF in th
 One exception, is that contrary to what is specified, the 0x4b polygon (Area of Map coverage) for indidual maps does not have to be in last level (inactive), which is not displayed in GPSMapedit.  
 It is only used for routing, and is ignored by MapTK overview map generator regardless of its level but will be compiled in IMG if on level 0, so basically it needs to be on any level other than 0. Note that Nemrod transparent maps do not do routing.
 
-###### Custom Types
+#### Custom Types
 
 Custom types are declared in the MapTK.prj file. To use them in GPSMapEdit use map skins (View Menu). 
 
-*Polylines*
+**Polylines**
  - 0x10F00 : Lot lines
  
- *Polygons*
+**Polygons**
  - 0x10F00 : Agricultural
  - 0x10F01 : Beach
  
-###### Default altered Types
+#### Default altered Types
 
 They were altered because either the name was not convenient, didnt provide translation or was not supported correctly by MapSource/Basecamp
  
-*Polygons*
+**Polygons**
  - 0x0e : Landing Strip (was "airport runaway")
  - 0x14 : Forest (was "national park")
  - 0x40 : Lake (was "small lake")
  - 0x49 : River (was "small river")
  - 0x51 : Humid (was "wetland/swamp" and the icon was a grid which was heavy on receiver)
 
-###### Generation
+#### Generation
  
  - Run the compile-maptk.bat file which will: 
    - Generate overview map
