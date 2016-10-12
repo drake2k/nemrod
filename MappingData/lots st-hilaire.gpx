@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="MapTk" version="1.1">
+  <trk>
+    <name>Jean-Guy</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5269400" lon="-73.2104700"/>
+      <trkpt lat="45.5262700" lon="-73.2095200"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Jean-Guy_1</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5262100" lon="-73.2109400"/>
+      <trkpt lat="45.5269400" lon="-73.2104700"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_2</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5257100" lon="-73.2112800"/>
+      <trkpt lat="45.5262100" lon="-73.2109400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Jean-Guy_3</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5262100" lon="-73.2109400"/>
+      <trkpt lat="45.5247300" lon="-73.2088100"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Lacasse</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5246200" lon="-73.2120100"/>
+      <trkpt lat="45.5257100" lon="-73.2112800"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_4</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5242300" lon="-73.2091600"/>
+      <trkpt lat="45.5247300" lon="-73.2088100"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_5</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5257100" lon="-73.2112800"/>
+      <trkpt lat="45.5242300" lon="-73.2091600"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_6</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5221700" lon="-73.2133200"/>
+      <trkpt lat="45.5226000" lon="-73.2131700"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_7</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5215900" lon="-73.1991400"/>
+      <trkpt lat="45.5215900" lon="-73.1992000"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_8</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5221700" lon="-73.2133200"/>
+      <trkpt lat="45.5211000" lon="-73.2118400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_9</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5211000" lon="-73.2118400"/>
+      <trkpt lat="45.5207600" lon="-73.2113500"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_10</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5206100" lon="-73.2124400"/>
+      <trkpt lat="45.5211000" lon="-73.2118400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_11</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5214200" lon="-73.2136200"/>
+      <trkpt lat="45.5206100" lon="-73.2124400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_12</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5205800" lon="-73.2103400"/>
+      <trkpt lat="45.5226000" lon="-73.2131700"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_13</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5209100" lon="-73.2002300"/>
+      <trkpt lat="45.5203500" lon="-73.1994200"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_14</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5203300" lon="-73.2107200"/>
+      <trkpt lat="45.5205800" lon="-73.2103400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_15</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5207600" lon="-73.2113500"/>
+      <trkpt lat="45.5203300" lon="-73.2107200"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Jean-Guy / Lacasse</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5247300" lon="-73.2088100"/>
+      <trkpt lat="45.5202800" lon="-73.2024400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_16</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5197900" lon="-73.2027800"/>
+      <trkpt lat="45.5202800" lon="-73.2024400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Lacasse_17</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5242300" lon="-73.2091600"/>
+      <trkpt lat="45.5197900" lon="-73.2027800"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_18</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5193800" lon="-73.1999100"/>
+      <trkpt lat="45.5203500" lon="-73.1994200"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_19</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5187400" lon="-73.2002300"/>
+      <trkpt lat="45.5193800" lon="-73.1999100"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_20</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5202800" lon="-73.2024400"/>
+      <trkpt lat="45.5187400" lon="-73.2002300"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_21</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5187200" lon="-73.2002300"/>
+      <trkpt lat="45.5187400" lon="-73.2002300"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_22</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5180100" lon="-73.2006000"/>
+      <trkpt lat="45.5187200" lon="-73.2002300"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_23</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5174500" lon="-73.2008700"/>
+      <trkpt lat="45.5180100" lon="-73.2006000"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_24</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5169200" lon="-73.2011500"/>
+      <trkpt lat="45.5174500" lon="-73.2008700"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Lacasse / Halde</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5169200" lon="-73.2011500"/>
+      <trkpt lat="45.5246200" lon="-73.2120100"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Brouillette / 2617-1424 Qc Inc</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5203500" lon="-73.1994200"/>
+      <trkpt lat="45.5161400" lon="-73.1935400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_25</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5154600" lon="-73.1940700"/>
+      <trkpt lat="45.5161400" lon="-73.1935400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_26</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5152600" lon="-73.1942200"/>
+      <trkpt lat="45.5154600" lon="-73.1940700"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Auclair / Brouillette</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5193800" lon="-73.1999100"/>
+      <trkpt lat="45.5152600" lon="-73.1942200"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_27</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5146600" lon="-73.1946300"/>
+      <trkpt lat="45.5152600" lon="-73.1942200"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>2321-2392 Qc Inc / Brouillette</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5187200" lon="-73.2002300"/>
+      <trkpt lat="45.5146600" lon="-73.1946300"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_28</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5144500" lon="-73.1948000"/>
+      <trkpt lat="45.5146600" lon="-73.1946300"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_29</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5141000" lon="-73.1950800"/>
+      <trkpt lat="45.5144500" lon="-73.1948000"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>2321-2392 Qc Inc / Lacasse</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5180100" lon="-73.2006000"/>
+      <trkpt lat="45.5141000" lon="-73.1950800"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_30</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5135900" lon="-73.1954500"/>
+      <trkpt lat="45.5141000" lon="-73.1950800"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Lacasse / Halde_31</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5174500" lon="-73.2008700"/>
+      <trkpt lat="45.5135900" lon="-73.1954500"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_32</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5108600" lon="-73.1973100"/>
+      <trkpt lat="45.5116800" lon="-73.1968400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_33</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5108900" lon="-73.1973600"/>
+      <trkpt lat="45.5108600" lon="-73.1973100"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_34</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5221700" lon="-73.2133200"/>
+      <trkpt lat="45.5211000" lon="-73.2118400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_35</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5206100" lon="-73.2124400"/>
+      <trkpt lat="45.5211000" lon="-73.2118400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_36</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5214200" lon="-73.2136200"/>
+      <trkpt lat="45.5206100" lon="-73.2124400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Jean-Guy_37</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5270600" lon="-73.2090500"/>
+      <trkpt lat="45.5263600" lon="-73.2080400"/>
+      <trkpt lat="45.5258600" lon="-73.2073500"/>
+      <trkpt lat="45.5255600" lon="-73.2069000"/>
+      <trkpt lat="45.5253300" lon="-73.2065600"/>
+      <trkpt lat="45.5250300" lon="-73.2061300"/>
+      <trkpt lat="45.5249000" lon="-73.2059600"/>
+      <trkpt lat="45.5246000" lon="-73.2055300"/>
+      <trkpt lat="45.5243200" lon="-73.2051000"/>
+      <trkpt lat="45.5240200" lon="-73.2046900"/>
+      <trkpt lat="45.5237400" lon="-73.2042900"/>
+      <trkpt lat="45.5234400" lon="-73.2038600"/>
+      <trkpt lat="45.5231600" lon="-73.2034500"/>
+      <trkpt lat="45.5228600" lon="-73.2030200"/>
+      <trkpt lat="45.5225800" lon="-73.2026100"/>
+      <trkpt lat="45.5222800" lon="-73.2022000"/>
+      <trkpt lat="45.5219800" lon="-73.2018000"/>
+      <trkpt lat="45.5217000" lon="-73.2013700"/>
+      <trkpt lat="45.5216600" lon="-73.2013000"/>
+      <trkpt lat="45.5214000" lon="-73.2009600"/>
+      <trkpt lat="45.5209100" lon="-73.2002300"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Jean-Guy_38</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5262700" lon="-73.2095200"/>
+      <trkpt lat="45.5265500" lon="-73.2093500"/>
+      <trkpt lat="45.5270600" lon="-73.2090500"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>2617-1421 Qc Inc</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5209100" lon="-73.2002300"/>
+      <trkpt lat="45.5211000" lon="-73.1997200"/>
+      <trkpt lat="45.5215900" lon="-73.1992000"/>
+      <trkpt lat="45.5215900" lon="-73.1991400"/>
+      <trkpt lat="45.5216600" lon="-73.1982100"/>
+      <trkpt lat="45.5203700" lon="-73.1963500"/>
+      <trkpt lat="45.5178200" lon="-73.1929600"/>
+      <trkpt lat="45.5170900" lon="-73.1932100"/>
+      <trkpt lat="45.5161900" lon="-73.1935400"/>
+      <trkpt lat="45.5161400" lon="-73.1935400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Halde</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5116800" lon="-73.1968400"/>
+      <trkpt lat="45.5117700" lon="-73.1968000"/>
+      <trkpt lat="45.5126200" lon="-73.1961500"/>
+      <trkpt lat="45.5131200" lon="-73.1958100"/>
+      <trkpt lat="45.5135900" lon="-73.1954500"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Nègre</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5108600" lon="-73.1973100"/>
+      <trkpt lat="45.5100300" lon="-73.1976300"/>
+      <trkpt lat="45.5199800" lon="-73.2118600"/>
+      <trkpt lat="45.5208600" lon="-73.2131100"/>
+      <trkpt lat="45.5212500" lon="-73.2136600"/>
+      <trkpt lat="45.5214200" lon="-73.2136200"/>
+      <trkpt lat="45.5221700" lon="-73.2133200"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_39</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5226000" lon="-73.2131700"/>
+      <trkpt lat="45.5227300" lon="-73.2131100"/>
+      <trkpt lat="45.5230500" lon="-73.2129600"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Halde_40</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5230500" lon="-73.2129600"/>
+      <trkpt lat="45.5235200" lon="-73.2127400"/>
+      <trkpt lat="45.5239700" lon="-73.2124400"/>
+      <trkpt lat="45.5246200" lon="-73.2120100"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Track_41</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5183700" lon="-73.2079800"/>
+      <trkpt lat="45.5183300" lon="-73.2078100"/>
+      <trkpt lat="45.5183100" lon="-73.2076300"/>
+      <trkpt lat="45.5190800" lon="-73.2073100"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Halde / Nègre</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5230500" lon="-73.2129600"/>
+      <trkpt lat="45.5213400" lon="-73.2105500"/>
+      <trkpt lat="45.5190800" lon="-73.2073100"/>
+      <trkpt lat="45.5116800" lon="-73.1968400"/>
+    </trkseg>
+  </trk>
+  <trk>
+    <name>Split Nègre</name>
+    <cmt>Type=0x10f00</cmt>
+    <trkseg>
+      <trkpt lat="45.5203300" lon="-73.2107200"/>
+      <trkpt lat="45.5183700" lon="-73.2079800"/>
+      <trkpt lat="45.5108900" lon="-73.1973600"/>
+    </trkseg>
+  </trk>
+</gpx>
