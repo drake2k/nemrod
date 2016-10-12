@@ -35,12 +35,18 @@ It is only used for routing, and is ignored by MapTK overview map generator rega
 
 Custom types are declared in the MapTK.prj file. To use them in GPSMapEdit use map skins (View Menu). 
 
+*Polylines*
  - 0x10F00 : Lot lines
+ 
+ *Polygons*
+ - 0x10F00 : Agricultural
+ - 0x10F01 : Beach
  
 ###### Default altered Types
 
 They were altered because either the name was not convenient, didnt provide translation or was not supported correctly by MapSource/Basecamp
  
+*Polygons*
  - 0x0e : Landing Strip (was "airport runaway")
  - 0x14 : Forest (was "national park")
  - 0x40 : Lake (was "small lake")

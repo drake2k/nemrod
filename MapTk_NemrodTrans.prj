@@ -6,12 +6,13 @@ FamilyID=101
 Version=201
 Compile=1
 Index=0
+Check=0
 Style=1
 GarminColor=1
 Overview=overview.img
 IMGpath=Output-MapTK\NemrodTransparent
 IMGfiles=1000000*.img
-Copyright=Nemrod 2011-2015
+Copyright=Nemrod 2011-2016
 [END]
 
 # IMGs

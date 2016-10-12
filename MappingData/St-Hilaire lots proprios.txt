@@ -1,0 +1,31 @@
+1 657 713	Henri Nègre
+1 657 714	Gestion Henri Nègre Inc
+1 815 135	Henri Nègre
+1 815 136	Gestion Henri Nègre
+1 815 137	Jean-Luc Halde
+1 815 149	Jean-Pierre Bernard, Anne Béland
+1 815 150	Gestion Patrick Lacasse Inc
+1 815 151	Patric Lacasse
+1 815 154	Guylaine Jodoin (Conjointe de Lacasse, reste à même addresse)?
+1 815 155	2321-2392 QUEBEC INC. (Auclair)
+1 815 156	Serge Auclair, Guylaine Parent
+1 815 159	Jean-Guy Lewis
+1 815 160	Louis Brouillette
+1 815 210	2617-1421 QUEBEC INC. (immobilier)
+2 484 077	Gestion Henri Nègre Inc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

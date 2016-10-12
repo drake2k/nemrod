@@ -2,7 +2,7 @@
 Name=Nemrod Complete Maps
 ID=overview
 Codepage=1252
-Copyright=Nemrod 2011-2015
+Copyright=Nemrod 2011-2016
 DrawPriority=25
 Elevation=M
 LblCoding=9
