@@ -57,12 +57,21 @@ Color=0,0x000000
 # Polygons
 
 [Polygon]
+Type=0x03
+DrawOrder=2
+String=0,Résidentiel Rural
+String=1,Résidentiel Rural
+String=4,Rural Housing
+Color=0,0xd5d5d5
+[END]
+
+[Polygon]
 Type=0x0e
 DrawOrder=4
 String=0,Piste d'atterissage
 String=1,Piste d'atterissage
 String=4,Landing strip
-Color=0,0xd5d5d5
+Color=0,0xa0a0a0
 [END]
 
 [Polygon]

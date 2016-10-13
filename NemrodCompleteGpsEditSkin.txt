@@ -37,7 +37,7 @@ String=4,Landing strip
 String=1,Piste d'atterissage
 String=0,Piste d'atterissage
 XPM="0 0 1 1"
-"0 c #d5d5d5"
+"0 c #a0a0a0"
 [end]
 
 [_polygon]
@@ -48,6 +48,16 @@ String=0,Boisé
 XPM="0 0 1 1"
 "0 c #b8e999"
 [end]
+
+[_polygon]
+Type=0x0003
+String=4,Rural Housing
+String=1,Résidentiel Rural
+String=0,Résidentiel Rural
+XPM="0 0 1 1"
+"0 c #d5d5d5"
+[end]
+
 
 [_polygon]
 Type=0x0040

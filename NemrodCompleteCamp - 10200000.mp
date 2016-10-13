@@ -241,7 +241,7 @@ Data0=(45.99373,-74.93354)
 
 [POI]
 Type=0x6402
-Label=Camp Hétier
+Label=Camp Éthier
 EndLevel=2
 CountryName=Canada~[0x1d]CAN
 RegionName=Quebec~[0x1d]QC

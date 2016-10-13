@@ -1,11 +1,11 @@
 ### Mapsets informations
 
  - MapSet name : Nemrod Transparent Trails (Family ID: 101)
-   - Nemrod Camp map ID: 		10000000  
-   - Nemrod St-Hilaire map ID: 	10000001
+   - Nemrod Camp map ID: 		10100000  
+   - Nemrod St-Hilaire map ID: 	10100001
    
  - MapSet name : Nemrod Complete (Family ID: 102)
-   - Nemrod Camp map ID: 		10000000
+   - Nemrod Camp map ID: 		10200000
    
 
 
@@ -50,7 +50,8 @@ They were altered because either the name was not convenient, didnt provide tran
  - 0x6402 : Building (redrew icon for consistency across devices)
  
 ###### Polygons
- - 0x0e : Landing Strip (was "airport runaway")
+ - 0x30 : Rural Housing Area (not rendered in MapSource/BaseCamp)
+ - 0x0e : Landing Strip (was "airport runaway", also made darker)
  - 0x14 : Forest (was "national park")
  - 0x40 : Lake (was "small lake")
  - 0x49 : River (was "small river")
