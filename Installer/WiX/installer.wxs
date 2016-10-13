@@ -20,17 +20,17 @@
 					<Directory Id="NEMRODTRANSPARENT" Name="Transparent">
 						<Component Id="TransparentProductFiles" Guid="18348B87-5B81-4083-A61C-C15555892871">
 							<File Id='trans_maplacdesplages' Name='10000000.img' 
-								  Source='..\..\Output-MapTK\NemrodTransparent\10000000.img' Vital='yes' DiskId='1'/>
+								  Source='..\..\Output-MapTK\NemrodTransparent\10100000.img' Vital='yes' DiskId='1'/>
 							<File Id='trans_mapsthilaire' Name='10000001.img' 
-								  Source='..\..\Output-MapTK\NemrodTransparent\10000001.img' Vital='yes' DiskId='1'/>
-							<File Id='trans_mdx' Name='M00101.mdx' 
-								  Source='..\..\Output-MapTK\NemrodTransparent\M00101.mdx' Vital='yes' DiskId='1'/>
-							<File Id='trans_typ' Name='M00101.typ' 
+								  Source='..\..\Output-MapTK\NemrodTransparent\10100001.img' Vital='yes' DiskId='1'/>
+							<!-- <File Id='trans_mdx' Name='M00101.mdx' 
+								  Source='..\..\Output-MapTK\NemrodTransparent\M00101.mdx' Vital='yes' DiskId='1'/> -->
+							<File Id='trans_typ' Name='M00101.typ'  
 								  Source='..\..\Output-MapTK\NemrodTransparent\M00101.typ' Vital='yes' DiskId='1'/>
 							<File Id='trans_rdb' Name='M00101.tdb' 
 								  Source='..\..\Output-MapTK\NemrodTransparent\M00101.tdb' Vital='yes' DiskId='1'/>
-							<File Id='trans_addresses' Name='M00101_mdr.img' 
-								  Source='..\..\Output-MapTK\NemrodTransparent\M00101_mdr.img' Vital='yes' DiskId='1'/>
+							<!-- <File Id='trans_addresses' Name='M00101_mdr.img' 
+								  Source='..\..\Output-MapTK\NemrodTransparent\M00101_mdr.img' Vital='yes' DiskId='1'/> -->
 							<File Id='trans_overview' Name='overview.img' 
 								  Source='..\..\Output-MapTK\NemrodTransparent\overview.img' Vital='yes' DiskId='1'/>
 						</Component>
@@ -38,7 +38,7 @@
 					<Directory Id="NEMRODCOMPLETE" Name="Complete">
 						<Component Id="CompleteProductFiles" Guid="18348B87-5B81-4083-A61C-C15555892872">
 							<File Id='comp_maplacdesplages' Name='10000000.img' 
-								  Source='..\..\Output-MapTK\NemrodComplete\10000000.img' Vital='yes' DiskId='1'/>
+								  Source='..\..\Output-MapTK\NemrodComplete\10200000.img' Vital='yes' DiskId='1'/>
 							<File Id='comp_mdx' Name='M00102.mdx' 
 								  Source='..\..\Output-MapTK\NemrodComplete\M00102.mdx' Vital='yes' DiskId='1'/>
 							<File Id='comp_typ' Name='M00102.typ' 
@@ -74,8 +74,8 @@
 							 ForceDeleteOnUninstall="yes">
 					<RegistryValue Name="ID" Type="binary" Value="6600"/>
 					<RegistryValue Name="TYP" Type="string" Value="[NEMRODMAPSDIR]Complete\M00102.typ"/>
-					<!-- <RegistryValue Name="MDR" Type="string" Value="[NEMRODMAPSDIR]Complete\M00102_mdr.img"/> -->
-					<!-- <RegistryValue Name="IDX" Type="string" Value="[NEMRODMAPSDIR]Complete\M00102.mdx"/> -->
+					<RegistryValue Name="MDR" Type="string" Value="[NEMRODMAPSDIR]Complete\M00102_mdr.img"/>
+					<RegistryValue Name="IDX" Type="string" Value="[NEMRODMAPSDIR]Complete\M00102.mdx"/>
 					<RegistryKey Key="1">
 						<RegistryValue Name="BMAP" Type="string" Value="[NEMRODMAPSDIR]Complete\overview.img"/>
 						<RegistryValue Name="LOC" Type="string" Value="[NEMRODMAPSDIR]Complete\"/>

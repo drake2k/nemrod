@@ -17,7 +17,7 @@ Preview=Y
 
 [POLYGON]
 Type=0x4a
-Label=Nemrod Camp Complete - 10000000~[0x1d]10000000
+Label=Nemrod Camp Complete - 10200000~[0x1d]10200000
 Data0=(46.01864,-75.00057),(46.01864,-74.90307),(45.97984,-74.90307),(45.97984,-75.00057)
 [END]
 

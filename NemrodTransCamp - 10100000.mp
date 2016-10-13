@@ -3,7 +3,7 @@
 [IMG ID]
 CodePage=1252
 LblCoding=9
-ID=10000000
+ID=10100000
 Name=Nemrod Camp Transparent
 Preprocess=G
 TreSize=500

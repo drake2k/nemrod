@@ -11,15 +11,36 @@ Style=1
 GarminColor=1
 Overview=overview.img
 IMGpath=Output-MapTK\NemrodTransparent
-IMGfiles=1000000*.img
+IMGfiles=1010000*.img
 Copyright=Nemrod 2011-2016
 [END]
 
 # IMGs
 
 [IMG]
-NemrodTransCamp - 10000000
-NemrodTransStHilaire - 10000001
+NemrodTransCamp - 10100000
+NemrodTransStHilaire - 10100001
+[END]
+
+# POIs
+
+[POI]
+Type=0x6402
+String=1,Batiment
+String=2,Batiment
+String=4,Building
+Color=0,0xffffff
+Color=1,0x000000
+Line=......00...
+Line=....00110..
+Line=...011110..
+Line=..0111110..
+Line=.011111110.
+Line=.0110011110
+Line=..01001110.
+Line=..01111110.
+Line=..01111110.
+Line=...0000000.
 [END]
 
 # Polylines

@@ -3,7 +3,7 @@
 [IMG ID]
 CodePage=1252
 LblCoding=9
-ID=10000001
+ID=10100001
 Name=St-Hilaire Transparent
 Preprocess=G
 TreSize=500
