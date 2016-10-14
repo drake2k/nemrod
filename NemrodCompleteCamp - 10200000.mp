@@ -10942,7 +10942,7 @@ Nod4=27,86,0
 
 [POLYLINE]
 Type=0xa
-Label=HETIER/BOUT TERRE
+Label=ÉTHIER/BOUT TERRE
 CountryName=Canada~[0x1d]CAN
 RegionName=Quebec~[0x1d]QC
 CityName=Lac Des Plages
