@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
 	<Product Name='Nemrod Maps' 
-        Id='237151F8-85AF-11E5-AF63-FEFF819CDCA2'
-        Language='1033' Codepage='1252' Version='2.1' 
+        Id='237151F8-85AF-11E5-AF63-FEFF819CDCA3'
+        Language='1033' Codepage='1252' Version='2.3' 
         Manufacturer='Jf Beaulac'
         UpgradeCode='0A3C458F-AE09-459A-BD02-536414AD1B95'>
 
@@ -19,9 +19,9 @@
 				<Directory Id="NEMRODMAPSDIR" Name="Nemrod Maps">
 					<Directory Id="NEMRODTRANSPARENT" Name="Transparent">
 						<Component Id="TransparentProductFiles" Guid="18348B87-5B81-4083-A61C-C15555892871">
-							<File Id='trans_maplacdesplages' Name='10000000.img' 
+							<File Id='trans_maplacdesplages' Name='10100000.img' 
 								  Source='..\..\Output-MapTK\NemrodTransparent\10100000.img' Vital='yes' DiskId='1'/>
-							<File Id='trans_mapsthilaire' Name='10000001.img' 
+							<File Id='trans_mapsthilaire' Name='10100001.img' 
 								  Source='..\..\Output-MapTK\NemrodTransparent\10100001.img' Vital='yes' DiskId='1'/>
 							<!-- <File Id='trans_mdx' Name='M00101.mdx' 
 								  Source='..\..\Output-MapTK\NemrodTransparent\M00101.mdx' Vital='yes' DiskId='1'/> -->
@@ -37,7 +37,7 @@
 					</Directory>
 					<Directory Id="NEMRODCOMPLETE" Name="Complete">
 						<Component Id="CompleteProductFiles" Guid="18348B87-5B81-4083-A61C-C15555892872">
-							<File Id='comp_maplacdesplages' Name='10000000.img' 
+							<File Id='comp_maplacdesplages' Name='10200000.img' 
 								  Source='..\..\Output-MapTK\NemrodComplete\10200000.img' Vital='yes' DiskId='1'/>
 							<File Id='comp_mdx' Name='M00102.mdx' 
 								  Source='..\..\Output-MapTK\NemrodComplete\M00102.mdx' Vital='yes' DiskId='1'/>
