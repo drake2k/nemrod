@@ -9,6 +9,7 @@ Preprocess=G
 TreSize=500
 TreMargin=0.00000
 RgnLimit=1024
+Transparent=Y
 POIIndex=Y
 POINumberFirst=Y
 POIZipFirst=N
