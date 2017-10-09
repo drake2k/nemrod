@@ -20,8 +20,8 @@ void help() {
     std::cout << "Options:" << std::endl;
     std::cout << "\t" << "-p, --project=projectFile: REQUIRED, Use the given MapTK project file" << std::endl;
     std::cout << "\t" << "-r, --coverage: Enables the generation of the Area of Map coverage polygon" << std::endl;
-    std::cout << "\t" << "-c, --emc=extendMapCoverageDistance: Extend 0x4a polygon by the given amount of meters" << std::endl;
-    std::cout << "\t" << "-s, --ems=extendMapAreaSelectionDistance:  Extend 0x4b polygon by the given amount of meters" << std::endl;    
+    std::cout << "\t" << "-c, --emc=extendMapCoverageDistance: Extend 0x4b polygon by the given amount of meters" << std::endl;
+    std::cout << "\t" << "-s, --ems=extendMapAreaSelectionDistance:  Extend 0x4a polygon by the given amount of meters" << std::endl;    
     std::cout << "\t" << "-h, --help: Shows this message." << std::endl;
     exit(1);
 }
@@ -198,7 +198,7 @@ int main(int argc, char** argv) {
     // via expirimentation, I found that with 1 tile, using the highest possible level of details from the tile in the overview
     // works perfectly, but with more than 1 tile it creates a mess. Therefore check imgCount and apply the correct logic
     
-    if(imgCount == 0) {
+    if(imgCount == 1) {
         overviewMap.GetHeader().AddLevelBits(0,highestDetailledLevelBits);
         overviewMap.GetHeader().AddLevelBits(1,highestDetailledLevelBits > 16 ? 16 : highestDetailledLevelBits-1);
     } else {

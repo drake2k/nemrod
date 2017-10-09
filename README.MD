@@ -23,6 +23,9 @@
 
 To generate maps using MapTK, use the MapTK.prj file.
 
+Note that as of now, we must use MapTK 4.0.0, more recent versions do not work to generate Nemrod Complete overview if we dont have the coverage (0x4b) polygon.
+To resume compatibility with recent versions, the compile batch file should add back the --coverage option, and I should probably fiddle with the overview generation program to get optimal results with clipping.
+
 #### Map files
 
 Maps use the MP format. Refer to MapTK documentation for the file structure, headers, features etc. MP files are edited with GPSMapEdit, in the tools folder. 
