@@ -1,8 +1,0 @@
-1.0.2
-- Ajout de la trail du lac des pins
-- Ajout d'un bout du chemin du camp (de la trail du 7 au lacs des pins)
-
-1.0.1
-
-- Premier release
-- Juste les trail pour le chalet, en unpaved roads
